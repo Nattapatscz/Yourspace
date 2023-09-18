@@ -1,0 +1,24 @@
+.problem-text {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.problem-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.problem-header {
+  font-size: 30px;
+  text-align: center;
+}
+.problem-list {
+  display: flex;
+  flex-direction: column;
+}

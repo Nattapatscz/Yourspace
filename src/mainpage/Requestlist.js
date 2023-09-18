@@ -1,5 +1,7 @@
 import React from "react";
 import "../styles/Requestlist.css";
+import { Link } from "react-router-dom";
+
 const Requestlist = () => {
   return (
     <div className="request-container">
@@ -8,9 +10,15 @@ const Requestlist = () => {
         src={require("../Photo/img2.jpg")}
         alt=""
       ></img>
-      <button type="button" class="request-btn btn-success">
-        <i class="fa-solid fa-plus">&nbsp;</i>แจ้งงานซ่อม
-      </button>
+
+      <Link to="/request/mainproblemlist" style={{ textDecoration: "none" }}>
+        <button type="button" class="request-btn btn-success">
+          <p>
+            <i class="fa-solid fa-plus"></i>แจ้งงานซ่อม
+          </p>
+        </button>
+      </Link>
+
       <p>บริการแนะนำ</p>
       <div className="card-container">
         <div className="card-list">
