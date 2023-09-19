@@ -1,3 +1,4 @@
+
 .problem-text {
   font-size: 20px;
   display: flex;
@@ -5,7 +6,9 @@
   align-items: center;
   text-align: center;
 }
-
+.problem-text2 {
+  float: left;
+}
 .problem-box {
   display: flex;
   flex-direction: column;
@@ -21,4 +24,16 @@
 .problem-list {
   display: flex;
   flex-direction: column;
+}
+.logo{
+  background-image: url("../Photo/HOMEMA.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 200px;
+}
+.text-content{
+  color: black;
+  font-family: 'Noto Sans Thai', sans-serif;
+  font-family: 'Noto Sans Thai Looped', sans-serif;
 }

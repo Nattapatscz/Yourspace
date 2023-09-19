@@ -3,102 +3,188 @@ import "../styles/Mainproblem.css";
 import { Link } from "react-router-dom";
 const Mainproblem = () => {
   return (
-    <div className="mainproblem-container">
-      <div className="problem-list">
-        <p className="problem-header">แจ้งงานซ่อม</p>
-        <div className="problem-box">
-          <Link
-            to="/request/subproblemlist/1"
-            style={{ textDecoration: "none" }}
-          >
-            <p className="problem-text">
-              <i
-                class="fas fa-faucet"
-                style={{ color: "orange", fontSize: "30px" }}
-              ></i>
-              ระบบน้ำ
-            </p>
-          </Link>
-        </div>
+  <>
+      <main className="container">
+        <div className="text-content">
+          <center>
+             <h3 style={{fontSize:"22.5px"}}>
+                &nbsp; &nbsp; &nbsp; &nbsp; แจ้งงานซ่อม
+            </h3>
+          </center>
+         
+        <br/>
+          <div className="col" >
+            
+            <Link
+              className="btn btn-warning  btn-lg"
+              to="/request/subproblemlist/1"
+              style={{ textDecoration: "none" ,width:"100%" ,height:"100%" ,padding:"1.5%"  }}
+            >
+          
+              <h5 className="text-light" style={{fontSize:"22.5px"}}>
+                <i
+                  className="problem-text2 fas fa-faucet"
+                  style={{ color: "white", fontSize: "28.5px" }}
+                ></i>
+                &nbsp; &nbsp; ระบบน้ำ
+              </h5>
+              </Link>
+          </div>
+
         <hr />
 
-        <div className="problem-box">
+        <div className="col" >
+          
           <Link
+          className="btn btn-warning  btn-lg"
             to="/request/subproblemlist/2"
-            style={{ textDecoration: "none" }}
-          >
-            <p className="problem-text">
-              <i
-                class="fa-solid fa-lightbulb"
-                style={{ color: "orange", fontSize: "30px" }}
-              ></i>
-              ระบบไฟ
-            </p>
-          </Link>
+            style={{ textDecoration: "none" ,width:"100%" ,height:"100%" ,padding:"1.5%" }}>
+
+                     <h5 className="text-light" style={{fontSize:"22.5px"}}>
+              <i className="problem-text2 fa-solid fa-lightbulb" style={{ color: "white", fontSize: "28.5px" }}></i>
+              &nbsp; &nbsp; ระบบไฟ
+            </h5>
+            </Link>
         </div>
+
         <hr />
-        <div className="problem-box">
+
+        <div className="col" >
+          
           <Link
+          className="btn btn-warning  btn-lg"
             to="/request/subproblemlist/3"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none" ,width:"100%" ,height:"100%" ,padding:"1.5%" }}
           >
-            <p className="problem-text">
+        
+            <h5 className="text-light" style={{fontSize:"22.5px"}}>
               <i
-                class="fa-solid fa-plug"
-                style={{ color: "orange", fontSize: "30px" }}
+                className="problem-text2 fa-solid fa-plug "
+                style={{ color: "white", fontSize: "28.5px" }}
               ></i>
-              เครื่องใช้ไฟฟ้า
-            </p>
+               &nbsp; &nbsp; เครื่องใช้ไฟฟ้า
+            </h5>
           </Link>
         </div>
+
         <hr />
-        <div className="problem-box">
+
+        <div className="col" >
           <Link
+          className="btn btn-warning  btn-lg"
             to="/request/subproblemlist/4"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none" ,width:"100%" ,height:"100%" ,padding:"1.5%" }}
           >
-            <p className="problem-text">
+        
+            <h5 className="text-light" style={{fontSize:"22.5px"}}>
               <i
-                class="fa-solid fa-house"
-                style={{ color: "orange", fontSize: "30px" }}
+                className="problem-text2 fa-solid fa-house "
+                style={{ color: "white", fontSize: "28.5px" }}
               ></i>
-              โครงสร้าง
-            </p>
+               &nbsp; &nbsp; โครงสร้าง
+            </h5>
           </Link>
         </div>
+
         <hr />
-        <div className="problem-box">
+
+        <div className="col" >
+          
           <Link
+            className="btn btn-warning  btn-lg"
             to="/request/subproblemlist/5"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none" ,width:"100%" ,height:"100%" ,padding:"1.5%" }}
           >
-            <p className="problem-text">
+        
+            <h5 className="text-light" style={{fontSize:"22.5px"}}>
               <i
-                class="fa-solid fa-screwdriver-wrench"
-                style={{ color: "orange", fontSize: "30px" }}
+                className="problem-text2 fa-solid fa-screwdriver-wrench"
+                style={{ color: "white", fontSize: "28.5px" }}
               ></i>
-              บริการและซ่อมบำรุง
-            </p>
+               &nbsp; &nbsp; บริการและซ่อมบำรุง
+            </h5>
           </Link>
         </div>
         <hr />
-        <div className="problem-box">
+        <div className="col" >
+          
           <Link
+            className="btn btn-warning  btn-lg"
             to="/request/subproblemlist/6"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none" ,width:"100%" ,height:"100%" ,padding:"1.5%" }}
           >
-            <p className="problem-text">
+        
+            <h5 className="text-light" style={{fontSize:"22.5px"}}>
               <i
-                class="fa-solid fa-wrench"
-                style={{ color: "orange", fontSize: "30px" }}
+                className="problem-text2 fa-solid fa-wrench"
+                style={{ color: "white", fontSize: "28.5px" }}
               ></i>
-              เบ็ดเตล็ด
-            </p>
+               &nbsp; &nbsp; เบ็ดเตล็ด
+            </h5>
           </Link>
         </div>
+
         <hr />
+        <br />
+
+        <br />
+        
       </div>
-    </div>
+      </main>
+      <hr />
+      
+
+      <footer > 
+        <section className="container">
+          <section className="row">
+            <section className="col ">
+
+              <div className="logo"></div>
+
+              <p>อีเมล: info@HOMEMA.net</p>
+              <p>เลขที่ 5** ชั้น 1 ถนน -  แขวง -  เขต -  กรุงเทพมหานคร 10232.5</p>
+
+               </section>
+              <section className="col">
+              
+            <br/>
+              <h5>HOMEMA</h5>
+              <br />
+              <p>ladsfsahdfiosciohdsh</p>
+              </section>
+
+              <section className="col">
+                
+            <br />
+                <h5>ช่วยเหลิอ</h5>
+                <br />
+                <p>sadasdsadsadsadasdsad</p>
+              </section>
+
+              
+              <br /><section className="col">
+               <br /><h5>ช่วยเหลิอ</h5>
+          
+              <h5>ช่วยเหลิอ</h5>
+              <br />
+
+
+              </section>
+
+          </section>
+          
+        </section>
+
+         <hr />
+
+        <section className="container">
+            <p>© Copyright 2015</p>
+        </section>
+      
+      </footer>
+      
+  </>
+    
   );
 };
 
