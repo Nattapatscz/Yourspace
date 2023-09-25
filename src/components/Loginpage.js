@@ -1,0 +1,88 @@
+import React, { useState } from "react";
+import "../styles/Loginpage.css";
+import axios from "axios"; 
+
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      console.log("Submitting login form"); 
+
+      const response = await axios.post("http://localhost:5000/login", { email, password });
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+
+      
+      window.location.href = "/dashboard";
+    } catch (error) {
+      console.log("Login error:", error); 
+
+      setErrorMessage("Invalid email or password");
+    }
+  };
+
+  return (
+    <>
+          <div className="container-fluid">
+            <div className="container">
+               <div className="card block" >
+              <div className="card-body"> 
+              <h2 className="card-title">Login</h2>
+              <br />
+              <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label class="form-label">Email:</label>
+                    <input
+                      className="form-control"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label class="form-label">Password:</label>
+                    <input
+                      className="form-control"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                  
+                 
+                 <button 
+                  type="submit" 
+                  className="btn btn-success">
+                  Login</button> 
+                   
+
+              </form>
+              {errorMessage && <p>{errorMessage}</p>}
+              <br/>
+
+              <a href="/register" style={{textDecoration:"none"}}>
+                  สมัครสมาชิก 
+              </a>
+
+            </div>
+
+              </div>
+            </div>
+           
+              
+             
+            </div>
+    </>
+         
+  );
+}
+
+export default Login;

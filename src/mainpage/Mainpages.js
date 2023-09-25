@@ -14,9 +14,6 @@ export default function Mainpages() {
       {/* ################## */}
 
         <header className="jumbotron bgs text-content">
-
-            
-
             {/* display in desktop and tablet */}
             <section className="container pts">
 

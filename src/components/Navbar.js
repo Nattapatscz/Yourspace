@@ -20,9 +20,10 @@ export default function Navbar() {
         >
           <i className="fa-solid fa-bars " ></i>
         </button>
-
-      
-        <a className=" logo" href="/About" > </a> 
+        
+        <div className="navbar-brand card logos" style={{width:'155px',height:"90px" , border:"none"}} >
+           
+        </div> 
 
        
          <div className="collapse navbar-collapse " id="navbarTogglerDemo03" >
@@ -47,7 +48,7 @@ export default function Navbar() {
 
                 <li className="nav-item">
 
-                  <a className="btn btn-warning" href="/About">
+                  <a className="btn btn-warning" href="/login">
                     เข้าสู่ระบบ / สมัครสมาชิก 
                   </a>
                   

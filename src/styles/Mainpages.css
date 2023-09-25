@@ -22,7 +22,7 @@
     background-size:   cover;
     display: none;
     background: none;
-    height: 25vh;
+    padding: 10%;
 }
 .bgs{
  background-image: url('../Photo/background_new.jpg');
