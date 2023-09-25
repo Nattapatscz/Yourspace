@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Postcategories from "./components/Postcategories";
 import Mainpages from "./mainpage/Mainpages";
 import CreatePost from "./components/CreatePost";
+import Register from "./components/Register";
+import Login from "./components/Loginpage";
 const About = () => <div>About Page</div>;
 
 export default function App() {
@@ -19,6 +21,9 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/forum" element={<Postcategories />} />
             <Route path="forum/new_topic" element={<CreatePost />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+
 
             {/* Add more routes */}
           </Routes>
