@@ -29,9 +29,26 @@ router.post("/login", async (req, res) => {
           return res.status(401).json({ error: "Invalid password" });
         }
 
-        const token = jwt.sign({ userId: user.id }, "your-secret-key", {
-          expiresIn: "1h",
-        });
+        let token;
+
+        if (user.role === "admin") {
+          const token = jwt.sign(
+            { userId: user.id, isAdmin: true },
+            "your-secret-key",
+            {
+              expiresIn: "1h",
+            }
+          );
+          res.status(200).json({ message: "Admin login successful", token });
+        } else {
+          const token = jwt.sign(
+            { userId: user.id, isAdmin: false },
+            "your-secret-key",
+            {
+              expiresIn: "1h",
+            }
+          );
+        }
 
         res.status(200).json({ message: "Login successful", token });
       } catch (hashingError) {
