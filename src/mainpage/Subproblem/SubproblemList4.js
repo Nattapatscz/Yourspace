@@ -6,96 +6,95 @@ const SubproblemList4 = () => {
     <div className="subproblem-container">
       <div className="form-content">
         <form>
-          <div className="top">
+        <br/>
+            <h1>แบบฟอร์มรายละเอียดการซ่อม</h1>
+          <br/>
+
+          <label className="form-label">
             ประเภทงาน
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            ช่างทาสี
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            มุ้งลวด
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            พื้น
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            หลังคา-ดาดฟ้า
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            กระจก
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            ผนัง
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            ฝ้า-เพดาน
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            รางน้ำฝน
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            ประตู
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            หน้าต่าง
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            บันได
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            กันสาด
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            คิ้ว บัว จบ วงกบ
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            รั้ว-เหล็กดัด-ตะแกรง-ลูกกรง
-            <br />
-          </div>
+          </label>
+          <br/>
+
+            <select className="form-select">
+              <option>ช่างทาสี</option>
+              <option>มุ้งลวด</option>
+              <option>พื้น</option>
+              <option>หลังคา-ดาดฟ้า</option>
+              <option>กระจก</option>
+              <option>ผนัง</option>
+              <option>ฝ้า-เพดาน</option>
+              <option>รางน้ำฝน</option>
+              <option>ประตู</option>
+              <option>หน้าต่าง</option>
+              <option>บันได</option>
+              <option>กันสาด</option>
+              <option>คิ้ว บัว จบ วงกบ</option>
+              <option>รั้ว-เหล็กดัด-ตะแกรง-ลูกกรง</option>
+            </select>
+            <br/>
+           
+         
           <div className="mid">
-            <label>ที่อยู่</label>
 
-            <input type="text"></input>
+            <label className="form-label">ที่อยู่</label>
 
-            <label>เบอร์ติดต่อ</label>
+            <input type="text" className="form-control"></input><br/>
 
-            <input type="text"></input>
+            <label className="form-label">เบอร์ติดต่อ</label>
 
-            <label>เบอร์ติดต่อสำรอง</label>
+            <input type="text " className="form-control"></input><br/>
 
-            <input type="text"></input>
+            <label className="form-label">เบอร์ติดต่อสำรอง</label>
 
-            <label>
+            <input type="text " className="form-control"></input><br/>
+
+            <label className="form-label">
               วันที่สะดวกรับบริการ (ช่างอาจไม่พร้อมให้บริการ ณ วันเวลาดังกล่าว)
             </label>
 
-            <input type="date"></input>
+            <input type="date" className="form-control"></input><br/>
 
-            <label>ช่วงเวลา</label>
+            <label className="form-label">ช่วงเวลา</label>
 
-            <input type="text"></input>
+            <input type="text " className="form-control"></input><br/>
 
-            <label>กรุณากรอกรายละเอียดเพิ่มเติม</label>
+            <label className="form-label">กรุณากรอกรายละเอียดเพิ่มเติม</label>
 
-            <textarea cols="81" rows="10"></textarea>
-          </div>
-          <div className="bottom">
-            รูปภาพเพิ่มเติม
+            <textarea cols="81" rows="10" className="form-control"></textarea>
+
+            </div>
+
+            <br/>
+
+            <div className="bottom">
+
+            <label for="formFileSm" class="form-label">รูปภาพเพิ่มเติม</label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file"></input><br/>
+
+            <input class="form-control form-control-sm" id="formFileSm" type="file"></input>
+
+
             <br />
-            <input type="file"></input>
             <br />
-            <br />
-            <input type="file"></input>
-            <br />
-            <br />
-            เลือกวิธีชำระค่าบริการ
-            <br />
-            <input type="radio" id="dewey" name="drone" value="dewey" />
-            ชำระค่าบริการปลายทาง
-          </div>
-          <button type="button" class="form-btn btn-success">
-            ยืนยัน
-          </button>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+              <label class="form-check-label" for="flexCheckChecked">
+                  เลือกวิธีชำระค่าบริการ
+              </label>
+            </div>
+
+            </div>
+
+            <br/>
+            <br/>
+            <div class="d-grid gap-2">
+              <button class="btn btn-warning" type="button">Submit</button>
+              <button class="btn btn-secondary" type="button">reset</button>
+            </div>
+            <br/>
+            <br/>
+            <br/>
         </form>
       </div>
     </div>

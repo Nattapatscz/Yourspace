@@ -35,7 +35,7 @@ export default function Mainpages() {
 
                               </article>
 
-                          <article className="col" >
+                          <article className="col " >
                                   <br />
                                   <center>
                                       <Link to="/request/request_list">
@@ -72,64 +72,54 @@ export default function Mainpages() {
 
               <center>
                 {/* block2 : บริการแนะนำ  */}
-                <section className="card cardpage2">
+                <section className="container cardpage2">
 
-                <section className="card-body">
-                  
-                  <section className="row">
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
-                    </section>
-                    
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
-                    </section>
+                    <section className="card "
+                    style={{ width: "100%", height: "220px" ,overflowX:"auto",overflowY:"hidden" ,border:"none"}}>
 
-                    <section className="col">
                       <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
+                         <section className="card-body">
+                        
+                        <div className="d-flex flex-nowrap justify-content-center">
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          
+                        
+                        
+                        </div>
+                      
+                      </section>
                       </center>
-                    </section>
 
-                  
+                     
 
-                  <br />
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
-                    </section>
-
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
                     </section>
 
                 </section>
+                
 
-                </section>
-
-                </section>
               </center>
            </section>
 
@@ -152,7 +142,7 @@ export default function Mainpages() {
                       <article className="row align-items-md-stretch">
                               <div className="col-md-5">
                                 <div className="h-100 p-4 text-bg-dark ">
-                                  <h3>4 ขั้นตอนง่ายๆ ใช้บริการช่างผ่าน <h3 className="text-success">HOMEMA</h3></h3>
+                                  <h3>4 ขั้นตอนง่ายๆ ใช้บริการช่างผ่าน <h3 >HOMEMA</h3></h3>
                                   <br />
 
                                   <h3>1. เลือกบริการ</h3>

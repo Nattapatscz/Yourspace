@@ -15,6 +15,7 @@ import SubproblemList5 from "./mainpage/Subproblem/SubproblemList5";
 import SubproblemList4 from "./mainpage/Subproblem/SubproblemList4";
 import SubproblemList6 from "./mainpage/Subproblem/SubproblemList6";
 import ProtectedData from './ProtectedData';
+import Search from "./mainpage/Search";
 
 const About = () => <div>About Page</div>;
 
@@ -23,7 +24,7 @@ export default function App() {
     <Router>
       <div className="app-container">
         <Navbar />
-
+        
         <div className="content-container">
           <Routes>
 
@@ -39,6 +40,9 @@ export default function App() {
             <Route path="/request/request_list" element={<Requestlist />} />
 
             <Route path="/request/mainproblemlist" element={<Mainproblem />} />
+
+            <Route path="/list" element={<Search />} />
+
             
             <Route
               path="/request/subproblemlist/1"

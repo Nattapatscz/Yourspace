@@ -42,6 +42,7 @@ function Register() {
     <>
     <div className="container-fluid">
       <div className="container">
+        <br/>
         <div className="card" style={{width:"100%"}}> 
         <div className="card-body"> 
             <h1 className="card-title">Register</h1>

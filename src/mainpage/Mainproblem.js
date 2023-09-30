@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 const Mainproblem = () => {
   return (
   <>
-      <main className="container">
-        <div className="text-content">
+    <br/>
+      <main className="container card cardwidthscope">
+        <div className="text-content card-body">
+          
           <center>
              <h3 style={{fontSize:"22.5px"}}>
                 &nbsp; &nbsp; &nbsp; &nbsp; แจ้งงานซ่อม
@@ -31,7 +33,7 @@ const Mainproblem = () => {
               </Link>
           </div>
 
-        <hr />
+        <br />
 
         <div className="col" >
           
@@ -47,7 +49,7 @@ const Mainproblem = () => {
             </Link>
         </div>
 
-        <hr />
+        <br />
 
         <div className="col" >
           
@@ -67,7 +69,7 @@ const Mainproblem = () => {
           </Link>
         </div>
 
-        <hr />
+        <br />
 
         <div className="col" >
           <Link
@@ -86,7 +88,7 @@ const Mainproblem = () => {
           </Link>
         </div>
 
-        <hr />
+        <br />
 
         <div className="col" >
           
@@ -105,7 +107,7 @@ const Mainproblem = () => {
             </h5>
           </Link>
         </div>
-        <hr />
+        <br />
         <div className="col" >
           
           <Link
@@ -124,14 +126,14 @@ const Mainproblem = () => {
           </Link>
         </div>
 
-        <hr />
+        <br />
         <br />
 
         <br />
         
       </div>
       </main>
-      <hr />
+      <br />
       
 
       <footer > 
@@ -175,7 +177,7 @@ const Mainproblem = () => {
           
         </section>
 
-         <hr />
+         <br />
 
         <section className="container">
             <p>© Copyright 2015</p>

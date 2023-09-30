@@ -6,66 +6,86 @@ const SubproblemList3 = () => {
     <div className="subproblem-container">
       <div className="form-content">
         <form>
-          <div className="top">
+
+        <br/>
+            <h1>แบบฟอร์มรายละเอียดการซ่อม</h1>
+          <br/>
+
+          <label className="form-label">
             ประเภทงาน
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            แอร์ เครื่องปรับอากาศ
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            เครื่องซักผ้า-เครื่องอบผ้า
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            เครื่องทำน้ำอุ่น-เครื่องทำน้ำร้อน
-            <br />
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            อุปกรณ์ Smart Home
-            <br />
-          </div>
+          </label>
+          <br/>
+
+            <select className="form-select">
+              <option>แอร์ เครื่องปรับอากาศ</option>
+              <option>เครื่องซักผ้า-เครื่องอบผ้า</option>
+              <option>เครื่องทำน้ำอุ่น-เครื่องทำน้ำร้อน</option>
+              <option>อุปกรณ์ Smart Home</option>
+            </select>
+            <br/>
+           
+          
           <div className="mid">
-            <label>ที่อยู่</label>
 
-            <input type="text"></input>
+            <label className="form-label">ที่อยู่</label>
 
-            <label>เบอร์ติดต่อ</label>
+            <input type="text" className="form-control"></input><br/>
 
-            <input type="text"></input>
+            <label className="form-label">เบอร์ติดต่อ</label>
 
-            <label>เบอร์ติดต่อสำรอง</label>
+            <input type="text " className="form-control"></input><br/>
 
-            <input type="text"></input>
+            <label className="form-label">เบอร์ติดต่อสำรอง</label>
 
-            <label>
+            <input type="text " className="form-control"></input><br/>
+
+            <label className="form-label">
               วันที่สะดวกรับบริการ (ช่างอาจไม่พร้อมให้บริการ ณ วันเวลาดังกล่าว)
             </label>
 
-            <input type="date"></input>
+            <input type="date" className="form-control"></input><br/>
 
-            <label>ช่วงเวลา</label>
+            <label className="form-label">ช่วงเวลา</label>
 
-            <input type="text"></input>
+            <input type="text " className="form-control"></input><br/>
 
-            <label>กรุณากรอกรายละเอียดเพิ่มเติม</label>
+            <label className="form-label">กรุณากรอกรายละเอียดเพิ่มเติม</label>
 
-            <textarea cols="81" rows="10"></textarea>
-          </div>
-          <div className="bottom">
-            รูปภาพเพิ่มเติม
+            <textarea cols="81" rows="10" className="form-control"></textarea>
+
+            </div>
+
+            <br/>
+
+            <div className="bottom">
+
+            <label for="formFileSm" class="form-label">รูปภาพเพิ่มเติม</label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file"></input><br/>
+
+            <input class="form-control form-control-sm" id="formFileSm" type="file"></input>
+
+
             <br />
-            <input type="file"></input>
             <br />
-            <br />
-            <input type="file"></input>
-            <br />
-            <br />
-            เลือกวิธีชำระค่าบริการ
-            <br />
-            <input type="radio" id="dewey" name="drone" value="dewey" />
-            ชำระค่าบริการปลายทาง
-          </div>
-          <button type="button" class="form-btn btn-success">
-            ยืนยัน
-          </button>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+              <label class="form-check-label" for="flexCheckChecked">
+                  เลือกวิธีชำระค่าบริการ
+              </label>
+            </div>
+
+            </div>
+
+            <br/>
+            <br/>
+            <div class="d-grid gap-2">
+              <button class="btn btn-warning" type="button">Submit</button>
+              <button class="btn btn-secondary" type="button">reset</button>
+            </div>
+            <br/>
+            <br/>
+            <br/>
         </form>
       </div>
     </div>

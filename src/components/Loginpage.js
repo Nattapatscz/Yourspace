@@ -19,7 +19,7 @@ function Login() {
       localStorage.setItem("token", token);
 
       
-      window.location.href = "/dashboard";
+      window.location.href = "/request/mainproblemlist";
     } catch (error) {
       console.log("Login error:", error); 
 
@@ -30,14 +30,15 @@ function Login() {
   return (
     <>
           <div className="container-fluid">
-            <div className="container">
-               <div className="card block" >
+            <div className="container cardwidthscope">
+              <br />
+               <div className="card container block" >
               <div className="card-body"> 
               <h2 className="card-title">Login</h2>
               <br />
               <form onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label class="form-label">Email:</label>
+                    <label className="form-label">Email:</label>
                     <input
                       className="form-control"
                       type="email"
@@ -47,7 +48,7 @@ function Login() {
                     />
                   </div>
                   <div className="mb-3">
-                    <label class="form-label">Password:</label>
+                    <label className="form-label">Password:</label>
                     <input
                       className="form-control"
                       type="password"

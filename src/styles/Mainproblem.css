@@ -1,4 +1,7 @@
-
+.cardwidthscope{
+  width: 35%;
+  border: none;
+}
 .problem-text {
   font-size: 20px;
   display: flex;
@@ -36,4 +39,17 @@
   color: black;
   font-family: 'Noto Sans Thai', sans-serif;
   font-family: 'Noto Sans Thai Looped', sans-serif;
+}
+@media screen and (max-width:600px) {
+  .cardwidthscope{
+    width: 100%;
+
+  }
+}
+@media screen and (max-width:1080px) {
+  .cardwidthscope{
+    width: 100%;
+  }
+  
+  
 }
