@@ -13,12 +13,9 @@ const SubproblemList1 = () => {
       formData.forEach((value, key) => {
         jsonObject[key] = value;
       });
-
       // แปลง JSON object เป็น JSON string
       const jsonString = JSON.stringify(jsonObject);
-
-      console.log(JSON.parse(jsonString));
-
+      // console.log(JSON.parse(jsonString));
 
     // Send the form data to the server using Axios
     axios.post('http://localhost:5000/submit-job', JSON.parse(jsonString))
@@ -85,15 +82,15 @@ const SubproblemList1 = () => {
 
                   <div className="bottom">
 
-                      <label for="formFileSm" className="form-label">รูปภาพเพิ่มเติม</label>
-                          <input className="form-control form-control-sm" id="formFileSm" type="file" required></input><br/>
+                      <label  className="form-label">รูปภาพเพิ่มเติม</label>
+                          <input className="form-control form-control-sm"  type="file" required></input><br/>
 
-                          <input className="form-control form-control-sm" id="formFileSm" type="file" required></input> <br />
+                          <input className="form-control form-control-sm"  type="file" required></input> <br />
 
                       <br />
 
                       <div className="form-check">
-                          <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                          <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" required/>
 
                           <label className="form-check-label" >เลือกวิธีชำระค่าบริการ</label>
                       </div>

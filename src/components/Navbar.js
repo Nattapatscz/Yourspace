@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from "react-router-dom";
 import '../styles/Navbars.css'
 
 
@@ -10,7 +9,6 @@ export default function Navbar() {
   }
   
   function ProtectedData() {
-    // const [data, setData] = useState(null);
     const [error, setError] = useState(null);
    
      useEffect(() => {
@@ -31,37 +29,32 @@ export default function Navbar() {
           }
           return response.json();
         })
-        .then(data => {
-          // setData(data);
-          // console.log(data)
-        })
         .catch(error => {
           setError(error.message);
         });
     }, []);
   
-      return (
-            <div>
-            {error ? (
-              <a className=" btn btn-warning" href="/login">
-                เข้าสู่ระบบ / สมัครสมาชิก
-              </a>
-            ) : (
-              <a className=" btn btn-warning" href="/login" onClick={delete_token}>
-                Logout
-              </a>
-            )}
-          </div>
+      return (<> 
+                <div>
+                  {error ? (
+                    <a className=" btn btn-warning" href="/login">
+                      เข้าสู่ระบบ / สมัครสมาชิก
+                    </a>
+                  ) : (
+                    <a className=" btn btn-warning" href="/login" onClick={delete_token}>
+                      Logout
+                    </a>
+                  )}
+                </div>
+              </>
               ) 
-  
   }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary  text-content shadow-sm rounded">
       
       <div className="container">
-
-        <button
+      <button
           className="navbar-toggler "
           type="button"
           data-bs-toggle="collapse"

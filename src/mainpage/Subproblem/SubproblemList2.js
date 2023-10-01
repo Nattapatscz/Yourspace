@@ -61,18 +61,18 @@ const SubproblemList1 = () => {
 
             <div className="bottom">
 
-            <label for="formFileSm" class="form-label">รูปภาพเพิ่มเติม</label>
-            <input class="form-control form-control-sm" id="formFileSm" type="file"></input><br/>
+            <label  className="form-label">รูปภาพเพิ่มเติม</label>
+            <input className="form-control form-control-sm"  type="file"></input><br/>
 
-            <input class="form-control form-control-sm" id="formFileSm" type="file"></input>
+            <input className="form-control form-control-sm"  type="file"></input>
 
 
             <br />
             <br />
 
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-              <label class="form-check-label" for="flexCheckChecked">
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+              <label className="form-check-label" for="flexCheckChecked">
                   เลือกวิธีชำระค่าบริการ
               </label>
             </div>
@@ -81,9 +81,9 @@ const SubproblemList1 = () => {
 
             <br/>
             <br/>
-            <div class="d-grid gap-2">
-              <button class="btn btn-warning" type="button">Submit</button>
-              <button class="btn btn-secondary" type="button">reset</button>
+            <div className="d-grid gap-2">
+              <button className="btn btn-warning" type="button">Submit</button>
+              <button className="btn btn-secondary" type="button">reset</button>
             </div>
             <br/>
             <br/>
