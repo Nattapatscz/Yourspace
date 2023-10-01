@@ -1,23 +1,28 @@
 import React from "react";
 import "../styles/Mainpages.css";
+import { Link } from "react-router-dom";
+
 
 export default function Mainpages() {
   return (
     <> 
-        <header className="jumbotron bgs text-content" style={{ height: "80vh"}}>
+    
+      {/* for moblie App */}
+        <header className="bgs-head">
 
+        </header>
+      {/* ################## */}
+
+        <header className="jumbotron bgs text-content">
+            {/* display in desktop and tablet */}
             <section className="container pts">
 
-                <section className="card card-pages">
-
-                      <section className="card-body">
-
-                          <section className="row">
+                <section className=" card-pages">
 
                               <article className="col " >
 
-                                <h1 className="card-title">บริการช่างมืออาชีพจาก HOMEMA 
-                                 ผลงานดี สะดวก ไร้ปัญหาการทิ้งงาน</h1>
+                                <h3 className="card-title">บริการช่างมืออาชีพจาก HOMEMA<br/>
+                                 ผลงานดี สะดวก ไร้ปัญหาการทิ้งงาน</h3>
 
                                 <div className=" text-p " >
                                   <i class="fa-solid fa-check text-success" ></i> ช่างมืออาชีพ
@@ -30,166 +35,145 @@ export default function Mainpages() {
 
                               </article>
 
-                                <article className="col" >
+                          <article className="col " >
+                                  <br />
                                   <center>
-                                    <br />
-                                     <button className="btn btn-success btnsize" >
-                                    <br />
-                                      <i class="fa-solid fa-magnifying-glass fa-2xl"></i>
-                                    <br />
-                                    <br />
-                                      <h2 className="card-title">จ้างช่าง</h2>
-                                  </button>
-                                  </center>
-                                  
-                                </article>
+                                      <Link to="/request/request_list">
+                                        <button className="btn  btn-warning btnsize">
+                                          <br />
+                                            <h3><i class="fa-solid fa-magnifying-glass "></i> จ้างช่าง</h3>
+                                          <br />
 
-                          </section>
+                                        </button>
+                                      </Link>
+                                  </center>
+                                </article>
                               
                             <br />
 
-                      </section>
+                      
                 </section>    
 
             </section>
-            
         </header>
 
-          <main className="container  text-content">
+        <br / >
+
+        <main className="container  text-content">
           {/* content in main page by.NTP  */}
           <br />
 
            <section>
-
               <header style={{textAlign:"center"}}> 
-                <h1>บริการแนะนำ</h1> 
+                <h3>บริการแนะนำ</h3> 
               </header>
 
               <br />
 
               <center>
                 {/* block2 : บริการแนะนำ  */}
-                <section className="card cardpage2">
+                <section className="container cardpage2">
 
-                <section className="card-body">
-                  
-                  <section className="row">
-                    <section className="col">
+                    <section className="card "
+                    style={{ width: "100%", height: "220px" ,overflowX:"auto",overflowY:"hidden" ,border:"none"}}>
+
                       <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
+                         <section className="card-body">
+                        
+                        <div className="d-flex flex-nowrap justify-content-center">
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          <p>
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
+                             <br />ssad
+                          </p>
+                          
+                        
+                        
+                        </div>
+                      
+                      </section>
                       </center>
-                    </section>
-                    
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
+
+                     
+
                     </section>
 
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
-                    </section>
-
-                  
-
-                  <br />
-
+                </section>
                 
-                
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
-                    </section>
 
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
-                    </section>
-
-                    <section className="col">
-                      <center>
-                        <img className="bgs-r1 rounded-circle" src={require("../Photo/img2.jpg")} alt="..." />
-                        <section>
-                          <p>sdas</p>
-                        </section>
-                      </center>
-                    </section>
-
-                </section>
-
-                </section>
-
-                </section>
               </center>
            </section>
 
             <br />
 
-          </main>
+        </main>
 
-          <br />
+        <br />
 
-          <main>
+        <main>
             {/* block3 : */}
             <section className="container-fluid bgs2 text-content"  >
-                  <section className="container">
                     <br / >
-                    <br / >
+                    <section className="container">
+                       {/* Banner A : for use in desktop
+                      <article className="card banner-a ">
+                      </article> */}
+                      {/* ############################# */}
 
-                    <article className="row align-items-md-stretch">
-                            <div className="col-md-5">
-                              <div className="h-100 p-4 text-bg-dark ">
-                                <h2>4 ขั้นตอนง่ายๆ ใช้บริการช่างผ่าน <h2 className="text-success">HOMEMA</h2></h2>
-                                <br />
+                      <article className="row align-items-md-stretch">
+                              <div className="col-md-5">
+                                <div className="h-100 p-4 text-bg-dark ">
+                                  <h3>4 ขั้นตอนง่ายๆ ใช้บริการช่างผ่าน <h3 >HOMEMA</h3></h3>
+                                  <br />
 
-                                <h3>1. เลือกบริการ</h3>
-                                  <p>เลือกใช้บริการงานช่างที่ต้องการได้</p>
+                                  <h3>1. เลือกบริการ</h3>
+                                    <p>เลือกใช้บริการงานช่างที่ต้องการได้</p>
 
-                                <h3>2. เลือกช่างมืออาชีพ</h3>
-                                  <p>เราคัดสรรช่างที่มีประสบการณ์มากกว่า 5 ปีพร้อมรีวิวจากลูกค้าจริง เพื่อให้คุณมั่นใจได้สูงสุด</p>
+                                  <h3>2. เลือกช่างมืออาชีพ</h3>
+                                    <p>เราคัดสรรช่างที่มีประสบการณ์มากกว่า 5 ปีพร้อมรีวิวจากลูกค้าจริง เพื่อให้คุณมั่นใจได้สูงสุด</p>
 
-                                <h3>3. ปรึกษาและนัดหมาย</h3>
-                                  <p>พูดคุยรายละเอียดงาน ค่าบริการ และนัดหมายกับช่างได้โดยตรง</p>
-                                  
-                                <h3>4. ชำระเงินผ่าน HOMEMA</h3>
-                                  <p>ปลอดภัยและวางใจได้ว่างานเสร็จ 100% หากพบปัญหา เราพร้อมช่วยเหลือคุณเสมอ</p>
-                              </div>
-                            </div>
-                            <div className="col-md-7">
-                              <center>
-                                <br/>
-                                <br/>
-                                <div className=" card banner">
+                                  <h3>3. ปรึกษาและนัดหมาย</h3>
+                                    <p>พูดคุยรายละเอียดงาน ค่าบริการ และนัดหมายกับช่างได้โดยตรง</p>
+                                    
+                                  <h3>4. ชำระเงินผ่าน HOMEMA</h3>
+                                    <p>ปลอดภัยและวางใจได้ว่างานเสร็จ 100% หากพบปัญหา เราพร้อมช่วยเหลือคุณเสมอ</p>
                                 </div>
+                              </div>
+                              <div className="col-md-7">
+                                <center>
+                                  <br/>
+                                  <br/>
+                                  <div className=" card banner">
+                                  </div>
 
-                              </center>
+                                </center>
+                                
+                              </div>
                               
-                            </div>
-                            
-                    </article>
-                        <br/>
-
+                      </article>
+                      {/* ############################# */}
+                      <br/>
+                    </section>
                      
-                  </section>
             </section>
 
             <br />
