@@ -25,11 +25,11 @@ export default function Mainpages() {
                                  ผลงานดี สะดวก ไร้ปัญหาการทิ้งงาน</h3>
 
                                 <div className=" text-p " >
-                                  <i class="fa-solid fa-check text-success" ></i> ช่างมืออาชีพ
+                                  <i className="fa-solid fa-check text-success" ></i> ช่างมืออาชีพ
                                   <br/>
-                                  <i class="fa-solid fa-check text-success" ></i> ไม่มีประวัติอาชญากรรม
+                                  <i className="fa-solid fa-check text-success" ></i> ไม่มีประวัติอาชญากรรม
                                   <br/>
-                                  <i class="fa-solid fa-check text-success" ></i> ยืนยันด้วยรีวิวจากลูกค้าจริง
+                                  <i className="fa-solid fa-check text-success" ></i> ยืนยันด้วยรีวิวจากลูกค้าจริง
                                   <br/>
                                 </div>
 
@@ -41,9 +41,8 @@ export default function Mainpages() {
                                       <Link to="/request/request_list">
                                         <button className="btn  btn-warning btnsize">
                                           <br />
-                                            <h3><i class="fa-solid fa-magnifying-glass "></i> จ้างช่าง</h3>
+                                            <h3><i className="fa-solid fa-magnifying-glass "></i> จ้างช่าง</h3>
                                           <br />
-
                                         </button>
                                       </Link>
                                   </center>
@@ -142,7 +141,7 @@ export default function Mainpages() {
                       <article className="row align-items-md-stretch">
                               <div className="col-md-5">
                                 <div className="h-100 p-4 text-bg-dark ">
-                                  <h3>4 ขั้นตอนง่ายๆ ใช้บริการช่างผ่าน <h3 >HOMEMA</h3></h3>
+                                  <h3>4 ขั้นตอนง่ายๆ ใช้บริการช่างผ่าน HOMEMA</h3>
                                   <br />
 
                                   <h3>1. เลือกบริการ</h3>

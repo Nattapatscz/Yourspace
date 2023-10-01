@@ -27,7 +27,7 @@ function ProtectedData(x) {
       })
       .then(data => {
         setData(data);
-        console.log(data)
+        // console.log(data)
       })
       .catch(error => {
         setError(error.message);

@@ -13,7 +13,6 @@ export default function Navbar() {
     // const [data, setData] = useState(null);
     const [error, setError] = useState(null);
    
-     
      useEffect(() => {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -34,7 +33,7 @@ export default function Navbar() {
         })
         .then(data => {
           // setData(data);
-          console.log(data)
+          // console.log(data)
         })
         .catch(error => {
           setError(error.message);
@@ -106,7 +105,7 @@ export default function Navbar() {
                   </li>
               </ul>
 
-              <div class="d-flex">
+              <div className="d-flex">
                 {ProtectedData()}
               </div>
 

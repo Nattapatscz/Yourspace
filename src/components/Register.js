@@ -31,6 +31,15 @@ function Register() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Registration response:", data);
+
+        window.Swal.fire({
+          icon: 'success',
+          title: 'Login Success',
+        })
+  
+        setTimeout(() => {
+          window.location.href = "/request/mainproblemlist";
+        }, 2000);
        
       })
       .catch((error) => {

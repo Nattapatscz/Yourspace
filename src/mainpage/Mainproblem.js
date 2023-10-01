@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Mainproblem.css";
 import { Link } from "react-router-dom";
+
 const Mainproblem = () => {
   return (
   <>
@@ -9,7 +10,7 @@ const Mainproblem = () => {
         <div className="text-content card-body">
           
           <center>
-             <h3 style={{fontSize:"22.5px"}}>
+             <h3 >
                 &nbsp; &nbsp; &nbsp; &nbsp; แจ้งงานซ่อม
             </h3>
           </center>
