@@ -2,28 +2,35 @@ import React, { useState } from "react";
 import "../styles/Loginpage.css";
 import axios from "axios"; 
 
-
 function Login() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      console.log("Submitting login form"); 
-
+      // console.log("Submitting login form"); 
       const response = await axios.post("http://localhost:5000/login", { email, password });
       const { token } = response.data;
       localStorage.setItem("token", token);
 
-      
-      window.location.href = "/request/mainproblemlist";
-    } catch (error) {
-      console.log("Login error:", error); 
+      window.Swal.fire({
+        icon: 'success',
+        title: 'Login Success',
+      })
 
-      setErrorMessage("Invalid email or password");
+      setTimeout(() => {
+        window.location.href = "/request/mainproblemlist";
+      }, 2000);
+      
+    } catch (error) {
+      // console.log("Login error:", error); 
+      window.Swal.fire({
+        icon: 'error',
+        title: 'Invalid email or password',
+      })
+      
     }
   };
 
@@ -37,6 +44,7 @@ function Login() {
               <h2 className="card-title">Login</h2>
               <br />
               <form onSubmit={handleSubmit}>
+
                   <div className="mb-3">
                     <label className="form-label">Email:</label>
                     <input
@@ -47,6 +55,7 @@ function Login() {
                       required
                     />
                   </div>
+
                   <div className="mb-3">
                     <label className="form-label">Password:</label>
                     <input
@@ -58,15 +67,11 @@ function Login() {
                     />
                   </div>
                   
-                 
-                 <button 
-                  type="submit" 
-                  className="btn btn-success">
-                  Login</button> 
+                 <button  type="submit"  className="btn btn-success">Login</button> 
                    
 
               </form>
-              {errorMessage && <p>{errorMessage}</p>}
+          
               <br/>
 
               <a href="/register" style={{textDecoration:"none"}}>

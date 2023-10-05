@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from "react-router-dom";
 import '../styles/Navbars.css'
 
 
@@ -10,10 +9,8 @@ export default function Navbar() {
   }
   
   function ProtectedData() {
-    // const [data, setData] = useState(null);
     const [error, setError] = useState(null);
    
-     
      useEffect(() => {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -32,37 +29,32 @@ export default function Navbar() {
           }
           return response.json();
         })
-        .then(data => {
-          // setData(data);
-          console.log(data)
-        })
         .catch(error => {
           setError(error.message);
         });
     }, []);
   
-      return (
-            <div>
-            {error ? (
-              <a className=" btn btn-warning" href="/login">
-                เข้าสู่ระบบ / สมัครสมาชิก
-              </a>
-            ) : (
-              <a className=" btn btn-warning" href="/login" onClick={delete_token}>
-                Logout
-              </a>
-            )}
-          </div>
+      return (<> 
+                <div>
+                  {error ? (
+                    <a className=" btn btn-warning" href="/login">
+                      เข้าสู่ระบบ / สมัครสมาชิก
+                    </a>
+                  ) : (
+                    <a className=" btn btn-warning" href="/login" onClick={delete_token}>
+                      Logout
+                    </a>
+                  )}
+                </div>
+              </>
               ) 
-  
   }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary  text-content shadow-sm rounded">
       
       <div className="container">
-
-        <button
+      <button
           className="navbar-toggler "
           type="button"
           data-bs-toggle="collapse"
@@ -77,7 +69,6 @@ export default function Navbar() {
         <div className="navbar-brand card logos" style={{width:'155px',height:"90px" , border:"none"}} >
            
         </div> 
-
          <div className="collapse navbar-collapse " id="navbarTogglerDemo03" >
 
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -107,7 +98,7 @@ export default function Navbar() {
                   </li>
               </ul>
 
-              <div class="d-flex">
+              <div className="d-flex">
                 {ProtectedData()}
               </div>
 

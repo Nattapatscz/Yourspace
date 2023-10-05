@@ -14,9 +14,11 @@ import SubproblemList3 from "./mainpage/Subproblem/SubproblemList3";
 import SubproblemList5 from "./mainpage/Subproblem/SubproblemList5";
 import SubproblemList4 from "./mainpage/Subproblem/SubproblemList4";
 import SubproblemList6 from "./mainpage/Subproblem/SubproblemList6";
-import ProtectedData from './ProtectedData';
+import ProtectedData from "./ProtectedData";
 import Search from "./mainpage/Search";
-
+import { Dashboard } from "./mainpage/AdminDashboard/Dashboard";
+import { Jobs } from "./mainpage/AdminDashboard/Jobs";
+import { Users } from "./mainpage/AdminDashboard/Users";
 const About = () => <div>About Page</div>;
 
 export default function App() {
@@ -24,10 +26,12 @@ export default function App() {
     <Router>
       <div className="app-container">
         <Navbar />
-        
+
         <div className="content-container">
           <Routes>
-
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/joblist" element={<Jobs />} />
+            <Route path="/dashboard/edituser" element={<Users />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
@@ -43,7 +47,6 @@ export default function App() {
 
             <Route path="/list" element={<Search />} />
 
-            
             <Route
               path="/request/subproblemlist/1"
               element={ProtectedData(<SubproblemList1 />)}

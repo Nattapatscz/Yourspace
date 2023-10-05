@@ -1,37 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser'); // Import cookie-parser
 
-// Middleware สำหรับการตรวจสอบ Token
+// Use cookie-parser middleware
+router.use(cookieParser());
+
+// Middleware for checking authentication
 function authenticate(req, res, next) {
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.cookies.jwt; // Retrieve the JWT token from cookies
 
-  jwt.verify(token, "your-secret-key", function (err, decoded) {
+  jwt.verify(token, 'your-secret-key', function (err, decoded) {
     if (err) {
       res.json({ status: 'error', message: 'Failed to authenticate token.' });
       return;
     }
-    // Token ถูกตรวจสอบถูกต้อง
+    // Token is valid
     next();
   });
 }
 
-// เส้นทาง /protected สำหรับการเข้าถึงที่ต้องการป้องกัน
+// Route /protected for accessing the protected resource
 router.get('/protected', authenticate, (req, res) => {
   res.json({ message: 'This is a protected route' });
 });
 
-// เส้นทาง /token สำหรับการตรวจสอบความถูกต้องของ Token
+// Route /token for checking token validity and setting a cookie
 router.get('/token', (req, res, next) => {
-  var token = req.headers.authorization.split(' ')[1];
-  jwt.verify(token, "your-secret-key", function (err, decoded) {
-    if (err) {
-      res.json({ status: 'error', message: 'Failed to authenticate token.' });
-      return;
-    }
-    // Token ถูกตรวจสอบถูกต้อง ส่งคืนไปยังไคลเอนต์
-    res.json({ status: 'ok', token });
-  });
+  const token = jwt.sign({ username: 'example' }, 'your-secret-key', { expiresIn: '1h' });
+
+  // Set the JWT token as a cookie
+  res.cookie('jwt', token, { httpOnly: true }); // httpOnly makes the cookie not accessible via JavaScript
+
+  // Send the token to the client
+  res.json({ status: 'ok', token });
 });
 
 module.exports = router;

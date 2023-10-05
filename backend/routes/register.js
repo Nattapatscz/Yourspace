@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const db = require("./db");
 
 
-
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 

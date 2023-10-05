@@ -13,7 +13,6 @@ function ProtectedData(x) {
       setError('No token found');
       return;
     }
-
     fetch('http://localhost:5000/protected', {
       headers: {
         Authorization: token
@@ -27,7 +26,7 @@ function ProtectedData(x) {
       })
       .then(data => {
         setData(data);
-        console.log(data)
+        // console.log(data)
       })
       .catch(error => {
         setError(error.message);
@@ -35,28 +34,20 @@ function ProtectedData(x) {
   }, []);
 
   if (error) {
+   
     return (
             <div>
-              <center>
-                <h2>โปรดทำการ Login ก่อนจ้างช่างครับ </h2>
-              </center>
-              <br/>
-              
-              <Login></Login>
-              
+              <Login />
             </div>
             ) 
   }
-
   if (!data) {
     return(<div>
              
           </div>) 
   }
-
   return <div>
             {x}
-    </div>;
+          </div>;
 }
-
 export default ProtectedData;
