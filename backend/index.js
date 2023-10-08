@@ -6,6 +6,7 @@ const jobsubmit = require("./routes/job_submit");
 const jobtype = require("./routes/job_type");
 const users = require("./routes/users");
 const cors = require("cors");
+
 const app = express();
 const port = 5000;
 

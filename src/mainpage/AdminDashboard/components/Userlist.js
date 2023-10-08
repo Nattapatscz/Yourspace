@@ -56,6 +56,7 @@ const Userlist = () => {
 
   return (
     <div className="useredit-con container">
+      <br/>
       <form>
         <h2>Edit user</h2>
         <div className="form-group">
@@ -98,6 +99,7 @@ const Userlist = () => {
             onChange={handleInputChange}
           />
         </div>
+        <br/>
         <button
           type="button"
           className="btn btn-primary"
@@ -106,7 +108,10 @@ const Userlist = () => {
           Update
         </button>
       </form>
+
+      <br/>
       <h2>Member list</h2>
+      <br/>
       <table className="table table-bordered" style={{ width: "70vw" }}>
         <thead>
           <tr>

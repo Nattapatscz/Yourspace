@@ -7,8 +7,9 @@ function ProtectedData(x) {
   const [error, setError] = useState(null);
   
   useEffect(() => {
+    
     const token = localStorage.getItem('token');
-
+    
     if (!token) {
       setError('No token found');
       return;

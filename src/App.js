@@ -29,9 +29,11 @@ export default function App() {
 
         <div className="content-container">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/joblist" element={<Jobs />} />
-            <Route path="/dashboard/edituser" element={<Users />} />
+
+            <Route path="/dashboard" element={ProtectedData(<Dashboard />)} />
+            <Route path="/dashboard/joblist" element={ProtectedData(<Jobs />)} />
+            <Route path="/dashboard/edituser" element={ProtectedData(<Users />)} />
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 

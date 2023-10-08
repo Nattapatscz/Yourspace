@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Search.css";
 import { useState } from "react";
+
 const Search = () => {
   const [selectedProvince, setSelectedProvince] = useState("กรุงเทพมหานคร"); // สร้าง state เพื่อเก็บค่าจังหวัดที่เลือก
   const [selectedDistrict, setSelectedDistrict] = useState("a"); // สร้าง state เพื่อเก็บค่าเขตที่เลือก

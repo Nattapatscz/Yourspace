@@ -9,7 +9,8 @@ import {
 
 function Header({ OpenSidebar }) {
   return (
-    <header className="header">
+    <>
+     <header className="header">
       <div className="menu-icon">
         <BsJustify className="icon" onClick={OpenSidebar} />
       </div>
@@ -22,6 +23,8 @@ function Header({ OpenSidebar }) {
         <BsPersonCircle className="icon" />
       </div>
     </header>
+    </>
+   
   );
 }
 
