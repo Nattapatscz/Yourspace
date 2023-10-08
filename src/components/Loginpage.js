@@ -25,11 +25,9 @@ function Login() {
       const userRole = decodedToken.role;
 
       if (userRole === "admin") {
-        // Redirect to the admin page
-        window.location.href = "/dashboard"; // Update with your admin route
+        window.location.href = "/dashboard"; 
       } else {
-        // Redirect to the user page
-        window.location.href = "/request/mainproblemlist"; // Update with your user route
+        window.location.href = "/request/mainproblemlist"; 
       }
 
 

@@ -29,9 +29,8 @@ router.post("/login", async (req, res) => {
           return res.status(401).json({ error: "Invalid password" });
         }
 
-        // Include the user's role in the JWT payload
         const token = jwt.sign(
-          { userId: user.id, role: user.role }, // Add 'role' property
+          { userId: user.id, role: user.role }, 
           "your-secret-key",
           { expiresIn: "1h" }
         );

@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import { useState } from "react";
-import PrivateRoute from "../../PrivateRoute"; // Import your PrivateRoute component
+import PrivateRoute from "../../PrivateRoute"; 
 
 export const Dashboard = () => {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -21,7 +21,6 @@ export const Dashboard = () => {
   );
 };
 
-// Use the PrivateRoute component to protect the dashboard route for admin users
 const AdminDashboard = () => {
   return (
     <PrivateRoute path="/dashboard" element={<Dashboard />} requiredRole="admin" />
