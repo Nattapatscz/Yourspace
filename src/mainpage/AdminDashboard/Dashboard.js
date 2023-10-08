@@ -23,7 +23,7 @@ export const Dashboard = () => {
 
 const AdminDashboard = () => {
   return (
-    <PrivateRoute path="/dashboard" element={<Dashboard />} requiredRole="admin" />
+    <PrivateRoute path="/dashboard" element={<Dashboard />} requiredRolse="admin" />
   );
 };
 

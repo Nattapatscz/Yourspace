@@ -22,9 +22,9 @@ function Login() {
       localStorage.setItem("token", token);
 
       const decodedToken = jwt_decode(token);
-      const userRole = decodedToken.role;
+      const userRoles = decodedToken.roles;
 
-      if (userRole === "admin") {
+      if (userRoles === "admin") {
         window.location.href = "/dashboard"; 
       } else {
         window.location.href = "/request/mainproblemlist"; 
