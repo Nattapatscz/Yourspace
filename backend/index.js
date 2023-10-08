@@ -4,6 +4,7 @@ const login = require('./routes/login');
 const authensession = require('./routes/authensession')
 const jobsubmit = require('./routes/job_submit')
 const jobtype = require('./routes/job_type')
+const member = require('./routes/memberlist')
 const cors = require('cors');
 const app = express();
 const port = 5000;
@@ -16,6 +17,8 @@ const port = 5000;
         app.use(register);
 
         app.use(login); 
+
+        app.use(member)
 
         app.use(jobsubmit);
         app.use(jobtype);
