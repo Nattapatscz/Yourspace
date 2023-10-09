@@ -4,13 +4,20 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import { useState } from "react";
-import PrivateRoute from "../../PrivateRoute"; 
 
-export const Dashboard = () => {
+export const Dashboard = ({ userRoles }) => {
+  console.log("UserRoles:", userRoles);
+
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle);
   };
+
+  // Check the user's role here
+  if (userRoles !== "admin") {
+    return <p>Access denied. Not an Admin!</p>;
+  }
+  
 
   return (
     <div className="grid-container">
@@ -21,10 +28,4 @@ export const Dashboard = () => {
   );
 };
 
-const AdminDashboard = () => {
-  return (
-    <PrivateRoute path="/dashboard" element={<Dashboard />} requiredRolse="admin" />
-  );
-};
-
-export default AdminDashboard;
+export default Dashboard;

@@ -19,7 +19,7 @@ import Search from "./mainpage/Search";
 import { Dashboard } from "./mainpage/AdminDashboard/Dashboard";
 import { Jobs } from "./mainpage/AdminDashboard/Jobs";
 import { Users } from "./mainpage/AdminDashboard/Users";
-import PrivateRoute from "./PrivateRoute";
+import AccessDenied from "./mainpage/AccessDenied";
 const About = () => <div>About Page</div>;
 
 export default function App() {
@@ -30,29 +30,17 @@ export default function App() {
 
         <div className="content-container">
           <Routes>
-            <Route path="/dashboard" element={ProtectedData(<Dashboard />)} />
-            <Route
-              path="/dashboard/joblist"
-              element={ProtectedData(<Jobs />)}
-            />
-            <Route
-              path="/dashboard/edituser"
-              element={ProtectedData(<Users />)}
-            />
-
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
-            <Route path="/" element={<Mainpages />} />
+            <Route path="/dashboard/joblist" element={ProtectedData(<Jobs />)} />
+            <Route path="/dashboard/edituser" element={ProtectedData(<Users />)} />
+            <Route path="/dashboard" element={<Dashboard userRoles="admin" />} />
 
             <Route path="/about" element={<About />} />
-
             <Route path="/forum" element={<Postcategories />} />
-
             <Route path="/request/request_list" element={<Requestlist />} />
-
             <Route path="/request/mainproblemlist" element={<Mainproblem />} />
-
             <Route path="/list" element={<Search />} />
 
             <Route
@@ -79,6 +67,9 @@ export default function App() {
               path="/request/subproblemlist/6"
               element={ProtectedData(<SubproblemList6 />)}
             />
+            
+            <Route path="/access-denied" element={<AccessDenied />} />
+            <Route path="/" element={<Mainpages />} />
           </Routes>
         </div>
       </div>
