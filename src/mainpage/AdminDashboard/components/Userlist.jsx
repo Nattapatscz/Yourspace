@@ -57,7 +57,7 @@ const Userlist = () => {
   return (
     <div className="useredit-con container">
       <form>
-        <h2>Edit user</h2>
+        <h2>แก้ไขข้อมูลผู้ใช้</h2>
         <div className="form-group">
           <label>ID:</label>
           <input
@@ -106,15 +106,20 @@ const Userlist = () => {
           Update
         </button>
       </form>
-      <h2>Member list</h2>
-      <table className="table table-bordered" style={{ width: "70vw" }}>
+      <h2>รายการสมาชิก</h2>
+      <table
+        className="table table-bordered"
+        style={{ width: "50vw", textAlign: "center" }}
+      >
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Username</th>
-            <th>Edit</th>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Username</th>
+            <th scope="col" colSpan={"2"}>
+              Action
+            </th>
           </tr>
         </thead>
         <tbody>

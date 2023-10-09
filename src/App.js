@@ -19,6 +19,8 @@ import Search from "./mainpage/Search";
 import { Dashboard } from "./mainpage/AdminDashboard/Dashboard";
 import { Jobs } from "./mainpage/AdminDashboard/Jobs";
 import { Users } from "./mainpage/AdminDashboard/Users";
+import { Dashboard1 } from "./mainpage/TechDashboard/Dashboard1"; //
+// import PrivateRoute from "./PrivateRoute";
 const About = () => <div>About Page</div>;
 
 export default function App() {
@@ -29,9 +31,21 @@ export default function App() {
 
         <div className="content-container">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/joblist" element={<Jobs />} />
-            <Route path="/dashboard/edituser" element={<Users />} />
+            <Route path="/dashboard" element={ProtectedData(<Dashboard />)} />
+            <Route
+              path="/dashboard_tech"
+              element={ProtectedData(<Dashboard1 />)}
+            />
+
+            <Route
+              path="/dashboard/joblist"
+              element={ProtectedData(<Jobs />)}
+            />
+            <Route
+              path="/dashboard/edituser"
+              element={ProtectedData(<Users />)}
+            />
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
@@ -71,7 +85,6 @@ export default function App() {
               path="/request/subproblemlist/6"
               element={ProtectedData(<SubproblemList6 />)}
             />
-            {/* Add more routes */}
           </Routes>
         </div>
       </div>

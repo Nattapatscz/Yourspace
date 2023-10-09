@@ -7,6 +7,7 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +22,7 @@ function Register() {
       return;
     }
 
+    // AJAX
     fetch("http://localhost:5000/register", {
       method: "POST",
       headers: {
@@ -30,17 +32,20 @@ function Register() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Registration response:", data);
+        if (data.error) {
+          setError(data.error);
+        } else {
+          console.log("Registration response:", data);
 
-        window.Swal.fire({
-          icon: 'success',
-          title: 'Login Success',
-        })
-  
-        setTimeout(() => {
-          window.location.href = "/request/mainproblemlist";
-        }, 2000);
-       
+          window.Swal.fire({
+            icon: "success",
+            title: "Register Success",
+          });
+
+          setTimeout(() => {
+            window.location.href = "/request/mainproblemlist";
+          }, 2000);
+        }
       })
       .catch((error) => {
         console.error("Registration error:", error);
@@ -49,79 +54,84 @@ function Register() {
 
   return (
     <>
-    <div className="container-fluid">
-      <div className="container">
-        <br/>
-        <div className="card" style={{width:"100%"}}> 
-        <div className="card-body"> 
-            <h1 className="card-title">Register</h1>
-            <br/>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label" htmlFor="username">Username:</label>
-              <input
-                className="form-control"
-                type="text"
-                name="username"
-                id="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label" htmlFor="email">Email:</label>
-              <input
-                className="form-control"
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label" htmlFor="password">Password:</label>
-              <input
-                className="form-control"
-                type="password"
-                name="password"
-                id="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label" htmlFor="confirmPassword" >Confirm Password:</label>
-              <input
-                className="form-control"
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
+      <div className="container-fluid">
+        <div className="container">
+          <br />
+          <div className="card" style={{ width: "100%" }}>
+            <div className="card-body">
+              <h1 className="card-title">Register</h1>
               <br />
-              <button type="submit" className="btn btn-success">Submit</button>
+              {error && <div className="alert alert-danger">{error}</div>}
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="username">
+                    Username:
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="username"
+                    id="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    pattern="[a-zA-Z\d\_]"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="email">
+                    Email:
+                  </label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="password">
+                    Password:
+                  </label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" htmlFor="confirmPassword">
+                    Confirm Password:
+                  </label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <br />
+                  <button type="submit" className="btn btn-success">
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
-
+          </div>
         </div>
-       
-
-       </div>
-
       </div>
-
-     
-    </div>
     </>
-    
   );
 }
 

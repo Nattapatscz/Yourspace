@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
@@ -19,50 +21,49 @@ import {
 } from "recharts";
 
 function Home() {
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
+  const [jobCount, setJobCount] = useState(0);
+  const [categoryCount, setCategoryCount] = useState(0);
+  const [customerCount, setCustomerCount] = useState(0);
+  const [technicianCount, setTechnicianCount] = useState(0);
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    // Fetch and set job count
+    fetch("http://localhost:5000/graph")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setJobs(data);
+      });
+
+    fetch("http://localhost:5000/jobcount")
+      .then((response) => response.json())
+      .then((data) => {
+        setJobCount(data[0].count);
+      });
+
+    // Fetch and set category count
+    fetch("http://localhost:5000/jobtypecount")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategoryCount(data[0].count);
+      });
+
+    // Fetch and set customer count with roles "user"
+    fetch("http://localhost:5000/membercount")
+      .then((response) => response.json())
+      .then((data) => {
+        setCustomerCount(data[0].count);
+      });
+
+    // Fetch and set technician count with roles starting with "Technician_"
+    fetch("http://localhost:5000/techcount")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data[0].count);
+
+        setTechnicianCount(data[0].count);
+      });
+  }, []);
 
   return (
     <main className="main-container">
@@ -76,28 +77,28 @@ function Home() {
             <h3>JOBS</h3>
             <BsFillArchiveFill className="card_icon" />
           </div>
-          <h1>300</h1>
+          <h1>{jobCount}</h1>
         </div>
         <div className="dashboard card">
           <div className="card-inner">
             <h3>CATEGORIES</h3>
             <BsFillGrid3X3GapFill className="card_icon" />
           </div>
-          <h1>12</h1>
+          <h1>{categoryCount}</h1>
         </div>
         <div className="dashboard card">
           <div className="card-inner">
             <h3>CUSTOMERS</h3>
             <BsPeopleFill className="card_icon" />
           </div>
-          <h1>33</h1>
+          <h1>{customerCount}</h1>
         </div>
         <div className="dashboard card">
           <div className="card-inner">
             <h3>TECHNICIANS</h3>
             <BsFillBellFill className="card_icon" />
           </div>
-          <h1>42</h1>
+          <h1>{technicianCount}</h1>
         </div>
       </div>
 
@@ -106,7 +107,7 @@ function Home() {
           <BarChart
             width={500}
             height={300}
-            data={data}
+            data={jobs}
             margin={{
               top: 5,
               right: 30,
@@ -119,8 +120,7 @@ function Home() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
+            <Bar dataKey="total_jobs" fill="#F898A4" />
           </BarChart>
         </ResponsiveContainer>
 
@@ -128,7 +128,7 @@ function Home() {
           <LineChart
             width={500}
             height={300}
-            data={data}
+            data={jobs}
             margin={{
               top: 5,
               right: 30,
@@ -143,11 +143,10 @@ function Home() {
             <Legend />
             <Line
               type="monotone"
-              dataKey="pv"
-              stroke="#8884d8"
+              dataKey="total_jobs"
+              stroke="#FF6962"
               activeDot={{ r: 8 }}
             />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
           </LineChart>
         </ResponsiveContainer>
       </div>

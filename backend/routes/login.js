@@ -29,9 +29,11 @@ router.post("/login", async (req, res) => {
           return res.status(401).json({ error: "Invalid password" });
         }
 
-        const token = jwt.sign({ userId: user.id }, "your-secret-key", {
-          expiresIn: "1h",
-        });
+        const token = jwt.sign(
+          { userId: user.id, roles: user.roles },
+          "your-secret-key",
+          { expiresIn: "1h" }
+        );
 
         res.status(200).json({ message: "Login successful", token });
       } catch (hashingError) {

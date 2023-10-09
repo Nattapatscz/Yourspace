@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  BsGrid1X2Fill,
-  BsFillArchiveFill,
-  BsFillGrid3X3GapFill,
-  BsPeopleFill,
-  BsFillGearFill,
-} from "react-icons/bs";
+import { BsGrid1X2Fill, BsFillArchiveFill, BsPeopleFill } from "react-icons/bs";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   return (
@@ -26,39 +20,16 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <BsGrid1X2Fill className="icon" /> Dashboard
           </a>
         </li>
-        {/* <li className="sidebar-list-item">
-          <a href="/">
-            <BsGrid1X2Fill className="icon" /> Home
-          </a>
-        </li> */}
+
         <li className="sidebar-list-item">
           <a href="/dashboard/joblist">
             <BsFillArchiveFill className="icon" /> Jobs
           </a>
         </li>
-        <li className="sidebar-list-item">
-          <a href="/dashboard/categories">
-            <BsFillGrid3X3GapFill className="icon" /> Categories
-          </a>
-        </li>
+
         <li className="sidebar-list-item">
           <a href="/dashboard/edituser">
             <BsPeopleFill className="icon" /> Users
-          </a>
-        </li>
-        {/* <li className="sidebar-list-item">
-          <a href="s">
-            <BsListCheck className="icon" /> Inventory
-          </a>
-        </li> */}
-        {/* <li className="sidebar-list-item">
-          <a href="s">
-            <BsMenuButtonWideFill className="icon" /> Reports
-          </a>
-        </li> */}
-        <li className="sidebar-list-item">
-          <a href="s">
-            <BsFillGearFill className="icon" /> Setting
           </a>
         </li>
       </ul>

@@ -15,11 +15,37 @@ router.get("/member", (req, res) => {
     }
   });
 });
+router.get("/membercount", (req, res) => {
+  const query = "SELECT COUNT(*) as count  FROM member WHERE roles = 'user';";
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error fetching job types: " + err);
+      res.status(500).json({ error: "Failed to fetch member" });
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+router.get("/techcount", (req, res) => {
+  const query =
+    "SELECT COUNT(*) as count FROM member WHERE roles LIKE 'Technician%';";
+
+  db.query(query, (err, result) => {
+    if (err) {
+      console.error("Error fetching job types: " + err);
+      res.status(500).json({ error: "Failed to fetch member" });
+    } else {
+      res.json(result);
+    }
+  });
+});
 router.put("/member/:id", (req, res) => {
   const { id } = req.params;
   const updatedUser = req.body;
 
-  const sql = "UPDATE member SET ? WHERE member_id = ?";
+  const sql = "UPDATE member  SET ? WHERE member_id = ?";
   db.query(sql, [updatedUser, id], (err, result) => {
     if (err) {
       console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูลผู้ใช้: " + err.message);
