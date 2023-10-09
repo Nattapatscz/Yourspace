@@ -13,7 +13,6 @@ export const Dashboard = ({ userRoles }) => {
     setOpenSidebarToggle(!openSidebarToggle);
   };
 
-  // Check the user's role here
   if (userRoles !== "admin") {
     return <p>Access denied. Not an Admin!</p>;
   }
