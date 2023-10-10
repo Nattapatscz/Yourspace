@@ -38,59 +38,108 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-app.post('/upload', (req, res) => {
+//ส่วนที่ 1: อัปโหลดรูปภาพไปยังโฟลเดอร์
+app.post('/upload-to-folder', (req, res) => {
   if (!req.files || !req.files.sampleFiles || req.files.sampleFiles.length === 0) {
     return res.status(400).send('No files were uploaded.');
   }
 
-  const uploadedFiles = Array.isArray(req.files.sampleFiles) ? req.files.sampleFiles : [req.files.sampleFiles]; // Ensure uploadedFiles is an array
-  const fileNames = [];
+  const uploadedFiles = Array.isArray(req.files.sampleFiles) ? req.files.sampleFiles : [req.files.sampleFiles];
 
-  // Move each uploaded file to the 'uploads' directory
+  // Define the upload directory (change this to your desired folder path)
+  const uploadDirectory = path.join(__dirname, 'uploads');
+
   uploadedFiles.forEach((uploadedFile) => {
     const fileName = uploadedFile.name;
-    fileNames.push(fileName);
 
-    uploadedFile.mv(path.join(__dirname, 'uploads', fileName), (err) => {
+    // Move the uploaded file to the specified directory
+    uploadedFile.mv(path.join(uploadDirectory, fileName), (err) => {
       if (err) {
         return res.status(500).send(err);
       }
     });
   });
 
-  // Insert data into the database for each uploaded file
-  fileNames.forEach((fileName) => {
-    const fileData = fs.readFileSync(path.join(__dirname, 'uploads', fileName));
-
-    const sql =
-      'INSERT INTO job (job_tel, job_details, job_assign_date, job_assign_time, job_backup_tel, job_location, member_username, status_id, job_type_id, technicial_username, file_name, file_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
-    db.query(
-      sql,
-      [
-        req.body.job_tel,
-        req.body.job_details,
-        req.body.job_assign_date,
-        req.body.job_assign_time,
-        req.body.job_backup_tel,
-        req.body.job_location,
-        req.body.member_username,
-        req.body.status_id,
-        req.body.job_type_id,
-        req.body.technicial_username,
-        fileName,
-        fileData,
-      ],
-      (err, results) => {
-        if (err) {
-          return res.status(500).send(err);
-        }
-      }
-    );
-  });
-
-  res.send('Files uploaded and data saved to MySQL.');
+  res.send('Files uploaded to folder.');
 });
+
+// ส่วนที่ 2: เพิ่มข้อมูลรูปภาพลงใน MySQL
+app.post('/upload-to-mysql', (req, res) => {
+  const uploadDirectory = path.join(__dirname, 'uploads');
+
+// Read the list of uploaded files in the directory
+fs.readdir(uploadDirectory, (err, files) => {
+  if (err) {
+    return res.status(500).send(err);
+  }
+
+  // Find the specific filename you want to insert into MySQL
+  const desiredFileName = req.body.fileName; // Replace 'fileName' with the actual field name in your request
+
+  if (!desiredFileName || !files.includes(desiredFileName)) {
+    return res.status(404).send('File not found or missing filename in the request.');
+  }
+
+  // Process the desired file and insert data into MySQL
+  const fileData = fs.readFileSync(path.join(uploadDirectory, desiredFileName));
+
+  const sql =
+    'INSERT INTO job (job_tel, job_details, job_assign_date, job_assign_time, job_backup_tel, job_location, member_username, status_id, job_type_id, technicial_username, file_name, file_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+  db.query(
+    sql,
+    [
+      req.body.job_tel,
+      req.body.job_details,
+      req.body.job_assign_date,
+      req.body.job_assign_time,
+      req.body.job_backup_tel,
+      req.body.job_location,
+      req.body.member_username,
+      req.body.status_id,
+      req.body.job_type_id,
+      req.body.technicial_username,
+      desiredFileName, // Use the desired filename
+      fileData, // File data for the desired file
+    ],
+    (err, results) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      res.send('Job data added to MySQL.');
+    }
+  );
+});
+});
+
+
+app.get('/api/getJobData', (req, res) => {
+  const sql = 'SELECT job_tel, job_details, job_assign_date, job_assign_time, job_backup_tel, job_location, member_username, status_id, job_type_id, technicial_username FROM job';
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json(results);
+  });
+});
+
+app.get('/api/getImageData', (req, res) => {
+  const sql = 'SELECT file_data FROM job';
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    // Encode image data as Base64 and send it as JSON
+    const imageObjects = results.map((row) => {
+      return { file_data: Buffer.from(row.file_data).toString('base64') };
+    });
+
+    res.json(imageObjects);
+  });
+});
+
 
 
 

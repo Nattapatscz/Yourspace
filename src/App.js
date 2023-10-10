@@ -19,7 +19,8 @@ import Search from "./mainpage/Search";
 import { Dashboard } from "./mainpage/AdminDashboard/Dashboard";
 import { Jobs } from "./mainpage/AdminDashboard/Jobs";
 import { Users } from "./mainpage/AdminDashboard/Users";
-import FileUploadForm from "./components/FileUploadForm";
+// import FileUploadForm from "./components/FileUploadForm";
+import DataDisplay from "./components/FileUploadForm";
 const About = () => <div>About Page</div>;
 
 export default function App() {
@@ -48,7 +49,7 @@ export default function App() {
 
             <Route path="/list" element={<Search />} />
 
-            <Route path="/test" element={<FileUploadForm />} />
+            <Route path="/test" element={<DataDisplay />} />
 
             <Route
               path="/request/subproblemlist/1"
