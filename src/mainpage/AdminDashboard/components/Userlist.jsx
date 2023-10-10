@@ -26,6 +26,50 @@ const Userlist = () => {
     setEditedUser({ ...editedUser, [name]: value });
   };
 
+  const handleDeleteClick = (user) => {
+    window.Swal.fire({
+      title: "คุณต้องการลบสมาชิกนี้ใช่หรือไม่?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "ใช่",
+      cancelButtonText: "ไม่",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/member/${user.member_id}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (response.status === 204) {
+              // ลบสมาชิกสำเร็จ
+              // อัปเดตรายการสมาชิกหลังจากลบสมาชิก
+              const updatedUsers = users.filter(
+                (u) => u.member_id !== user.member_id
+              );
+              setUsers(updatedUsers);
+              window.Swal.fire({
+                icon: "success",
+                title: "Delete Success",
+              });
+            } else if (response.status === 404) {
+              // ไม่พบสมาชิก
+              window.Swal.fire({
+                icon: "error",
+                title: "Member not found",
+              });
+            } else {
+              // อื่นๆ ที่เกิดข้อผิดพลาด
+              window.Swal.fire({
+                icon: "error",
+                title: "Delete Error",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting member: " + error);
+          });
+      }
+    });
+  };
   const handleUpdateClick = () => {
     window.Swal.fire({
       icon: "success",
@@ -109,7 +153,7 @@ const Userlist = () => {
       <h2>รายการสมาชิก</h2>
       <table
         className="table table-bordered"
-        style={{ width: "50vw", textAlign: "center" }}
+        style={{ width: "83vw", textAlign: "center" }}
       >
         <thead>
           <tr>
@@ -135,6 +179,14 @@ const Userlist = () => {
                   onClick={() => handleEditClick(user)}
                 >
                   Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDeleteClick(user)}
+                >
+                  Delete
                 </button>
               </td>
             </tr>

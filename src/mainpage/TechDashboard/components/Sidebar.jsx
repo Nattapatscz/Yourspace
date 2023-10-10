@@ -26,12 +26,6 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <BsFillArchiveFill className="icon" /> Your Jobs
           </a>
         </li>
-
-        <li className="sidebar-list-item">
-          <a href="s">
-            <BsFillGearFill className="icon" /> Setting
-          </a>
-        </li>
       </ul>
     </aside>
   );

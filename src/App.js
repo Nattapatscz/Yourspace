@@ -20,6 +20,8 @@ import { Dashboard } from "./mainpage/AdminDashboard/Dashboard";
 import { Jobs } from "./mainpage/AdminDashboard/Jobs";
 import { Users } from "./mainpage/AdminDashboard/Users";
 import { Dashboard1 } from "./mainpage/TechDashboard/Dashboard1"; //
+import AcceptJob from "./mainpage/TechDashboard/AcceptJob";
+import Yourjob from "./mainpage/TechDashboard/Yourjob";
 // import PrivateRoute from "./PrivateRoute";
 const About = () => <div>About Page</div>;
 
@@ -35,6 +37,14 @@ export default function App() {
             <Route
               path="/dashboard_tech"
               element={ProtectedData(<Dashboard1 />)}
+            />
+            <Route
+              path="/dashboard_tech/jobaccept"
+              element={ProtectedData(<AcceptJob />)}
+            />
+            <Route
+              path="/dashboard_tech/ownjob"
+              element={ProtectedData(<Yourjob />)}
             />
 
             <Route

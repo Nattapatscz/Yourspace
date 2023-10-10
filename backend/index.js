@@ -9,12 +9,13 @@ const cors = require("cors");
 const app = express();
 const port = 5000;
 const job = require("./routes/jobs_list");
-
+const status = require("./routes/status");
 // middleware
 app.use(cors());
 app.use(express.json());
 
 // routes
+app.use(status);
 app.use(job);
 app.use(register);
 app.use(login);

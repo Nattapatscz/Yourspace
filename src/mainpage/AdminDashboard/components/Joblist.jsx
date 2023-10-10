@@ -1,8 +1,26 @@
 // import axios from "axios";
 import React, { useState, useEffect } from "react";
+import JobTypeModal from "../../../components/JobTypeModal";
+import StatusTypeModal from "../../../components/StatusTypeModel";
 const Joblist = () => {
   const [jobs, setJobs] = useState([]);
+  const [showJobTypeModal, setShowJobTypeModal] = useState(false);
+  const [showStatusTypeModal, setShowStatusTypeModal] = useState(false);
 
+  const handleShowStatusTypeModal = () => {
+    setShowStatusTypeModal(true);
+  };
+
+  const handleCloseStatusTypeModal = () => {
+    setShowStatusTypeModal(false);
+  };
+  const handleShowJobTypeModal = () => {
+    setShowJobTypeModal(true);
+  };
+
+  const handleCloseJobTypeModal = () => {
+    setShowJobTypeModal(false);
+  };
   const [editedJob, setEditedJob] = useState({
     job_id: "",
     job_tel: "",
@@ -26,12 +44,11 @@ const Joblist = () => {
   }, []);
   const handleDeleteClick = (jobId) => {
     window.Swal.fire({
-      title: "Are you sure you want to delete this job?",
-      text: "You won't be able to revert this!",
+      title: "คุณต้องการลบสมาชิกนี้ใช่หรือไม่?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, cancel",
+      confirmButtonText: "ใช่",
+      cancelButtonText: "ไม่",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/job/${jobId}`, {
@@ -220,21 +237,36 @@ const Joblist = () => {
       <h2>รายการงาน</h2>
       <table
         className="table table-bordered"
-        style={{ width: "50vw", textAlign: "center" }}
+        style={{ width: "85vw", textAlign: "center" }}
       >
         <thead>
           <tr>
-            <th>job_id</th>
-            <th>job_tel</th>
-            <th>job_details</th>
-            <th>job_assign_date</th>
-            <th>job_assign_time</th>
-            <th>job_backup_tel</th>
-            <th>job_location</th>
-            <th>member_username</th>
-            <th>status_id</th>
-            <th>job_type_id</th>
-            <th>technicial_username</th>
+            <th>ID</th>
+            <th>ชื่อลูกค้า</th>
+            <th>เบอร์โทรศัพท์</th>
+            <th>เบอร์โทรศัพท์สำรอง</th>
+            <th>สถานที่นัดหมาย</th>
+            <th>รายละเอียดงาน</th>
+            <th>วันที่นัดหมาย</th>
+            <th>เวลาที่นัดหมาย</th>
+            <th>
+              สถานะงาน
+              <i
+                class="fa-solid fa-circle-info"
+                onClick={handleShowStatusTypeModal}
+                style={{ marginLeft: "5px" }}
+              ></i>
+            </th>
+            <th>
+              ประเภทงาน
+              <i
+                class="fa-solid fa-circle-info"
+                onClick={handleShowJobTypeModal}
+                style={{ marginLeft: "5px" }}
+              ></i>
+            </th>
+            <th>ชื่อช่างผู้รับงาน</th>
+            <th>image</th>
             <th colSpan={"2"}>Action</th>
           </tr>
         </thead>
@@ -242,20 +274,21 @@ const Joblist = () => {
           {jobs.map((job) => (
             <tr key={job.job_id}>
               <td>{job.job_id}</td>
+              <td>{job.member_username}</td>
               <td>{job.job_tel}</td>
+              <td>{job.job_backup_tel}</td>
+              <td>{job.job_location}</td>
               <td>{job.job_details}</td>
               <td>
                 {new Intl.DateTimeFormat("th-TH", thaiTimeOptions).format(
                   new Date(job.job_assign_date)
                 )}
-              </td>{" "}
+              </td>
               <td>{job.job_assign_time}</td>
-              <td>{job.job_backup_tel}</td>
-              <td>{job.job_location}</td>
-              <td>{job.member_username}</td>
               <td>{job.status_id}</td>
               <td>{job.job_type_id}</td>
               <td>{job.technicial_username}</td>
+              <td>{job.img_url}</td>
               {/* <td>
                 <img
                   src={require("../../../../backend/public/images/job1.jpg")}
@@ -282,6 +315,14 @@ const Joblist = () => {
           ))}
         </tbody>
       </table>
+      <JobTypeModal
+        show={showJobTypeModal}
+        handleClose={handleCloseJobTypeModal}
+      />
+      <StatusTypeModal
+        show={showStatusTypeModal}
+        handleClose={handleCloseStatusTypeModal}
+      />
     </div>
   );
 };

@@ -8,6 +8,7 @@ const PrivateRoute = ({ component: Component, requiredRole, ...rest }) => {
   if (token) {
     const decodedToken = jwt_decode(token);
     const userRole = decodedToken.role;
+    console.log(userRole);
 
     if (userRole === requiredRole) {
       return <Route {...rest} element={<Component />} />;

@@ -55,4 +55,22 @@ router.put("/member/:id", (req, res) => {
     }
   });
 });
+
+router.delete("/member/:id", (req, res) => {
+  const memberId = req.params.id;
+
+  const sql = "DELETE FROM member WHERE member_id = ?";
+  db.query(sql, [memberId], (err, result) => {
+    if (err) {
+      console.error("Error deleting member: " + err);
+      res.status(500).json({ error: "Failed to delete member" });
+    } else {
+      if (result.affectedRows === 0) {
+        res.status(404).json({ message: "Member not found" });
+      } else {
+        res.status(204).send(); // ส่ง HTTP Status 204 No Content หากลบสมาชิกสำเร็จ
+      }
+    }
+  });
+});
 module.exports = router;

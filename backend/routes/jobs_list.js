@@ -55,6 +55,27 @@ router.put("/job/:id", (req, res) => {
   });
 });
 
+router.put("/jobaccept/:id", (req, res) => {
+  const { id } = req.params;
+  const updatedJob = req.body;
+
+  // อัปเดตค่า status_id และ technicial_username
+  const sql =
+    "UPDATE job SET status_id = ?, technicial_username = ? WHERE job_id = ?";
+  db.query(
+    sql,
+    [updatedJob.status_id, updatedJob.technicial_username, id],
+    (err, result) => {
+      if (err) {
+        console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูลงาน: " + err.message);
+        res.status(500).send("เกิดข้อผิดพลาดในการอัปเดตข้อมูลงาน");
+      } else {
+        res.status(200).send("อัปเดตข้อมูลงานเรียบร้อย");
+      }
+    }
+  );
+});
+
 router.delete("/job/:id", (req, res) => {
   const { id } = req.params;
 
@@ -70,7 +91,7 @@ router.delete("/job/:id", (req, res) => {
 });
 
 router.get("/jobst1", (req, res) => {
-  const query = "SELECT * FROM  job  WHERE status_id = 1 ";
+  const query = "SELECT *FROM job  WHERE status_id = 1;";
 
   db.query(query, (err, result) => {
     if (err) {
@@ -90,6 +111,37 @@ router.get("/graph", (req, res) => {
       res.status(500).json({ error: "Failed to fetch graph" });
     } else {
       res.json(result);
+    }
+  });
+});
+
+router.get("/joblist/:username", (req, res) => {
+  const { username } = req.params; // เปลี่ยนจาก id เป็น username
+
+  const sql = "SELECT * FROM job WHERE technicial_username = ?";
+  db.query(sql, [username], (err, result) => {
+    if (err) {
+      console.error("เกิดข้อผิดพลาดในการดึงข้อมูลงาน: " + err.message);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลงาน");
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+router.put("/canceljob/:jobId", (req, res) => {
+  const jobId = req.params.jobId;
+
+  // ทำการอัปเดตข้อมูลในฐานข้อมูล
+  const sql =
+    "UPDATE job SET status_id = 1, technicial_username = NULL WHERE job_id = ?";
+  db.query(sql, [jobId], (err, result) => {
+    if (err) {
+      console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูล: " + err.message);
+      res.status(500).json({ error: "เกิดข้อผิดพลาดในการอัปเดตข้อมูล" });
+    } else {
+      console.log(`งานรหัส ${jobId} ถูกยกเลิกสำเร็จ`);
+      res.json({ message: "ยกเลิกงานสำเร็จ" });
     }
   });
 });

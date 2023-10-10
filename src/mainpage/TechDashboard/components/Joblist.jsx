@@ -1,221 +1,121 @@
 // import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import jwtDecode from "jwt-decode";
+import StatusTypeModal from "../../../components/StatusTypeModel";
+import JobTypeModal from "../../../components/JobTypeModal";
 const Joblist = () => {
   const [jobs, setJobs] = useState([]);
+  const [showJobTypeModal, setShowJobTypeModal] = useState(false);
+  const [showStatusTypeModal, setShowStatusTypeModal] = useState(false);
 
-  const [editedJob, setEditedJob] = useState({
-    job_id: "",
-    job_tel: "",
-    job_details: "",
-    job_assign_date: "",
-    job_assign_time: "",
-    job_backup_tel: "",
-    job_location: "",
-    member_username: "",
-    status_id: "",
-    job_type_id: "",
-    technicial_username: "",
-  });
+  const handleShowStatusTypeModal = () => {
+    setShowStatusTypeModal(true);
+  };
+
+  const handleCloseStatusTypeModal = () => {
+    setShowStatusTypeModal(false);
+  };
+  const handleShowJobTypeModal = () => {
+    setShowJobTypeModal(true);
+  };
+
+  const handleCloseJobTypeModal = () => {
+    setShowJobTypeModal(false);
+  };
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
+  const username = decodedToken.username;
 
   useEffect(() => {
-    fetch("http://localhost:5000/job")
+    fetch("http://localhost:5000/jobst1")
       .then((response) => response.json())
       .then((data) => {
         setJobs(data);
       });
   }, []);
 
-  const handleEditClick = (job) => {
-    setEditedJob(job);
-  };
+  const handleAcceptJob = (job) => {
+    const updatedJobWithStatusAndTechnician = {
+      ...job,
+      status_id: 2,
+      technicial_username: username,
+    };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedJob({ ...editedJob, [name]: value });
-  };
-
-  const handleUpdateClick = () => {
     window.Swal.fire({
       icon: "success",
-      title: "Update Success",
+      title: "รับงานสำเร็จ",
     });
-    fetch(`http://localhost:5000/job/${editedJob.job_id}`, {
+
+    fetch(`http://localhost:5000/jobaccept/${job.job_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(editedJob),
+      body: JSON.stringify(updatedJobWithStatusAndTechnician),
     })
       .then((response) => response.json())
       .then(() => {
-        const updatedJobs = jobs.map((job) =>
-          job.job_id === editedJob.job_id ? editedJob : job
+        const updatedJobs = jobs.map((j) =>
+          j.job_id === job.job_id ? updatedJobWithStatusAndTechnician : j
         );
         setJobs(updatedJobs);
-        setEditedJob({
-          job_id: "",
-        });
       });
   };
+
   const thaiTimeOptions = {
     year: "numeric",
     month: "numeric",
     day: "numeric",
-
     hour12: false,
-    timeZone: "Asia/Bangkok", // กำหนดเป็นเวลาของไทย
+    timeZone: "Asia/Bangkok",
   };
+
   return (
     <div className="useredit-con container">
-      <form>
-        <h2>แก้ไขงาน</h2>
-        <div className="form-group">
-          <label>ID:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_id"
-            value={editedJob.job_id}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Telephone:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_tel"
-            value={editedJob.job_tel}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Details:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_details"
-            value={editedJob.job_details}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Assign Date:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_assign_date"
-            value={editedJob.job_assign_date}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Assign Time (UTC):</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_assign_time"
-            value={editedJob.job_assign_time}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Backup Telephone:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_backup_tel"
-            value={editedJob.job_backup_tel}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Location:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_location"
-            value={editedJob.job_location}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Member Username:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="member_username"
-            value={editedJob.member_username}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Status ID:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="status_id"
-            value={editedJob.status_id}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Job Type ID:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="job_type_id"
-            value={editedJob.job_type_id}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Technical Username:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="technicial_username"
-            value={editedJob.technicial_username}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleUpdateClick}
-        >
-          Update
-        </button>
-      </form>
-      <h2>รายการงาน</h2>
+      <h2 style={{ textAlign: "center" }}>รายการงานที่ยังไม่ถูกดำเนินการ</h2>
       <table
         className="table table-bordered"
-        style={{ width: "70vw", textAlign: "center" }}
+        style={{ width: "85vw", textAlign: "center" }}
       >
         <thead>
           <tr>
-            <th>job_id</th>
-            <th>job_tel</th>
-            <th>job_details</th>
-            <th>job_assign_date</th>
-            <th>job_assign_time (Thai Time)</th>
-            <th>job_backup_tel</th>
-            <th>job_location</th>
-            <th>member_username</th>
-            <th>status_id</th>
-            <th>job_type_id</th>
-            <th>technicial_username</th>
+            <th>ID</th>
+            <th>ชื่อลูกค้า</th>
+            <th>เบอร์โทรศัพท์</th>
+            <th>เบอร์โทรศัพท์สำรอง</th>
+            <th>สถานที่นัดหมาย</th>
+            <th>รายละเอียดงาน</th>
+            <th>วันที่นัดหมาย</th>
+            <th>เวลาที่นัดหมาย</th>
+            <th>
+              สถานะงาน
+              <i
+                class="fa-solid fa-circle-info"
+                onClick={handleShowStatusTypeModal}
+                style={{ marginLeft: "5px" }}
+              ></i>
+            </th>
+            <th>
+              ประเภทงาน
+              <i
+                class="fa-solid fa-circle-info"
+                onClick={handleShowJobTypeModal}
+                style={{ marginLeft: "5px" }}
+              ></i>
+            </th>
+            <th>ชื่อช่างผู้รับงาน</th>
             <th>image</th>
-
-            <th>edit</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {jobs.map((job) => (
             <tr key={job.job_id}>
               <td>{job.job_id}</td>
+              <td>{job.member_username}</td>
               <td>{job.job_tel}</td>
+              <td>{job.job_backup_tel}</td>
+              <td>{job.job_location}</td>
               <td>{job.job_details}</td>
               <td>
                 {new Intl.DateTimeFormat("th-TH", thaiTimeOptions).format(
@@ -223,31 +123,30 @@ const Joblist = () => {
                 )}
               </td>{" "}
               <td>{job.job_assign_time}</td>
-              <td>{job.job_backup_tel}</td>
-              <td>{job.job_location}</td>
-              <td>{job.member_username}</td>
               <td>{job.status_id}</td>
               <td>{job.job_type_id}</td>
               <td>{job.technicial_username}</td>
               <td>{job.img_url}</td>
-              {/* <td>
-                <img
-                  src={require("../../../../backend/public/images/job1.jpg")}
-                  alt=""
-                />
-              </td> */}
               <td>
                 <button
                   className="btn btn-success"
-                  onClick={() => handleEditClick(job)}
+                  onClick={() => handleAcceptJob(job)}
                 >
-                  Edit
+                  รับงาน
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <JobTypeModal
+        show={showJobTypeModal}
+        handleClose={handleCloseJobTypeModal}
+      />
+      <StatusTypeModal
+        show={showStatusTypeModal}
+        handleClose={handleCloseStatusTypeModal}
+      />
     </div>
   );
 };
