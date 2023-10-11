@@ -118,10 +118,12 @@ const SubproblemList1 = () => {
      <div className="form-content">
       <br></br>
       <h1>File Upload Form</h1>
+      <br />
         <form onSubmit={uploadToFolder}>
             <div>
-              <label>Select Files:</label>
+              <label className="form-label">Select Files:</label>
               <input
+                className="form-control"
                 type="file"
                 name="sampleFiles"
                 multiple
@@ -133,16 +135,19 @@ const SubproblemList1 = () => {
             </div>
             {uploadStatus && <p>{uploadStatus}</p>}
 
-            <h2>Uploaded Files:</h2>
-            
-                {/* Display the selected image */}
+            <br/>
+            <h2>Uploaded Files:</h2><br />
+
+            <div style={{width:'100%',height:'auto'}} >
+               {/* Display the selected image */}
                 {selectedImageURL && (
                   <div>
-                    <p>รูปที่เลือก:</p>
-                    <img src={selectedImageURL} alt="Selected" />
+                    <img src={selectedImageURL} alt="Selected" width="450px" height="300px"/>
                   </div>
                 )}
-              <button type="submit"> Upload to Folder</button>
+            </div><br/>
+               
+              <button className="btn btn-success" type="submit"> Upload to Folder</button>
           </form>
           <br/>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
