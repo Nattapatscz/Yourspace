@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Postcategories from "./components/Postcategories";
 import Mainpages from "./mainpage/Mainpages";
 import SubproblemList1 from "./mainpage/Subproblem/SubproblemList1";
 import Requestlist from "./mainpage/Requestlist";
@@ -22,6 +21,7 @@ import { Users } from "./mainpage/AdminDashboard/Users";
 import { Dashboard1 } from "./mainpage/TechDashboard/Dashboard1"; //
 import AcceptJob from "./mainpage/TechDashboard/AcceptJob";
 import Yourjob from "./mainpage/TechDashboard/Yourjob";
+import UserReport from "./mainpage/UserReport";
 // import PrivateRoute from "./PrivateRoute";
 const About = () => <div>About Page</div>;
 
@@ -63,14 +63,12 @@ export default function App() {
 
             <Route path="/about" element={<About />} />
 
-            <Route path="/forum" element={<Postcategories />} />
-
             <Route path="/request/request_list" element={<Requestlist />} />
 
             <Route path="/request/mainproblemlist" element={<Mainproblem />} />
 
             <Route path="/list" element={<Search />} />
-
+            <Route path="/report" element={<UserReport />} />
             <Route
               path="/request/subproblemlist/1"
               element={ProtectedData(<SubproblemList1 />)}

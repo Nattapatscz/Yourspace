@@ -1,5 +1,5 @@
 import React from "react";
-import { BsFillArchiveFill, BsFillGearFill } from "react-icons/bs";
+import { BsFillArchiveFill } from "react-icons/bs";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   return (

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
-import StatusTypeModal from "../../../components/StatusTypeModel";
-import JobTypeModal from "../../../components/JobTypeModal";
+import StatusTypeModal from "../components/StatusTypeModel";
+import JobTypeModal from "../components/JobTypeModal";
 
-const Ownjob = () => {
+const UserReport = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showJobTypeModal, setShowJobTypeModal] = useState(false);
@@ -27,11 +27,10 @@ const Ownjob = () => {
   const token = localStorage.getItem("token");
   const decodedToken = jwtDecode(token);
   const username = decodedToken.username;
-  console.log(username);
 
   useEffect(() => {
     // ส่งคำขอ GET ไปยังเซิร์ฟเวอร์เพื่อรับรายการงานที่เป็นของคุณ
-    fetch(`http://localhost:5000/joblist/${username}`)
+    fetch(`http://localhost:5000/memlist/${username}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -51,57 +50,45 @@ const Ownjob = () => {
     hour12: false,
     timeZone: "Asia/Bangkok", // กำหนดเป็นเวลาของไทย
   };
-
-  const handleCancelJob = (jobId) => {
-    // ส่งคำขอ PUT ไปยังเซิร์ฟเวอร์เพื่อยกเลิกงาน
-    fetch(`http://localhost:5000/cancelJob/${jobId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status_id: 1, // กำหนด status_id เป็น 1
-        technicial_username: null, // กำหนด technicial_username เป็น null
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        window.Swal.fire({
-          icon: "success",
-          title: "ยกเลิกงานสำเร็จ",
-        });
-        setTimeout(() => {
-          window.location.href = "/dashboard_tech/jobaccept";
-        }, 3000);
-        // อัปเดตรายการงานหลังยกเลิก
-        const updatedJobs = jobs.map((job) => {
-          if (job.job_id === jobId) {
-            // อัปเดตเฉพาะงานที่ถูกยกเลิก
-            return {
-              ...job,
-              status_id: 1, // กำหนด status_id เป็น 1
-              technicial_username: null, // กำหนด technicial_username เป็น null
-            };
-          }
-          return job;
-        });
-
-        setJobs(updatedJobs);
-      })
-      .catch((error) => {
-        console.error("เกิดข้อผิดพลาดในการยกเลิกงาน: " + error.message);
-      });
+  const handleDeleteClick = (jobId) => {
+    window.Swal.fire({
+      title: "คุณต้องการลบงานนี้?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "ใช่",
+      cancelButtonText: "ไม่",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/job/${jobId}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              window.Swal.fire(
+                "Deleted!",
+                "The job has been deleted.",
+                "success"
+              );
+              const updatedJobs = jobs.filter((job) => job.job_id !== jobId);
+              setJobs(updatedJobs);
+            } else {
+              window.Swal.fire("Error", "Failed to delete the job.", "error");
+            }
+          });
+      }
+    });
   };
 
   return (
-    <div className="useredit-con container">
+    <div className="useredit-con container-fluid">
       <h2>รายการงานของคุณ</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <table
           className="table table-bordered"
-          style={{ width: "85vw", textAlign: "center" }}
+          style={{ width: "100vw", textAlign: "center" }}
         >
           <thead>
             <tr>
@@ -152,12 +139,11 @@ const Ownjob = () => {
                 <td>{job.status_id}</td>
                 <td>{job.job_type_id}</td>
                 <td>{job.technicial_username}</td>
-                <td>{job.file_name}</td>
-
+                <td>{job.img_url}</td>
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleCancelJob(job.job_id)}
+                    onClick={() => handleDeleteClick(job.job_id)}
                   >
                     Cancel
                   </button>
@@ -179,4 +165,4 @@ const Ownjob = () => {
   );
 };
 
-export default Ownjob;
+export default UserReport;

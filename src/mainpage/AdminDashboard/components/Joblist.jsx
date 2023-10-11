@@ -21,6 +21,7 @@ const Joblist = () => {
   const handleCloseJobTypeModal = () => {
     setShowJobTypeModal(false);
   };
+
   const [editedJob, setEditedJob] = useState({
     job_id: "",
     job_tel: "",
@@ -39,6 +40,8 @@ const Joblist = () => {
     fetch("http://localhost:5000/job")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
+
         setJobs(data);
       });
   }, []);
@@ -288,7 +291,8 @@ const Joblist = () => {
               <td>{job.status_id}</td>
               <td>{job.job_type_id}</td>
               <td>{job.technicial_username}</td>
-              <td>{job.img_url}</td>
+              <td>{job.file_name}</td>
+
               {/* <td>
                 <img
                   src={require("../../../../backend/public/images/job1.jpg")}

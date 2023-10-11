@@ -91,7 +91,7 @@ router.delete("/job/:id", (req, res) => {
 });
 
 router.get("/jobst1", (req, res) => {
-  const query = "SELECT *FROM job  WHERE status_id = 1;";
+  const query = "SELECT * FROM job WHERE status_id = 1 OR status_id IS NULL;";
 
   db.query(query, (err, result) => {
     if (err) {

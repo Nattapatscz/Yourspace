@@ -126,7 +126,7 @@ const Joblist = () => {
               <td>{job.status_id}</td>
               <td>{job.job_type_id}</td>
               <td>{job.technicial_username}</td>
-              <td>{job.img_url}</td>
+              <td>{job.file_name}</td>
               <td>
                 <button
                   className="btn btn-success"

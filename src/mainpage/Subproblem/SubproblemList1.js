@@ -1,123 +1,221 @@
 import React, { useState } from "react";
 import "../../styles/SubproblemList.css";
-// import axios from 'axios';
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 const SubproblemList1 = () => {
-  const [formData, setFormData] = useState({
-    job_tel: "",
-    job_details: "",
-    job_assign_date: "",
-    job_assign_time: "",
-    job_backup_tel: "",
-    job_location: "",
-    member_username: "",
-    status_id: "",
-    job_type_id: "",
-    technicial_username: "",
-    image: null, // Initialize image field with null
-  });
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedImageURL, setSelectedImageURL] = useState(null); // ใช้ null แทนสตริงว่าง
+  const [uploadStatus, setUploadStatus] = useState("");
+  const [uploadedFiles, setUploadedFiles] = useState({});
+  const [job_location, setJobLocation] = useState("");
+  const [job_tel, setJobTel] = useState("");
+  const [job_backup_tel, setJobBackupTel] = useState("");
+  const [job_assign_date, setJobAssignDate] = useState("");
+  const [job_assign_time, setJobAssignTime] = useState("");
+  const [job_details, setJobDetails] = useState("");
+  const [filename, setfilename] = useState("");
+  const [job_type_id, setJobTypeID] = useState("100");
+  // Decode Token เพื่อรับข้อมูล username
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
+  let member_username = decodedToken.username;
 
-  const handleInputChange = (e) => {
-    const { name, type, files, value } = e.target;
+  const handleFileChange = (event) => {
+    const files = event.target.files;
+    setSelectedFiles(files);
 
-    if (type === "file" && files) {
-      // Handle file input (image)
-      setFormData({
-        ...formData,
-        [name]: files, // Store selected image files in the form data
-      });
+    if (files.length > 0) {
+      const imageUrl = URL.createObjectURL(files[0]);
+      setSelectedImageURL(imageUrl);
     } else {
-      // Handle text input
-      setFormData({
-        ...formData,
-        [name]: value, // Store the input value in the form data
-      });
+      setSelectedImageURL(null); // ตั้งค่าเป็น null ถ้าไม่มีไฟล์ที่เลือก
     }
   };
 
-  const handleSubmit = async (event) => {
+  const uploadToFolder = (event) => {
     event.preventDefault();
-
-    const formDataToSend = new FormData();
-    for (const key in formData) {
-      formDataToSend.append(key, formData[key]);
+    if (selectedFiles.length === 0) {
+      alert("Please select at least one file before uploading.");
+      return;
     }
-    console.log(JSON.stringify(formDataToSend));
-    try {
-      const response = await fetch("http://localhost:5000/submit-job", {
-        method: "POST",
-        body: formDataToSend,
-      });
 
-      if (response.ok) {
+    const formData = new FormData();
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formData.append("sampleFiles", selectedFiles[i]);
+      console.log(selectedFiles[i].name);
+      setfilename(selectedFiles[i].name);
+    }
+
+    setUploadedFiles(formData.sampleFiles);
+    console.log(uploadedFiles);
+
+    axios
+      .post("http://localhost:5000/upload-to-folder", formData)
+      .then((response) => {
         // Handle success response here
-        console.log("Data sent successfully");
-        alert("Data sent successfully");
-      } else {
-        throw new Error("Error sending data");
-      }
-    } catch (error) {
-      // Handle error here
-      console.error("Error:", error);
-      alert("Error sending data");
+        console.log(response.data);
+        setUploadStatus("Files uploaded to folder successfully.");
+
+        // ตั้งค่า URL ของไฟล์ที่เลือก
+        if (selectedFiles.length > 0) {
+          const imageUrl = URL.createObjectURL(selectedFiles[0]);
+          setSelectedImageURL(imageUrl);
+        }
+
+        // เพิ่มไฟล์ที่อัปโหลดลงใน uploadedFiles
+        // setUploadedFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+      })
+      .catch((error) => {
+        // Handle error here
+        console.error("Error:", error);
+        setUploadStatus("Error uploading files to folder: " + error.message);
+      });
+  };
+
+  const handleSubmit = (event) => {
+    console.log(member_username);
+    event.preventDefault();
+    console.log("jobtype = " + job_type_id);
+    if (selectedFiles.length === 0) {
+      alert("Please select at least one file before uploading to MySQL.");
+      return;
     }
+    console.log(member_username);
+
+    const formData = new FormData();
+
+    formData.append("sampleFiles", uploadedFiles);
+    formData.append("fileName", filename);
+
+    // Add other form fields to the formData object
+    formData.append("job_location", job_location);
+    formData.append("job_tel", job_tel);
+    formData.append("job_backup_tel", job_backup_tel);
+    formData.append("job_assign_date", job_assign_date);
+    formData.append("job_assign_time", job_assign_time);
+    formData.append("job_details", job_details);
+    formData.append("job_type_id", job_type_id);
+    formData.append("member_username", member_username);
+
+    axios
+      .post("http://localhost:5000/upload-to-mysql", formData)
+      .then((response) => {
+        // Handle success response here
+        console.log(response.data);
+        window.Swal.fire({
+          icon: "success",
+          title: "Add job Success",
+        });
+        setUploadStatus("Files uploaded to MySQL successfully.");
+      })
+      .catch((error) => {
+        // Handle error here
+        console.error("Error:", error);
+        window.Swal.fire({
+          icon: "error",
+          title: "Please upload image before submit",
+        });
+        setUploadStatus("Error uploading files to MySQL: " + error.message);
+      });
   };
 
   return (
     <div className="subproblem-container">
       <div className="form-content">
-        <form onSubmit={handleSubmit}>
+        <br></br>
+        <h1>File Upload Form</h1>
+        <form onSubmit={uploadToFolder}>
+          <div>
+            <label>Select Files:</label>
+            <input
+              type="file"
+              name="sampleFiles"
+              className="form-control"
+              multiple
+              onChange={handleFileChange}
+            />
+          </div>
+          <div></div>
+          {uploadStatus && <p>{uploadStatus}</p>}
+
+          <h2>Uploaded Files:</h2>
+
+          {/* Display the selected image */}
+          {selectedImageURL && (
+            <div>
+              <p>รูปที่เลือก:</p>
+              <img
+                src={selectedImageURL}
+                alt="Selected"
+                style={{ width: "700px" }}
+              />
+            </div>
+          )}
+          <button
+            className="btn btn-success"
+            type="submit"
+            style={{ marginTop: "8px" }}
+          >
+            Upload to Folder
+          </button>
+        </form>
+        <br />
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <br />
           <h1>แบบฟอร์มรายละเอียดการซ่อม</h1>
           <br />
           <label className="form-label">ประเภทงาน</label>
-          <select className="form-select">
-            <option>ปั้มน้ำ</option>
-            <option>สุขภัณฑ์</option>
-            <option>ส้วมตัน</option>
-            <option>ท่อตัน</option>
-            <option>ระบบน้ำ-ระบบประปา</option>
-            <option>ท่อน้ำ-ท่อสุขภัณฑ์</option>
-            <option>น้ำรั่วซึม</option>
+          <select
+            className="form-select"
+            value={job_type_id} // Use jobType, not job_type
+            onChange={(e) => setJobTypeID(e.target.value)}
+          >
+            <option value={100}>ปั้มน้ำ</option>
+            <option value={101}>สุขภัณฑ์</option>
+            <option value={102}>ส้วมตัน</option>
+            <option value={103}>ท่อตัน</option>
+            <option value={104}>ระบบน้ำ-ระบบประปา</option>
+            <option value={105}>ท่อน้ำ-ท่อสุขภัณฑ์</option>
+            <option value={106}>น้ำรั่วซึม</option>
           </select>
           <br />
+
           <div className="mid">
             <label className="form-label">ที่อยู่</label>
-
             <input
               type="text"
               id="job_location"
               name="job_location"
               className="form-control"
-              value={formData.job_location}
+              value={job_location}
+              onChange={(e) => setJobLocation(e.target.value)}
               required
-              onChange={handleInputChange}
             />
-
+            <br />
             <label className="form-label">เบอร์ติดต่อ</label>
             <input
               type="text"
               id="job_tel"
               name="job_tel"
               className="form-control"
-              value={formData.job_tel}
+              value={job_tel}
+              onChange={(e) => setJobTel(e.target.value)}
               required
-              onChange={handleInputChange}
             />
             <br />
-
             <label className="form-label">เบอร์ติดต่อสำรอง</label>
             <input
               type="text"
               id="job_backup_tel"
               name="job_backup_tel"
               className="form-control"
-              value={formData.job_backup_tel}
+              value={job_backup_tel}
+              onChange={(e) => setJobBackupTel(e.target.value)}
               required
-              onChange={handleInputChange}
             />
             <br />
-
             <label className="form-label">
               วันที่สะดวกรับบริการ (ช่างอาจไม่พร้อมให้บริการ ณ วันเวลาดังกล่าว)
             </label>
@@ -126,72 +224,34 @@ const SubproblemList1 = () => {
               id="job_assign_date"
               name="job_assign_date"
               className="form-control"
-              value={formData.job_assign_date}
+              value={job_assign_date}
+              onChange={(e) => setJobAssignDate(e.target.value)}
               required
-              onChange={handleInputChange}
             />
             <br />
-
             <label className="form-label">ช่วงเวลา</label>
             <input
               type="time"
               id="job_assign_time"
               name="job_assign_time"
               className="form-control"
-              value={formData.job_assign_time}
+              value={job_assign_time}
+              onChange={(e) => setJobAssignTime(e.target.value)}
               required
-              onChange={handleInputChange}
             />
             <br />
-
             <label className="form-label">กรุณากรอกรายละเอียดเพิ่มเติม</label>
             <textarea
               cols="81"
               rows="10"
               id="job_details"
               name="job_details"
+              value={job_details}
               className="form-control"
-              value={formData.job_details}
-              onChange={handleInputChange}
+              onChange={(e) => setJobDetails(e.target.value)}
             ></textarea>
           </div>
-          <br />
-          <div className="bottom">
-            <label className="form-label">รูปภาพเพิ่มเติม</label>
-            <input
-              className="form-control form-control-sm"
-              type="file"
-              name="image1" // Give a name to the input field for the first image
-              accept="image/*"
-              required
-              onChange={handleInputChange}
-            />
-            <br />
 
-            <input
-              className="form-control form-control-sm"
-              type="file"
-              name="image2" // Give a name to the input field for the second image
-              accept="image/*"
-              required
-              onChange={handleInputChange}
-            />
-
-            <br />
-
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckChecked"
-                required
-              />
-
-              <label className="form-check-label">เลือกวิธีชำระค่าบริการ</label>
-            </div>
-          </div>{" "}
-          <br />
           <br />
           <div className="d-grid gap-2">
             <button className="btn btn-warning" type="submit">
@@ -201,8 +261,6 @@ const SubproblemList1 = () => {
               reset
             </button>
           </div>
-          <br />
-          <br />
           <br />
         </form>
       </div>
