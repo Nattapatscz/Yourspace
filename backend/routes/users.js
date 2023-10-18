@@ -43,7 +43,7 @@ router.get("/memlist/:username", (req, res) => {
 });
 router.get("/techcount", (req, res) => {
   const query =
-    "SELECT COUNT(*) as count FROM member WHERE roles LIKE 'Technician%';";
+    "SELECT COUNT(*) as count FROM member WHERE roles LIKE 'tech';";
 
   db.query(query, (err, result) => {
     if (err) {

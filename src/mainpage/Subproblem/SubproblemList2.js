@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../styles/SubproblemList.css";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import Navbar from "../../components/Navbar";
 
 const SubproblemList2 = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -122,145 +123,149 @@ const SubproblemList2 = () => {
   };
 
   return (
-    <div className="subproblem-container">
-      <div className="form-content">
-        <br></br>
-        <h1>File Upload Form</h1>
-        <form onSubmit={uploadToFolder}>
-          <div>
-            <label>Select Files:</label>
-            <input
-              type="file"
-              name="sampleFiles"
-              className="form-control"
-              multiple
-              onChange={handleFileChange}
-            />
-          </div>
-          <div></div>
-          {uploadStatus && <p>{uploadStatus}</p>}
-
-          <h2>Uploaded Files:</h2>
-
-          {/* Display the selected image */}
-          {selectedImageURL && (
+    <>
+      <Navbar />
+      <div className="subproblem-container">
+        <div className="form-content">
+          <br></br>
+          <h1>File Upload Form</h1>
+          <form onSubmit={uploadToFolder}>
             <div>
-              <p>รูปที่เลือก:</p>
-              <img
-                src={selectedImageURL}
-                alt="Selected"
-                style={{ width: "700px" }}
+              <label>Select Files:</label>
+              <input
+                type="file"
+                name="sampleFiles"
+                className="form-control"
+                multiple
+                onChange={handleFileChange}
               />
             </div>
-          )}
-          <button
-            className="btn btn-success"
-            type="submit"
-            style={{ marginTop: "8px" }}
-          >
-            Upload to Folder
-          </button>
-        </form>
-        <br />
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <br />
-          <h1>แบบฟอร์มรายละเอียดการซ่อม</h1>
-          <br />
-          <label className="form-label">ประเภทงาน</label>
-          <select
-            className="form-select"
-            value={job_type_id}
-            onChange={(e) => setJobTypeID(e.target.value)}
-          >
-            <option value={200}>สายไฟ-ปลั๊กไฟ-สวิตซ์ไฟ</option>
-            <option value={201}>หลอดไฟ</option>
-          </select>
+            <div></div>
+            {uploadStatus && <p>{uploadStatus}</p>}
 
-          <br />
+            <h2>Uploaded Files:</h2>
 
-          <div className="mid">
-            <label className="form-label">ที่อยู่</label>
-            <input
-              type="text"
-              id="job_location"
-              name="job_location"
-              className="form-control"
-              value={job_location}
-              onChange={(e) => setJobLocation(e.target.value)}
-              required
-            />
-            <br />
-            <label className="form-label">เบอร์ติดต่อ</label>
-            <input
-              type="text"
-              id="job_tel"
-              name="job_tel"
-              className="form-control"
-              value={job_tel}
-              onChange={(e) => setJobTel(e.target.value)}
-              required
-            />
-            <br />
-            <label className="form-label">เบอร์ติดต่อสำรอง</label>
-            <input
-              type="text"
-              id="job_backup_tel"
-              name="job_backup_tel"
-              className="form-control"
-              value={job_backup_tel}
-              onChange={(e) => setJobBackupTel(e.target.value)}
-              required
-            />
-            <br />
-            <label className="form-label">
-              วันที่สะดวกรับบริการ (ช่างอาจไม่พร้อมให้บริการ ณ วันเวลาดังกล่าว)
-            </label>
-            <input
-              type="date"
-              id="job_assign_date"
-              name="job_assign_date"
-              className="form-control"
-              value={job_assign_date}
-              onChange={(e) => setJobAssignDate(e.target.value)}
-              required
-            />
-            <br />
-            <label className="form-label">ช่วงเวลา</label>
-            <input
-              type="time"
-              id="job_assign_time"
-              name="job_assign_time"
-              className="form-control"
-              value={job_assign_time}
-              onChange={(e) => setJobAssignTime(e.target.value)}
-              required
-            />
-            <br />
-            <label className="form-label">กรุณากรอกรายละเอียดเพิ่มเติม</label>
-            <textarea
-              cols="81"
-              rows="10"
-              id="job_details"
-              name="job_details"
-              value={job_details}
-              className="form-control"
-              onChange={(e) => setJobDetails(e.target.value)}
-            ></textarea>
-          </div>
-
-          <br />
-          <div className="d-grid gap-2">
-            <button className="btn btn-warning" type="submit">
-              Submit
+            {/* Display the selected image */}
+            {selectedImageURL && (
+              <div>
+                <p>รูปที่เลือก:</p>
+                <img
+                  src={selectedImageURL}
+                  alt="Selected"
+                  style={{ width: "700px" }}
+                />
+              </div>
+            )}
+            <button
+              className="btn btn-success"
+              type="submit"
+              style={{ marginTop: "8px" }}
+            >
+              Upload to Folder
             </button>
-            <button className="btn btn-secondary" type="button">
-              reset
-            </button>
-          </div>
+          </form>
           <br />
-        </form>
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <br />
+            <h1>แบบฟอร์มรายละเอียดการซ่อม</h1>
+            <br />
+            <label className="form-label">ประเภทงาน</label>
+            <select
+              className="form-select"
+              value={job_type_id}
+              onChange={(e) => setJobTypeID(e.target.value)}
+            >
+              <option value={200}>สายไฟ-ปลั๊กไฟ-สวิตซ์ไฟ</option>
+              <option value={201}>หลอดไฟ</option>
+            </select>
+
+            <br />
+
+            <div className="mid">
+              <label className="form-label">ที่อยู่</label>
+              <input
+                type="text"
+                id="job_location"
+                name="job_location"
+                className="form-control"
+                value={job_location}
+                onChange={(e) => setJobLocation(e.target.value)}
+                required
+              />
+              <br />
+              <label className="form-label">เบอร์ติดต่อ</label>
+              <input
+                type="text"
+                id="job_tel"
+                name="job_tel"
+                className="form-control"
+                value={job_tel}
+                onChange={(e) => setJobTel(e.target.value)}
+                required
+              />
+              <br />
+              <label className="form-label">เบอร์ติดต่อสำรอง</label>
+              <input
+                type="text"
+                id="job_backup_tel"
+                name="job_backup_tel"
+                className="form-control"
+                value={job_backup_tel}
+                onChange={(e) => setJobBackupTel(e.target.value)}
+                required
+              />
+              <br />
+              <label className="form-label">
+                วันที่สะดวกรับบริการ (ช่างอาจไม่พร้อมให้บริการ ณ วันเวลาดังกล่าว)
+              </label>
+              <input
+                type="date"
+                id="job_assign_date"
+                name="job_assign_date"
+                className="form-control"
+                value={job_assign_date}
+                onChange={(e) => setJobAssignDate(e.target.value)}
+                required
+              />
+              <br />
+              <label className="form-label">ช่วงเวลา</label>
+              <input
+                type="time"
+                id="job_assign_time"
+                name="job_assign_time"
+                className="form-control"
+                value={job_assign_time}
+                onChange={(e) => setJobAssignTime(e.target.value)}
+                required
+              />
+              <br />
+              <label className="form-label">กรุณากรอกรายละเอียดเพิ่มเติม</label>
+              <textarea
+                cols="81"
+                rows="10"
+                id="job_details"
+                name="job_details"
+                value={job_details}
+                className="form-control"
+                onChange={(e) => setJobDetails(e.target.value)}
+              ></textarea>
+            </div>
+
+            <br />
+            <div className="d-grid gap-2">
+              <button className="btn btn-warning" type="submit">
+                Submit
+              </button>
+              <button className="btn btn-secondary" type="button">
+                reset
+              </button>
+            </div>
+            <br />
+          </form>
+        </div>
       </div>
-    </div>
+    </>
+    
   );
 };
 

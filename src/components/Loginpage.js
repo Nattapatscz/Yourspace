@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/Loginpage.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import Navbar from "./Navbar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ function Login() {
 
       if (userRoles === "admin") {
         window.location.href = "/dashboard";
-      } else if (userRoles.startsWith("Technician_")) {
+      } else if (userRoles.startsWith("tech")) {
         window.location.href = "/dashboard_tech";
       } else {
         window.location.href = "/request/mainproblemlist";
@@ -43,6 +44,7 @@ function Login() {
 
   return (
     <>
+      <Navbar />
       <div className="container-fluid">
         <div className="container cardwidthscope">
           <br />

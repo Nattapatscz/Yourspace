@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/Mainproblem.css";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const Mainproblem = () => {
   return (
   <>
+  <Navbar />
     <br/>
       <main className="container card cardwidthscope">
         <div className="text-content card-body">

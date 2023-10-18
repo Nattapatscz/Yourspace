@@ -1,12 +1,13 @@
 import React from "react";
 import "../styles/Mainpages.css";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 
 export default function Mainpages() {
   return (
     <> 
-    
+      <Navbar />
       {/* for moblie App */}
         <header className="bgs-head">
 

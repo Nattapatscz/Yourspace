@@ -1,11 +1,13 @@
 import React from "react";
 import "../styles/Requestlist.css";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const Requestlist = () => {
   return (
-
-    <div className="container-fluid bkg">
+    <>
+    <Navbar />
+      <div className="container-fluid bkg">
 
       <div className="container"> 
           <div className="request-container">
@@ -214,6 +216,8 @@ const Requestlist = () => {
             </footer> */}
 
     </div>
+    </>
+    
     
   );
 };

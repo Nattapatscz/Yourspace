@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import Mainpages from "./mainpage/Mainpages";
 import SubproblemList1 from "./mainpage/Subproblem/SubproblemList1";
 import Requestlist from "./mainpage/Requestlist";
@@ -22,6 +22,7 @@ import { Dashboard1 } from "./mainpage/TechDashboard/Dashboard1"; //
 import AcceptJob from "./mainpage/TechDashboard/AcceptJob";
 import Yourjob from "./mainpage/TechDashboard/Yourjob";
 import UserReport from "./mainpage/UserReport";
+import PrivateRoute from "./PrivateRoute";
 // import PrivateRoute from "./PrivateRoute";
 const About = () => <div>About Page</div>;
 
@@ -29,31 +30,30 @@ export default function App() {
   return (
     <Router>
       <div className="app-container">
-        <Navbar />
-
+        
         <div className="content-container">
           <Routes>
-            <Route path="/dashboard" element={ProtectedData(<Dashboard />)} />
+            <Route path="/dashboard" element={ProtectedData(PrivateRoute(<Dashboard />))} />
             <Route
               path="/dashboard_tech"
-              element={ProtectedData(<Dashboard1 />)}
+              element={ProtectedData(PrivateRoute(<Dashboard1 />))}
             />
             <Route
               path="/dashboard_tech/jobaccept"
-              element={ProtectedData(<AcceptJob />)}
+              element={ProtectedData(PrivateRoute(<AcceptJob />))}
             />
             <Route
               path="/dashboard_tech/ownjob"
-              element={ProtectedData(<Yourjob />)}
+              element={ProtectedData(PrivateRoute(<Yourjob />))}
             />
 
             <Route
               path="/dashboard/joblist"
-              element={ProtectedData(<Jobs />)}
+              element={ProtectedData(PrivateRoute(<Jobs />))}
             />
             <Route
               path="/dashboard/edituser"
-              element={ProtectedData(<Users />)}
+              element={ProtectedData(PrivateRoute(<Users />))}
             />
 
             <Route path="/login" element={<Login />} />

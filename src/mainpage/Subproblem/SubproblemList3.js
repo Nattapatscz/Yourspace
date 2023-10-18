@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../styles/SubproblemList.css";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import Navbar from "../../components/Navbar";
 
 const SubproblemList3 = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -122,6 +123,8 @@ const SubproblemList3 = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="subproblem-container">
       <div className="form-content">
         <br></br>
@@ -261,6 +264,8 @@ const SubproblemList3 = () => {
         </form>
       </div>
     </div>
+    </>
+    
   );
 };
 
