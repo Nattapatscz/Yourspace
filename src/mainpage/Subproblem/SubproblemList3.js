@@ -149,8 +149,9 @@ const SubproblemList3 = () => {
           {selectedImageURL && (
             <div>
               <p>รูปที่เลือก:</p>
-              <img src={selectedImageURL} alt="Selected" />
-              style={{ width: "700px" }}
+              <img src={selectedImageURL} 
+              alt="Selected"
+              style={{ width: "700px" }} />
             </div>
           )}
           <button
