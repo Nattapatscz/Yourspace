@@ -2,6 +2,9 @@ import React from "react";
 import { BsGrid1X2Fill, BsFillArchiveFill, BsPeopleFill } from "react-icons/bs";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
+  function delete_token() {
+    localStorage.removeItem("token");
+  }
   return (
     <aside
       id="sidebar"
@@ -30,6 +33,12 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className="sidebar-list-item">
           <a href="/dashboard/edituser">
             <BsPeopleFill className="icon" /> Users
+          </a>
+        </li>
+
+        <li className="sidebar-list-item">
+          <a href="/login" onClick={delete_token}>
+            <i class="fa-solid fa-right-from-bracket"></i> &nbsp;Logout
           </a>
         </li>
       </ul>

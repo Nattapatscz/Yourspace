@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
-import StatusTypeModal from "../../../components/StatusTypeModel";
-import JobTypeModal from "../../../components/JobTypeModal";
-
-const Ownjob = () => {
+import StatusTypeModal from "../components/StatusTypeModel";
+import JobTypeModal from "../components/JobTypeModal";
+import Navbar from "../components/Navbar";
+const UserReport = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showJobTypeModal, setShowJobTypeModal] = useState(false);
@@ -27,11 +27,10 @@ const Ownjob = () => {
   const token = localStorage.getItem("token");
   const decodedToken = jwtDecode(token);
   const username = decodedToken.username;
-  console.log(username);
 
   useEffect(() => {
     // ส่งคำขอ GET ไปยังเซิร์ฟเวอร์เพื่อรับรายการงานที่เป็นของคุณ
-    fetch(`http://localhost:5000/joblist/${username}`)
+    fetch(`http://localhost:5000/memlist/${username}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -51,53 +50,44 @@ const Ownjob = () => {
     hour12: false,
     timeZone: "Asia/Bangkok", // กำหนดเป็นเวลาของไทย
   };
-
-  const handleCancelJob = (jobId) => {
-    // ส่งคำขอ PUT ไปยังเซิร์ฟเวอร์เพื่อยกเลิกงาน
-    fetch(`http://localhost:5000/cancelJob/${jobId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status_id: 1, // กำหนด status_id เป็น 1
-        technicial_username: null, // กำหนด technicial_username เป็น null
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        window.Swal.fire({
-          icon: "success",
-          title: "ยกเลิกงานสำเร็จ",
-        });
-        setTimeout(() => {
-          window.location.href = "/dashboard_tech/jobaccept";
-        }, 3000);
-        // อัปเดตรายการงานหลังยกเลิก
-        const updatedJobs = jobs.map((job) => {
-          if (job.job_id === jobId) {
-            // อัปเดตเฉพาะงานที่ถูกยกเลิก
-            return {
-              ...job,
-              status_id: 1, // กำหนด status_id เป็น 1
-              technicial_username: null, // กำหนด technicial_username เป็น null
-            };
-          }
-          return job;
-        });
-
-        setJobs(updatedJobs);
-      })
-      .catch((error) => {
-        console.error("เกิดข้อผิดพลาดในการยกเลิกงาน: " + error.message);
-      });
+  const handleDeleteClick = (jobId) => {
+    window.Swal.fire({
+      title: "คุณต้องการลบงานนี้?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "ใช่",
+      cancelButtonText: "ไม่",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/job/${jobId}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              window.Swal.fire(
+                "Deleted!",
+                "The job has been deleted.",
+                "success"
+              );
+              const updatedJobs = jobs.filter((job) => job.job_id !== jobId);
+              setJobs(updatedJobs);
+            } else {
+              window.Swal.fire("Error", "Failed to delete the job.", "error");
+            }
+          });
+      }
+    });
   };
 
   return (
-    <div className="useredit-con container">
-      <div style={{ width: "80vw", margin: "20px auto" }}>
-        <h2 style={{ fontSize: "20px", marginTop: "5px" }}>รายการงานของคุณ</h2>
-        <hr />
+    <>
+      <Navbar />
+      <div className="useredit-con container">
+        <h2 style={{ fontSize: "20px", marginTop: "5px" }}>
+          รายงานการแจ้งซ่อม
+        </h2>
+        <hr></hr>
         <input
           class="form-control "
           type="search"
@@ -110,19 +100,26 @@ const Ownjob = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <table
-            className="table table-striped"
-            style={{ textAlign: "center" }}
-          >
-            <thead>
+          <table className="table table-striped">
+            <thead style={{ textAlign: "center" }}>
               <tr>
-                <th>ชื่อลูกค้า</th>
-                <th>เบอร์โทรศัพท์</th>
-                <th>เบอร์โทรศัพท์สำรอง</th>
-                <th>สถานที่นัดหมาย</th>
-                <th>รายละเอียดงาน</th>
+                {/* <th>ID</th>
+              <th>ชื่อลูกค้า</th> */}
+                {/* <th>เบอร์โทรศัพท์</th>
+              <th>เบอร์โทรศัพท์สำรอง</th> */}
+                <th>
+                  แจ้งซ่อม
+                  <i
+                    class="fa-solid fa-circle-info"
+                    onClick={handleShowJobTypeModal}
+                    style={{ marginLeft: "5px" }}
+                  ></i>
+                </th>
+                <th>สถานที่</th>
+                <th>รายละเอียดงานซ่อม</th>
                 <th>วันที่นัดหมาย</th>
                 <th>เวลาที่นัดหมาย</th>
+                <th>ผู้แจ้ง</th>
                 <th>
                   สถานะงาน
                   <i
@@ -131,24 +128,26 @@ const Ownjob = () => {
                     style={{ marginLeft: "5px" }}
                   ></i>
                 </th>
-                <th>
-                  ประเภทงาน
-                  <i
-                    class="fa-solid fa-circle-info"
-                    onClick={handleShowJobTypeModal}
-                    style={{ marginLeft: "5px" }}
-                  ></i>
-                </th>
-                <th>รูปภาพ</th>
+                {/* <th>
+                ประเภทงาน
+                <i
+                  class="fa-solid fa-circle-info"
+                  onClick={handleShowJobTypeModal}
+                  style={{ marginLeft: "5px" }}
+                ></i>
+              </th> */}
+                {/* <th>ชื่อช่างผู้รับงาน</th> */}
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody style={{ textAlign: "center" }}>
               {jobs.map((job) => (
                 <tr key={job.job_id}>
-                  <td>{job.member_username}</td>
-                  <td>{job.job_tel}</td>
-                  <td>{job.job_backup_tel}</td>
+                  <td>{job.job_type_id}</td>
+                  {/* <td>{job.job_id}</td>
+                {/* <td>{job.job_tel}</td>
+                <td>{job.job_backup_tel}</td> */}
+
                   <td>{job.job_location}</td>
                   <td>{job.job_details}</td>
                   <td>
@@ -157,14 +156,15 @@ const Ownjob = () => {
                     )}
                   </td>
                   <td>{job.job_assign_time}</td>
-                  <td>{job.status_id}</td>
-                  <td>{job.job_type_id}</td>
-                  <td>{job.file_name}</td>
+                  <td>{job.member_username}</td>
 
+                  <td>{job.status_id}</td>
+
+                  {/* <td>{job.technicial_username}</td> */}
                   <td>
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleCancelJob(job.job_id)}
+                      onClick={() => handleDeleteClick(job.job_id)}
                     >
                       Cancel
                     </button>
@@ -222,8 +222,8 @@ const Ownjob = () => {
           </ul>
         </nav>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Ownjob;
+export default UserReport;

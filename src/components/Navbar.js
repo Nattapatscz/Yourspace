@@ -1,60 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/Navbars.css'
-
+import React, { useState, useEffect } from "react";
+import "../styles/Navbars.css";
 
 export default function Navbar() {
-
-  function delete_token(){
-         localStorage.removeItem('token')
+  function delete_token() {
+    localStorage.removeItem("token");
   }
-  
+
   function ProtectedData() {
     const [error, setError] = useState(null);
-   
-     useEffect(() => {
-      const token = localStorage.getItem('token');
+
+    useEffect(() => {
+      const token = localStorage.getItem("token");
       if (!token) {
-        setError('No token found');
+        setError("No token found");
         return;
       }
 
-      fetch('http://localhost:5000/protected', {
+      fetch("http://localhost:5000/protected", {
         headers: {
-          Authorization: token
-        }
+          Authorization: token,
+        },
       })
-        .then(response => {
+        .then((response) => {
           if (!response.ok) {
-            throw new Error('Error retrieving protected data');
+            throw new Error("Error retrieving protected data");
           }
           return response.json();
         })
-        .catch(error => {
+        .catch((error) => {
           setError(error.message);
         });
     }, []);
-  
-      return (<> 
-                <div>
-                  {error ? (
-                    <a className=" btn btn-warning" href="/login">
-                      เข้าสู่ระบบ / สมัครสมาชิก
-                    </a>
-                  ) : (
-                    <a className=" btn btn-warning" href="/login" onClick={delete_token}>
-                      Logout
-                    </a>
-                  )}
-                </div>
-              </>
-              ) 
+
+    return (
+      <>
+        <div>
+          {error ? (
+            <a className=" btn btn-warning" href="/login">
+              เข้าสู่ระบบ / สมัครสมาชิก
+            </a>
+          ) : (
+            <a
+              className=" btn btn-warning"
+              href="/login"
+              onClick={delete_token}
+            >
+              Logout
+            </a>
+          )}
+        </div>
+      </>
+    );
   }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary  text-content shadow-sm rounded">
-      
       <div className="container">
-      <button
+        <button
           className="navbar-toggler "
           type="button"
           data-bs-toggle="collapse"
@@ -63,56 +65,41 @@ export default function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <i className="fa-solid fa-bars " ></i>
+          <i className="fa-solid fa-bars "></i>
         </button>
-        
-        <div className="navbar-brand card logos" style={{width:'155px',height:"90px" , border:"none"}} >
-           
-        </div> 
-         <div className="collapse navbar-collapse " id="navbarTogglerDemo03" >
 
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <div
+          className="navbar-brand card logos"
+          style={{ width: "155px", height: "90px", border: "none" }}
+        ></div>
+        <div className="collapse navbar-collapse " id="navbarTogglerDemo03">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active " aria-current="page" href="/">
+                หน้าแรก
+              </a>
+            </li>
 
-                <li className="nav-item">
+            <li className="nav-item">
+              <a className="nav-link " href="/list">
+                รายชื่อผู้ให้บริการ
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link " href="/Report">
+                รายการงาน
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link " href="/forum">
+                ติดต่อ
+              </a>
+            </li>
+          </ul>
 
-                  <a className="nav-link active " aria-current="page" href="/" >
-                    หน้าแรก
-                  </a>
-              
-                </li> 
-
-                <li className="nav-item">
-                    <a className="nav-link " href="/list">
-                      รายชื่อผู้ให้บริการ
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link " href="/forum">
-                      รายการงาน
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link " href="/forum">
-                      ติดต่อ
-                    </a>
-                  </li>
-              </ul>
-
-              <div className="d-flex">
-                {ProtectedData()}
-              </div>
-
-               
-
+          <div className="d-flex">{ProtectedData()}</div>
         </div>
       </div>
-
-      
     </nav>
   );
 }
-
-
-
-
-

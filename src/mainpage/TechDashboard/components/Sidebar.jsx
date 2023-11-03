@@ -1,7 +1,10 @@
 import React from "react";
-import { BsFillArchiveFill, BsFillGearFill } from "react-icons/bs";
+import { BsFillArchiveFill } from "react-icons/bs";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
+  function delete_token() {
+    localStorage.removeItem("token");
+  }
   return (
     <aside
       id="sidebar"
@@ -24,6 +27,12 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className="sidebar-list-item">
           <a href="/dashboard_tech/ownjob">
             <BsFillArchiveFill className="icon" /> Your Jobs
+          </a>
+        </li>
+
+        <li className="sidebar-list-item">
+          <a href="/login" onClick={delete_token}>
+            <i class="fa-solid fa-right-from-bracket"></i> &nbsp;Logout
           </a>
         </li>
       </ul>

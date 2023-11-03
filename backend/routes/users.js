@@ -28,9 +28,21 @@ router.get("/membercount", (req, res) => {
   });
 });
 
+router.get("/memlist/:username", (req, res) => {
+  const { username } = req.params; // เปลี่ยนจาก id เป็น username
+
+  const sql = "SELECT * FROM job WHERE member_username = ?";
+  db.query(sql, [username], (err, result) => {
+    if (err) {
+      console.error("เกิดข้อผิดพลาดในการดึงข้อมูลงาน: " + err.message);
+      res.status(500).send("เกิดข้อผิดพลาดในการดึงข้อมูลงาน");
+    } else {
+      res.json(result);
+    }
+  });
+});
 router.get("/techcount", (req, res) => {
-  const query =
-    "SELECT COUNT(*) as count FROM member WHERE roles LIKE 'Technician%';";
+  const query = "SELECT COUNT(*) as count FROM member WHERE roles LIKE 'tech';";
 
   db.query(query, (err, result) => {
     if (err) {

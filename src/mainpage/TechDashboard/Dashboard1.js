@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { useState } from "react";
 import PrivateRoute from "../../PrivateRoute";
-
+import Home from "./components/Home";
 export const Dashboard1 = () => {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
   const OpenSidebar = () => {
@@ -18,7 +18,7 @@ export const Dashboard1 = () => {
         openSidebarToggle={openSidebarToggle}
         OpenSidebar={OpenSidebar}
       />
-      {/* <Home /> */}
+      <Home />
     </div>
   );
 };

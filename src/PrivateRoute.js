@@ -1,25 +1,35 @@
 import React from "react";
-import { Route, Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-const PrivateRoute = ({ component: Component, requiredRole, ...rest }) => {
+const PrivateRoute = (props) => {
   const token = localStorage.getItem("token");
 
   if (token) {
     const decodedToken = jwt_decode(token);
-    const userRole = decodedToken.role;
-    console.log(userRole);
+    const userRole = decodedToken.roles;
 
-    if (userRole === requiredRole) {
-      return <Route {...rest} element={<Component />} />;
+    if (userRole === "admin" || userRole === "tech") {
+      return <div>{props}</div>;
+    } else if (userRole === "user") {
+      return (
+        <div>
+          <h1>You are not an Admin</h1>
+        </div>
+      );
     } else {
-      // Redirect to an unauthorized page
-      return <Navigate to="/request/mainproblemlist" />;
+      return (
+        <div>
+          <h1>Unknown user role</h1>
+        </div>
+      );
     }
+  } else {
+    return (
+      <div>
+        <h1>Please log in</h1>
+      </div>
+    );
   }
-
-  // Navigate to the login page if there's no token
-  return <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

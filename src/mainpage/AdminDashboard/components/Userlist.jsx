@@ -48,32 +48,33 @@ const Userlist = () => {
               setUsers(updatedUsers);
               window.Swal.fire({
                 icon: "success",
-                title: "Delete Success",
+                title: "ลบสมาชิกสำเร็จ",
               });
             } else if (response.status === 404) {
               // ไม่พบสมาชิก
               window.Swal.fire({
                 icon: "error",
-                title: "Member not found",
+                title: "ไม่พบสมาชิก",
               });
             } else {
               // อื่นๆ ที่เกิดข้อผิดพลาด
               window.Swal.fire({
                 icon: "error",
-                title: "Delete Error",
+                title: "ข้อผิดพลาดในการลบ",
               });
             }
           })
           .catch((error) => {
-            console.error("Error deleting member: " + error);
+            console.error("ข้อผิดพลาดในการลบสมาชิก: " + error);
           });
       }
     });
   };
+
   const handleUpdateClick = () => {
     window.Swal.fire({
       icon: "success",
-      title: "Update Success",
+      title: "อัปเดตสำเร็จ",
     });
     fetch(`http://localhost:5000/member/${editedUser.member_id}`, {
       method: "PUT",
@@ -101,98 +102,155 @@ const Userlist = () => {
   return (
     <div className="useredit-con container">
       <form>
-        <h2>แก้ไขข้อมูลผู้ใช้</h2>
-        <div className="form-group">
-          <label>ID:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="member_id"
-            value={editedUser.member_id}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="email"
-            value={editedUser.email}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Role:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="roles"
-            value={editedUser.roles}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="username"
-            value={editedUser.username}
-            onChange={handleInputChange}
-          />
+        <h2 style={{ fontSize: "20px", marginTop: "5px" }}>
+          แก้ไขข้อมูลผู้ใช้
+        </h2>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="form-group">
+              <label>ID:</label>
+              <input
+                type="text"
+                className="form-control"
+                name="member_id"
+                value={editedUser.member_id}
+                onChange={handleInputChange}
+                disabled
+              />
+            </div>
+            <div className="form-group">
+              <label>Role:</label>
+              <input
+                type="text"
+                className="form-control"
+                name="roles"
+                value={editedUser.roles}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                type="text"
+                className="form-control"
+                name="email"
+                value={editedUser.email}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Username:</label>
+              <input
+                type="text"
+                className="form-control"
+                name="username"
+                value={editedUser.username}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
         </div>
         <button
           type="button"
           className="btn btn-primary"
           onClick={handleUpdateClick}
+          style={{ marginTop: "5px" }}
         >
           Update
         </button>
       </form>
-      <h2>รายการสมาชิก</h2>
-      <table
-        className="table table-bordered"
-        style={{ width: "83vw", textAlign: "center" }}
-      >
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Username</th>
-            <th scope="col" colSpan={"2"}>
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.member_id}>
-              <td>{user.member_id}</td>
-              <td>{user.email}</td>
-              <td>{user.roles}</td>
-              <td>{user.username}</td>
-              <td>
-                <button
-                  className="btn btn-success"
-                  onClick={() => handleEditClick(user)}
-                >
-                  Edit
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDeleteClick(user)}
-                >
-                  Delete
-                </button>
-              </td>
+      <br></br>
+      <div style={{ width: "80vw", margin: "20px auto" }}>
+        <h2 style={{ fontSize: "20px", marginTop: "5px" }}>รายการสมาชิก</h2>
+        <hr />
+        <input
+          class="form-control "
+          type="search"
+          style={{ width: "20%", float: "right" }}
+          aria-label="Search"
+          placeholder="ค้นหา"
+        />
+        <br />
+        <br />
+        <table className="table table-striped" style={{ textAlign: "center" }}>
+          <thead>
+            <tr>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col">Username</th>
+              <th scope="col" colSpan={"2"}>
+                Action
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.member_id}>
+                <td>{user.email}</td>
+                <td>{user.roles}</td>
+                <td>{user.username}</td>
+                <td>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => handleEditClick(user)}
+                  >
+                    Edit
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDeleteClick(user)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <nav aria-label="Page navigation example" style={{ float: "right" }}>
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                ก่อนหน้า
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                1
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                2
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                3
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                4
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                5
+              </a>
+            </li>
+            <li class="page-item">
+              <a className="page-link" href="#">
+                ถัดไป
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };

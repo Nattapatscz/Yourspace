@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "./Navbar";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -54,6 +55,7 @@ function Register() {
 
   return (
     <>
+      <Navbar />
       <div className="container-fluid">
         <div className="container">
           <br />
