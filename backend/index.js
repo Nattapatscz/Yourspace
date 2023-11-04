@@ -27,7 +27,12 @@ app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
 // middleware
 
-app.use(cors());
+app.use(cors({
+  origin: "https://homema.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: "Content-Type",
+}));
+
 
 app.use(express.static('build')); 
 // ใช้เอกสารสถานที่เชื่อมต่อ

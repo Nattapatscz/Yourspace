@@ -31,7 +31,7 @@ const UserReport = () => {
 
   useEffect(() => {
     // ส่งคำขอ GET ไปยังเซิร์ฟเวอร์เพื่อรับรายการงานที่เป็นของคุณ
-    fetch(`http://localhost:5000/memlist/${username}`)
+    fetch(`https://homema-api.onrender.com/memlist/${username}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -60,7 +60,7 @@ const UserReport = () => {
       cancelButtonText: "ไม่",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/job/${jobId}`, {
+        fetch(`https://homema-api.onrender.com/job/${jobId}`, {
           method: "DELETE",
         })
           .then((response) => response.json())
