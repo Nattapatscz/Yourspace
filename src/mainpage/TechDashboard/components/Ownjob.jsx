@@ -2,9 +2,22 @@ import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import StatusTypeModal from "../../../components/StatusTypeModel";
 import JobTypeModal from "../../../components/JobTypeModal";
+import axios from "axios";
 
 const Ownjob = () => {
   const [jobs, setJobs] = useState([]);
+ 
+  
+  const [currentPage, setCurrentPage] = useState(0); // หน้าปัจจุบัน
+  const itemsPerPage = 10; // จำนวนงานต่อหน้า
+
+  const offset = currentPage * itemsPerPage; // คำนวณ offset
+  const currentJobs = jobs.slice(offset, offset + itemsPerPage); // รายการงานในหน้าปัจจุบัน
+
+  const pageCount = Math.ceil(jobs.length / itemsPerPage); // จำนวนหน้า
+
+  const [imageData, setImageData] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [showJobTypeModal, setShowJobTypeModal] = useState(false);
   const [showStatusTypeModal, setShowStatusTypeModal] = useState(false);
@@ -42,6 +55,13 @@ const Ownjob = () => {
         console.error("เกิดข้อผิดพลาดในการรับข้อมูลงาน: " + error.message);
         setLoading(false); // หากเกิดข้อผิดพลาดให้ปิดการโหลดเช่นกัน
       });
+      axios.get("http://localhost:5000/api/getImageData")
+          .then((response) => {
+            setImageData(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching image data:", error);
+          });
   }, [username]);
 
   const thaiTimeOptions = {
@@ -93,15 +113,26 @@ const Ownjob = () => {
       });
   };
 
+  const mergedData = currentJobs.map((job) => {
+    const jobImageData = imageData.find((image) => image.job_id === job.job_id);
+    const imageDataForJob = jobImageData ? { ...jobImageData } : {};
+  
+    return {
+      ...job,
+      imageData: imageDataForJob,
+    };
+  });
+
   return (
     <div className="useredit-con container">
+      <br/>
       <h2>รายการงานของคุณ</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <table
           className="table table-bordered"
-          style={{ width: "85vw", textAlign: "center" }}
+          style={{ width: "83.3vw", textAlign: "center" }}
         >
           <thead>
             <tr>
@@ -135,7 +166,7 @@ const Ownjob = () => {
             </tr>
           </thead>
           <tbody>
-            {jobs.map((job) => (
+            {mergedData.map((job) => (
               <tr key={job.job_id}>
                 <td>{job.job_id}</td>
                 <td>{job.member_username}</td>
@@ -152,7 +183,18 @@ const Ownjob = () => {
                 <td>{job.status_id}</td>
                 <td>{job.job_type_id}</td>
                 <td>{job.technicial_username}</td>
-                <td>{job.file_name}</td>
+                <td>
+                {job.imageData.file_data ? (
+                    <img
+                      src={`data:image/jpeg;base64,${job.imageData.file_data}`}
+                      alt={` ${job.job_id}`}
+                      width="100"
+                      height="100"
+                    />
+                  ) : (
+                    "No image data available"
+                  )}
+              </td>
 
                 <td>
                   <button
@@ -167,6 +209,19 @@ const Ownjob = () => {
           </tbody>
         </table>
       )}
+      <ul className="pagination">
+          <li className="page-item">
+            <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
+          </li> 
+          {Array.from({ length: pageCount }, (_, i) => (
+            <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
+              <button className="page-link" onClick={() => setCurrentPage(i)}>{i + 1}</button>
+            </li>
+          ))}
+           <li className="page-item">
+          <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
+        </li>
+      </ul>
       <JobTypeModal
         show={showJobTypeModal}
         handleClose={handleCloseJobTypeModal}

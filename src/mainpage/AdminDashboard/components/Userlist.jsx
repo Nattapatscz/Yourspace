@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 const Userlist = () => {
+  const [currentPage, setCurrentPage] = useState(0); // หน้าปัจจุบัน
+  const itemsPerPage = 10; // จำนวนงานต่อหน้า
+
   const [users, setUsers] = useState([]);
+
+  const pageCount = Math.ceil(users.length / itemsPerPage); // จำนวนหน้า
+  
   const [editedUser, setEditedUser] = useState({
     member_id: "",
     email: "",
@@ -100,6 +106,7 @@ const Userlist = () => {
 
   return (
     <div className="useredit-con container">
+      <br />
       <form>
         <h2>แก้ไขข้อมูลผู้ใช้</h2>
         <div className="form-group">
@@ -142,6 +149,7 @@ const Userlist = () => {
             onChange={handleInputChange}
           />
         </div>
+        <br />
         <button
           type="button"
           className="btn btn-primary"
@@ -149,11 +157,13 @@ const Userlist = () => {
         >
           Update
         </button>
+
       </form>
+      <br />
       <h2>รายการสมาชิก</h2>
       <table
         className="table table-bordered"
-        style={{ width: "83vw", textAlign: "center" }}
+        style={{ width: "83.5vw", textAlign: "center" }}
       >
         <thead>
           <tr>
@@ -167,32 +177,47 @@ const Userlist = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.member_id}>
-              <td>{user.member_id}</td>
-              <td>{user.email}</td>
-              <td>{user.roles}</td>
-              <td>{user.username}</td>
-              <td>
-                <button
-                  className="btn btn-success"
-                  onClick={() => handleEditClick(user)}
-                >
-                  Edit
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDeleteClick(user)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+        {users
+            .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+            .map((user) => (
+              <tr key={user.member_id}>
+                <td>{user.member_id}</td>
+                <td>{user.email}</td>
+                <td>{user.roles}</td>
+                <td>{user.username}</td>
+                <td>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => handleEditClick(user)}
+                  >
+                    Edit
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDeleteClick(user)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
+      <ul className="pagination">
+          <li className="page-item">
+            <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
+          </li> 
+          {Array.from({ length: pageCount }, (_, i) => (
+            <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
+              <button className="page-link" onClick={() => setCurrentPage(i)}>{i + 1}</button>
+            </li>
+          ))}
+           <li className="page-item">
+          <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
+        </li>
+      </ul>
     </div>
   );
 };

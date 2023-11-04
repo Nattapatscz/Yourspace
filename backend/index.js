@@ -135,7 +135,8 @@ app.get("/api/getJobData", (req, res) => {
 });
 
 app.get("/api/getImageData", (req, res) => {
-  const sql = "SELECT file_data FROM job";
+  const sql = "SELECT job_id, file_data FROM job";
+
   db.query(sql, (err, results) => {
     if (err) {
       return res.status(500).send(err);
@@ -143,8 +144,9 @@ app.get("/api/getImageData", (req, res) => {
 
     // Encode image data as Base64 and send it as JSON
     const imageObjects = results.map((row) => {
-      return { file_data: Buffer.from(row.file_data).toString("base64") };
+      return { job_id: row.job_id, file_data: Buffer.from(row.file_data).toString("base64") };
     });
+    
 
     res.json(imageObjects);
   });

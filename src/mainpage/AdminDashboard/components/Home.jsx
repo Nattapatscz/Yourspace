@@ -31,7 +31,7 @@ function Home() {
     fetch("http://localhost:5000/graph")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setJobs(data);
       });
 
@@ -59,7 +59,7 @@ function Home() {
     fetch("http://localhost:5000/techcount")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data[0].count);
+        // console.log(data[0].count);
 
         setTechnicianCount(data[0].count);
       });

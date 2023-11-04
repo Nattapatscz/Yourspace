@@ -6,6 +6,7 @@ function Register() {
     username: "",
     email: "",
     password: "",
+    roles:"user",
     confirmPassword: "",
   });
   const [error, setError] = useState("");
@@ -44,7 +45,7 @@ function Register() {
           });
 
           setTimeout(() => {
-            window.location.href = "/request/mainproblemlist";
+            window.location.href = "/mainproblem";
           }, 2000);
         }
       })

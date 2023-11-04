@@ -30,7 +30,7 @@ function Login() {
       } else if (userRoles.startsWith("tech")) {
         window.location.href = "/dashboard_tech";
       } else {
-        window.location.href = "/request/mainproblemlist";
+        window.location.href = "/mainproblem";
       }
     } catch (error) {
       console.log("Login error:", error);

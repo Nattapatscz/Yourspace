@@ -5,7 +5,7 @@ const db = require("./db");
 
 
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, roles ,password } = req.body;
 
   db.query(
     "SELECT * FROM member WHERE email = ?",
@@ -26,7 +26,7 @@ router.post("/register", async (req, res) => {
       // Insert the user into the database
       db.query(
         "INSERT INTO member SET ?",
-        { username: username, email: email, password: hashedPassword },
+        { username: username, email: email,roles :roles, password: hashedPassword },
         (error, results) => {
           if (error) {
             console.error("Database error:", error);

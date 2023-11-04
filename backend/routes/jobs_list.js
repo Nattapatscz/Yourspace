@@ -42,18 +42,44 @@ router.get("/jobcount", (req, res) => {
 
 router.put("/job/:id", (req, res) => {
   const { id } = req.params;
-  const updatedJob = req.body;
+  const { job_id, 
+    member_username, 
+    job_tel, 
+    job_backup_tel, 
+    job_location, 
+    job_details, 
+    job_assign_date, 
+    job_assign_time, 
+    status_id, 
+    job_type_id, 
+    technicial_username} = req.body; // เลือกเฉพาะคอลัมน์ที่ต้องการอัปเดต
+
+  const updatedJob = {
+    job_id,
+    member_username,
+    job_tel,
+    job_backup_tel,
+    job_location,
+    job_details,
+    job_assign_date,
+    job_assign_time,
+    status_id,
+    job_type_id,
+    technicial_username,
+  };
 
   const sql = "UPDATE job SET ? WHERE job_id = ?";
   db.query(sql, [updatedJob, id], (err, result) => {
     if (err) {
       console.error("เกิดข้อผิดพลาดในการอัปเดตข้อมูลผู้ใช้: " + err.message);
-      res.status(500).send("เกิดข้อผิดพลาดในการอัปเดตข้อมูลผู้ใช้");
+      res.status(500);
     } else {
-      res.status(200).send("อัปเดตข้อมูลผู้ใช้เรียบร้อย");
+      console.log("อัปเดตข้อมูลผู้ใช้แล้ว");
+      res.status(200);
     }
   });
 });
+
 
 router.put("/jobaccept/:id", (req, res) => {
   const { id } = req.params;

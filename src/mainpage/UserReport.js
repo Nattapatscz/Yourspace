@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import StatusTypeModal from "../components/StatusTypeModel";
 import JobTypeModal from "../components/JobTypeModal";
+import Navbar from "../components/Navbar";
 
 const UserReport = () => {
   const [jobs, setJobs] = useState([]);
@@ -81,14 +82,17 @@ const UserReport = () => {
   };
 
   return (
-    <div className="useredit-con container-fluid">
+    <> 
+    <Navbar />
+    <br/>
+    <div className="useredit-con container">
       <h2>รายการงานของคุณ</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <table
           className="table table-bordered"
-          style={{ width: "100vw", textAlign: "center" }}
+          style={{ width: "100%", textAlign: "center" }}
         >
           <thead>
             <tr>
@@ -162,6 +166,8 @@ const UserReport = () => {
         handleClose={handleCloseStatusTypeModal}
       />
     </div>
+    </>
+   
   );
 };
 

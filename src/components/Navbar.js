@@ -70,7 +70,7 @@ export default function Navbar() {
 
         <div
           className="navbar-brand card logos"
-          style={{ width: "155px", height: "90px", border: "none" }}
+          style={{ width: "350px", height: "200px", border: "none" }}
         ></div>
         <div className="collapse navbar-collapse " id="navbarTogglerDemo03">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">

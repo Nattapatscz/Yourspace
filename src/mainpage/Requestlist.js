@@ -7,49 +7,52 @@ const Requestlist = () => {
   return (
     <>
     <Navbar />
-      <div className="container-fluid bkg">
+      <div className="container-fluid bkg ">
 
       <div className="container"> 
           <div className="request-container">
-
             <br />
-
             <br />
+          <img className="request-banner" src={require("../Photo/HOMEMA.png")} alt="" />
 
-          <img className="request-banner" src={require("../Photo/img2.jpg")} alt=""></img>
 
-           <Link to="/request/mainproblemlist" className="btn btn-warning request-btn ">
+             <Link to="/mainproblem" className="btn btn-warning btn-lg ts" style={{width:"50%"}}>
+              
               <p style={{color:"black"}}>
                   <i className="fa-solid fa-plus"> </i> แจ้งงานซ่อม
               </p>
-          </Link>
+           
+            </Link>
 
           <br />
-          
-          <p>บริการแนะนำ</p>
+          <br />
+         
+          <h4 className="fa-solid">บริการแนะนำ</h4><br />
 
           <div className="card-container">
             <div className="card-list">
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/Smart Home.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%" , }}
                 />
                 <div className="card-body">
                   <div className="top">
                     <p className="card-text">Smart Home อุปกรณ์พร้อมติดตั้ง</p>
                   </div>
                   <div className="bottom">
-                    <p className="card-price"> ฿15000</p>
+                    <p className="card-price"> ฿5000</p>
                   </div>
                 </div>
               </div>
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/s2.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
@@ -65,15 +68,16 @@ const Requestlist = () => {
 
           <br />
 
-          <p>บริการล้าง ทำความสะอาด</p>
+          <h4 className="fa-solid">บริการล้าง ทำความสะอาด</h4><br />
 
           <div className="card-container">
             <div className="card-list">
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/s3.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
@@ -84,11 +88,12 @@ const Requestlist = () => {
                   </div>
                 </div>
               </div>
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/s4.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
@@ -104,15 +109,16 @@ const Requestlist = () => {
 
           <br />
 
-          <p>กำจัดไรฝุ่น และฆ่าเชื้อ</p>
+          <h4 className="fa-solid">กำจัดไรฝุ่น และฆ่าเชื้อ</h4><br />
 
           <div className="card-container">
             <div className="card-list">
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/s5.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
@@ -123,11 +129,12 @@ const Requestlist = () => {
                   </div>
                 </div>
               </div>
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/s6.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
@@ -143,15 +150,16 @@ const Requestlist = () => {
 
           <br />
 
-          <p>อุปกรณ์คอมพิวเตอร์</p>
+          <h4 className="fa-solid">อุปกรณ์คอมพิวเตอร์</h4> <br />
 
           <div className="card-container">
             <div className="card-list">
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/s7.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
@@ -162,11 +170,12 @@ const Requestlist = () => {
                   </div>
                 </div>
               </div>
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/s7.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
@@ -182,15 +191,16 @@ const Requestlist = () => {
 
           <br />
 
-          <p>อุปกรณ์ Smart Home</p>
+          <h4 className="fa-solid">อุปกรณ์ Smart Home</h4> <br />
 
           <div className="card-container">
             <div className="card-list">
-              <div className="card">
+              <div className="card" style={{width: "18rem"}}>
                 <img
-                  src={require("../Photo/img2.jpg")}
+                  src={require("../Photo/Smart Home.jpg")}
                   className="card-img-top"
                   alt="..."
+                   style={{height:"220px" , width :"100%"}}
                 />
                 <div className="card-body">
                   <div className="top">
