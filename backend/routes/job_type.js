@@ -16,7 +16,9 @@ router.get('/job-types', (req, res) => {
   });
 });
 
+
 // API endpoint to create a new job type
+
 router.post('/job-types', (req, res) => {
   const { job_type_name } = req.body;
 
