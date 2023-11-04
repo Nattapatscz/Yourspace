@@ -2,14 +2,14 @@ import React from "react";
 import { Route, Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-const PrivateRoute = ({ component: Component, requiredRole, ...rest }) => {
+const PrivateRoute = ({ component: Component, requiredRoles, ...rest }) => {
   const token = localStorage.getItem("token");
 
   if (token) {
     const decodedToken = jwt_decode(token);
-    const userRole = decodedToken.role;
+    const userRoles = decodedToken.roles;
 
-    if (userRole === requiredRole) {
+    if (userRoles === requiredRoles) {
       return <Route {...rest} element={<Component />} />;
     } else {
       // Redirect to an unauthorized page
