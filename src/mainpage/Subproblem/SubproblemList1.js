@@ -64,7 +64,7 @@ const SubproblemList1 = () => {
     console.log(uploadedFiles);
   
     axios
-      .post("http://localhost:5000/upload-to-folder", formData)
+      .post("https://homema-api.onrender.com/upload-to-folder", formData)
       .then((response) => {
         // Handle success response here
         console.log(response.data);
