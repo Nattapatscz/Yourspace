@@ -5,7 +5,7 @@ const JobTypeModal = ({ show, handleClose }) => {
 
   useEffect(() => {
     // เรียก API เพื่อดึงข้อมูล job_type ทั้งหมดจากเซิร์ฟเวอร์
-    fetch("http://localhost:5000/job-types")
+    fetch("https://homema-api.onrender.com/job-types")
       .then((response) => response.json())
       .then((data) => {
         setJobTypes(data);

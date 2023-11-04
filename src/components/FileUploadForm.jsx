@@ -7,7 +7,7 @@ const MyComponent = () => {
 
   useEffect(() => {
     // Fetch job data from your first API
-    axios.get("http://localhost:5000/api/getJobData")
+    axios.get("https://homema-api.onrender.com//api/getJobData")
       .then((response) => {
         setJobData(response.data);
       })
@@ -16,7 +16,7 @@ const MyComponent = () => {
       });
 
     // Fetch image data from your second API
-    axios.get("http://localhost:5000/api/getImageData")
+    axios.get("https://homema-api.onrender.com//api/getImageData")
       .then((response) => {
         setImageData(response.data);
       })

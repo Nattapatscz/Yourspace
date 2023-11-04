@@ -15,7 +15,7 @@ function Login() {
     try {
       console.log("Submitting login form");
 
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("https://homema-api.onrender.com/login", {
         email,
         password,
       });

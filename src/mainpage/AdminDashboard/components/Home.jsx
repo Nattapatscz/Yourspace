@@ -28,35 +28,35 @@ function Home() {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     // Fetch and set job count
-    fetch("http://localhost:5000/graph")
+    fetch("https://homema-api.onrender.com/graph")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
         setJobs(data);
       });
 
-    fetch("http://localhost:5000/jobcount")
+    fetch("https://homema-api.onrender.com/jobcount")
       .then((response) => response.json())
       .then((data) => {
         setJobCount(data[0].count);
       });
 
     // Fetch and set category count
-    fetch("http://localhost:5000/jobtypecount")
+    fetch("https://homema-api.onrender.com/jobtypecount")
       .then((response) => response.json())
       .then((data) => {
         setCategoryCount(data[0].count);
       });
 
     // Fetch and set customer count with roles "user"
-    fetch("http://localhost:5000/membercount")
+    fetch("https://homema-api.onrender.com/membercount")
       .then((response) => response.json())
       .then((data) => {
         setCustomerCount(data[0].count);
       });
 
     // Fetch and set technician count with roles starting with "Technician_"
-    fetch("http://localhost:5000/techcount")
+    fetch("https://homema-api.onrender.com/techcount")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data[0].count);

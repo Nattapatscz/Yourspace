@@ -53,7 +53,7 @@ const SubproblemList6 = () => {
     console.log(uploadedFiles);
 
     axios
-      .post("http://localhost:5000/upload-to-folder", formData)
+      .post("https://homema-api.onrender.com/upload-to-folder", formData)
       .then((response) => {
         // Handle success response here
         console.log(response.data);
@@ -101,7 +101,7 @@ const SubproblemList6 = () => {
     formData.append("member_username", member_username);
 
     axios
-      .post("http://localhost:5000/upload-to-mysql", formData)
+      .post("https://homema-api.onrender.com/upload-to-mysql", formData)
       .then((response) => {
         // Handle success response here
         console.log(response.data);

@@ -5,7 +5,7 @@ const StatusTypeModal = ({ show, handleClose }) => {
 
   useEffect(() => {
     // เรียก API เพื่อดึงข้อมูล status ทั้งหมดจากเซิร์ฟเวอร์
-    fetch("http://localhost:5000/status")
+    fetch("https://homema-api.onrender.com//status")
       .then((response) => response.json())
       .then((data) => {
         setStatusTypes(data);

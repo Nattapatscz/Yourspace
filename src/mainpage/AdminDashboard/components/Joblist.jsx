@@ -63,14 +63,14 @@ const Joblist = () => {
   });
 
       useEffect(() => {
-        fetch("http://localhost:5000/job")
+        fetch("https://homema-api.onrender.com/job")
           .then((response) => response.json())
           .then((data) => {
             // console.log(data);
             setJobs(data);
           });
           
-        axios.get("http://localhost:5000/api/getImageData")
+        axios.get("https://homema-api.onrender.com/api/getImageData")
           .then((response) => {
             setImageData(response.data);
           })
@@ -88,7 +88,7 @@ const Joblist = () => {
         cancelButtonText: "ไม่",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/job/${jobId}`, {
+          fetch(`https://homema-api.onrender.com/job/${jobId}`, {
             method: "DELETE",
           })
             .then((response) => response.json())
@@ -125,7 +125,7 @@ const Joblist = () => {
       icon: "success",
       title: "Update Success",
     });
-    fetch(`http://localhost:5000/job/${editedJob.job_id}`, {
+    fetch(`https://homema-api.onrender.com/job/${editedJob.job_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

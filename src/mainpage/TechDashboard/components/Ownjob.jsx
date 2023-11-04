@@ -44,7 +44,7 @@ const Ownjob = () => {
 
   useEffect(() => {
     // ส่งคำขอ GET ไปยังเซิร์ฟเวอร์เพื่อรับรายการงานที่เป็นของคุณ
-    fetch(`http://localhost:5000/joblist/${username}`)
+    fetch(`https://homema-api.onrender.com/joblist/${username}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -55,7 +55,7 @@ const Ownjob = () => {
         console.error("เกิดข้อผิดพลาดในการรับข้อมูลงาน: " + error.message);
         setLoading(false); // หากเกิดข้อผิดพลาดให้ปิดการโหลดเช่นกัน
       });
-      axios.get("http://localhost:5000/api/getImageData")
+      axios.get("https://homema-api.onrender.com/api/getImageData")
           .then((response) => {
             setImageData(response.data);
           })
@@ -74,7 +74,7 @@ const Ownjob = () => {
 
   const handleCancelJob = (jobId) => {
     // ส่งคำขอ PUT ไปยังเซิร์ฟเวอร์เพื่อยกเลิกงาน
-    fetch(`http://localhost:5000/cancelJob/${jobId}`, {
+    fetch(`https://homema-api.onrender.com/cancelJob/${jobId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

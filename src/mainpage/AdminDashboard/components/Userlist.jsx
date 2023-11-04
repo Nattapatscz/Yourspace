@@ -16,7 +16,7 @@ const Userlist = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/member")
+    fetch("https://homema-api.onrender.com/member")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -41,7 +41,7 @@ const Userlist = () => {
       cancelButtonText: "ไม่",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/member/${user.member_id}`, {
+        fetch(`https://homema-api.onrender.com/member/${user.member_id}`, {
           method: "DELETE",
         })
           .then((response) => {
@@ -81,7 +81,7 @@ const Userlist = () => {
       icon: "success",
       title: "Update Success",
     });
-    fetch(`http://localhost:5000/member/${editedUser.member_id}`, {
+    fetch(`https://homema-api.onrender.com/member/${editedUser.member_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -40,12 +40,12 @@ const Joblist = () => {
   const username = decodedToken.username;
 
   useEffect(() => {
-    fetch("http://localhost:5000/jobst1")
+    fetch("https://homema-api.onrender.com/jobst1")
       .then((response) => response.json())
       .then((data) => {
         setJobs(data);
       });
-    axios.get("http://localhost:5000/api/getImageData")
+    axios.get("https://homema-api.onrender.com/api/getImageData")
       .then((response) => {
         setImageData(response.data);
       })
@@ -66,7 +66,7 @@ const Joblist = () => {
       title: "รับงานสำเร็จ",
     });
 
-    fetch(`http://localhost:5000/jobaccept/${job.job_id}`, {
+    fetch(`https://homema-api.onrender.com/jobaccept/${job.job_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

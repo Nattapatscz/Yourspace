@@ -25,7 +25,7 @@ function Register() {
     }
 
     // AJAX
-    fetch("http://localhost:5000/register", {
+    fetch("https://homema-api.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
