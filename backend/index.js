@@ -22,7 +22,11 @@ app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
 // middleware
+
 app.use(cors());
+
+app.use(express.static('build')); // ใช้เอกสารสถานที่เชื่อมต่อ
+
 app.use(express.json());
 app.use(fileUpload());
 
