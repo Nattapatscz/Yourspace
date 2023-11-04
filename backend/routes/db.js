@@ -18,6 +18,7 @@ db.connect((err) => {
 });
 
 module.exports = db;
+
 // const mysql = require("mysql");
 
 // const db = mysql.createConnection({
