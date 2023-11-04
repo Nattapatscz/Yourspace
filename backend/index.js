@@ -14,7 +14,7 @@ const job = require("./routes/jobs_list");
 const status = require("./routes/status");
 const cors = require("cors");
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000
 const bodyParser = require("body-parser");
 const path = require("path"); // เพิ่มโมดูล path
 
