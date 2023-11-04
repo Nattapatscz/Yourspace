@@ -13,7 +13,7 @@ function ProtectedData(x) {
       setError('No token found');
       return;
     }
-    fetch('http://localhost:5000/protected', {
+    fetch('https://homema-api.onrender.com/protected', {
       headers: {
         Authorization: token
       }
