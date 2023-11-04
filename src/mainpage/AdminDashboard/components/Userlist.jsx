@@ -90,7 +90,7 @@ const Userlist = () => {
     })
       .then((response) => response.json())
       .then(() => {
-        // อัปเดตข้อมูลในรายการผู้ใช้หลังจากอัปเดตสำเร็จ
+        // อัปเดตข้อมูลในรายการผู้ใช้หลังจากอัปเดตสำเร็
         const updatedUsers = users.map((user) =>
           user.member_id === editedUser.member_id ? editedUser : user
         );
