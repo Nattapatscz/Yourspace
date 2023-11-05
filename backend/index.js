@@ -134,7 +134,7 @@ app.post("/upload-to-mysql", (req, res) => {
       ],
       (err, results) => {
         if (err) {
-          return res.status(500).send(err);
+          return res.status(500).send(err,results);
         }
 
         res.send("Job data added to MySQL.");
