@@ -115,22 +115,27 @@ const SubproblemList1 = () => {
       .then((response) => {
         // Handle success response here
         console.log(response.data);
+
         window.Swal.fire({
           icon: "success",
           title: "Add job Success",
         });
+
         setUploadStatus("Files uploaded to MySQL successfully.");
         window.location.href = "/Report";
       })
       .catch((error) => {
         // Handle error here
         console.error("Error:", error);
+        console.log(formData);
         
         window.Swal.fire({
           icon: "error",
           title: "Please upload image before submit",
         });
+
         setUploadStatus("Error uploading files to MySQL: " + error.message);
+
       });
   };
 
