@@ -105,23 +105,37 @@ const SubproblemList1 = () => {
       formData.append("status_id", status_id);
       formData.append("member_username", member_username);
   
-    try {
-      const response = await axios.post("https://homema-api.onrender.com/upload-to-mysql", formData);
-      console.log(response.data);
-  
-      window.Swal.fire({
-        icon: "success",
-        title: "Add job Success",
-      });
-    } catch (error) {
-      console.error("Error:", error);
+      try {
+        const response = await axios.post(
+          "https://homema-api.onrender.com/upload-to-mysql",
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': 'https://homema.onrender.com',
+              'Access-Control-Allow-Methods': 'GET, POST',
+              'Access-Control-Allow-Headers': 'Content-Type',
+            }
+          }
+        );
       
-      window.Swal.fire({
-        icon: "error",
-        title: "Please upload image before submit",
-      });
-    }
-  };
+        console.log(response.data);
+      
+        window.Swal.fire({
+          icon: "success",
+          title: "Add job Success",
+        });
+      } catch (error) {
+        console.error("Error:", error);
+      
+        window.Swal.fire({
+          icon: "error",
+          title: "Please upload image before submit",
+        });
+      }
+      
+}
+
   
 
   return (
