@@ -133,7 +133,8 @@ app.post("/upload-to-mysql", (req, res) => {
       ],
       (err, results) => {
         if (err) {
-          return res.status(500).send(err,results);
+          console.error("Database error:", err);
+          return res.status(500).send("Error adding job data to MySQL.");
         }
 
         res.send("Job data added to MySQL.");
@@ -141,6 +142,7 @@ app.post("/upload-to-mysql", (req, res) => {
     );
   });
 });
+
 
 app.get("/api/getJobData", (req, res) => {
   const sql =
