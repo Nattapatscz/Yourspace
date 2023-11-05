@@ -92,7 +92,7 @@ const SubproblemList1 = () => {
   
     const formData = new FormData();
   
-      formData.append("sampleFiles", uploadedFiles);
+      // formData.append("sampleFiles", uploadedFiles);
       formData.append("fileName", filename);
       // Add other form fields to the formData object
       formData.append("job_location", job_location);
