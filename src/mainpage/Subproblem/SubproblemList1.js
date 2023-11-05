@@ -35,57 +35,50 @@ const SubproblemList1 = () => {
     }
   };
 
-  const uploadToFolder = (event) => {
+  const uploadToFolder = async (event) => {
     event.preventDefault();
     if (selectedFiles.length === 0) {
       alert("Please select at least one file before uploading.");
       return;
     }
-  
+
     const formData = new FormData();
-  
+
     for (let i = 0; i < selectedFiles.length; i++) {
       const file = selectedFiles[i];
       if (file.size > 1024 * 1024) {
         // ตรวจสอบขนาดของไฟล์ (1MB = 1024 * 1024 ไบต์)
         window.Swal.fire({
           icon: "error",
-          title: " Maximum file size is 1MB.",
+          title: "Maximum file size is 1MB.",
         });
         return;
       }
-  
+
       formData.append("sampleFiles", file);
-
-      // console.log(file.name);
-
       setfilename(file.name);
     }
-  
-    setUploadedFiles(formData.sampleFiles);
-    // console.log(uploadedFiles);
-  
-    axios
-      .post("https://homema-api.onrender.com/upload-to-folder", formData)
-      .then((response) => {
-        // Handle success response here
-        console.log(response.data);
-        setUploadStatus("Files uploaded to folder successfully.");
-  
-        // ตั้งค่า URL ของไฟล์ที่เลือก
-        if (selectedFiles.length > 0) {
-          const imageUrl = URL.createObjectURL(selectedFiles[0]);
-          setSelectedImageURL(imageUrl);
-        }
-        // เพิ่มไฟล์ที่อัปโหลดลงใน uploadedFiles
-        // setUploadedFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-      })
-      .catch((error) => {
-        // Handle error here
-        console.error("Error:", error);
-        setUploadStatus("Error uploading files to folder: " + error.message);
-      });
+
+    setUploadedFiles(formData.getAll("sampleFiles")); // ใช้ .getAll() เพื่อดึงไฟล์ทั้งหมด
+
+    try {
+      const response = await axios.post("https://homema-api.onrender.com/upload-to-folder", formData);
+      // Handle success response here
+      console.log(response.data);
+      setUploadStatus("Files uploaded to folder successfully.");
+
+      // ตั้งค่า URL ของไฟล์ที่เลือก
+      if (selectedFiles.length > 0) {
+        const imageUrl = URL.createObjectURL(selectedFiles[0]);
+        setSelectedImageURL(imageUrl);
+      }
+    } catch (error) {
+      // Handle error here
+      console.error("Error:", error);
+      setUploadStatus("Error uploading files to folder: " + error.message);
+    }
   };
+
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -99,18 +92,18 @@ const SubproblemList1 = () => {
   
     const formData = new FormData();
   
-    formData.append("sampleFiles", uploadedFiles);
-    formData.append("fileName", filename);
-    // Add other form fields to the formData object
-    formData.append("job_location", job_location);
-    formData.append("job_tel", job_tel);
-    formData.append("job_backup_tel", job_backup_tel);
-    formData.append("job_assign_date", job_assign_date);
-    formData.append("job_assign_time", job_assign_time);
-    formData.append("job_details", job_details);
-    formData.append("job_type_id", job_type_id);
-    formData.append("status_id", status_id);
-    formData.append("member_username", member_username);
+      formData.append("sampleFiles", uploadedFiles);
+      formData.append("fileName", filename);
+      // Add other form fields to the formData object
+      formData.append("job_location", job_location);
+      formData.append("job_tel", job_tel);
+      formData.append("job_backup_tel", job_backup_tel);
+      formData.append("job_assign_date", job_assign_date);
+      formData.append("job_assign_time", job_assign_time);
+      formData.append("job_details", job_details);
+      formData.append("job_type_id", job_type_id);
+      formData.append("status_id", status_id);
+      formData.append("member_username", member_username);
   
     try {
       const response = await axios.post("https://homema-api.onrender.com/upload-to-mysql", formData);
