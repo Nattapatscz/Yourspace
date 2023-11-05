@@ -56,12 +56,14 @@ const SubproblemList1 = () => {
       }
   
       formData.append("sampleFiles", file);
-      console.log(file.name);
+      
+      // console.log(file.name);
+
       setfilename(file.name);
     }
   
     setUploadedFiles(formData.sampleFiles);
-    console.log(uploadedFiles);
+    // console.log(uploadedFiles);
   
     axios
       .post("https://homema-api.onrender.com/upload-to-folder", formData)
@@ -86,9 +88,9 @@ const SubproblemList1 = () => {
   };
   
   const handleSubmit = (event) => {
-    console.log(member_username);
+    // console.log(member_username);
     event.preventDefault();
-    console.log("jobtype = " + job_type_id);
+    // console.log("jobtype = " + job_type_id);
     if (selectedFiles.length === 0) {
       alert("Please select at least one file before uploading to MySQL.");
       return;
@@ -127,8 +129,7 @@ const SubproblemList1 = () => {
       .catch((error) => {
         // Handle error here
         console.error("Error:", error);
-        console.log(JSON.stringify(formData));
-        
+       
         window.Swal.fire({
           icon: "error",
           title: "Please upload image before submit",
