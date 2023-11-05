@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 // middleware
 
 
-app.use(cors());
+// app.use(cors());
 
 // Enable CORS for specific origin
 app.use(
