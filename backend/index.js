@@ -70,8 +70,7 @@ app.post("/upload-to-folder", (req, res) => {
     : [req.files.sampleFiles];
 
   // Define the upload directory (change this to your desired folder path)
-  const uploadDirectory = path.join(__dirname, process.env.UPLOADS_PATH);
-
+  const uploadDirectory = path.join(__dirname, "uploads");
 
   uploadedFiles.forEach((uploadedFile) => {
     const fileName = uploadedFile.name;
@@ -89,8 +88,7 @@ app.post("/upload-to-folder", (req, res) => {
 
 // ส่วนที่ 2: เพิ่มข้อมูลรูปภาพลงใน MySQL
 app.post("/upload-to-mysql", (req, res) => {
-  const uploadDirectory = path.join(__dirname, process.env.UPLOADS_PATH);
-
+  const uploadDirectory = path.join(__dirname, "uploads");
 
   // Read the list of uploaded files in the directory
   fs.readdir(uploadDirectory, (err, files) => {
