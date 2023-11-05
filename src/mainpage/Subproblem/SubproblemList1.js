@@ -125,6 +125,7 @@ const SubproblemList1 = () => {
       .catch((error) => {
         // Handle error here
         console.error("Error:", error);
+        
         window.Swal.fire({
           icon: "error",
           title: "Please upload image before submit",
