@@ -87,18 +87,18 @@ const SubproblemList1 = () => {
       });
   };
   
-  const handleSubmit = (event) => {
-    // console.log(member_username);
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log("jobtype = " + job_type_id);
+  
     if (selectedFiles.length === 0) {
       alert("Please select at least one file before uploading to MySQL.");
       return;
     }
+  
     console.log(member_username);
-
+  
     const formData = new FormData();
-
+  
     formData.append("sampleFiles", uploadedFiles);
     formData.append("fileName", filename);
     // Add other form fields to the formData object
@@ -111,35 +111,25 @@ const SubproblemList1 = () => {
     formData.append("job_type_id", job_type_id);
     formData.append("status_id", status_id);
     formData.append("member_username", member_username);
-
-    axios
-      .post("https://homema-api.onrender.com/upload-to-mysql", formData)
-      .then((response) => {
-        // Handle success response here
-        console.log(response.data);
-
-        window.Swal.fire({
-          icon: "success",
-          title: "Add job Success",
-        });
-
-        setUploadStatus("Files uploaded to MySQL successfully.");
-        window.location.href = "/Report";
-      })
-      .catch((error) => {
-        // Handle error here
-        console.error("Error:", error);
-        
-       
-        window.Swal.fire({
-          icon: "error",
-          title: "Please upload image before submit",
-        });
-
-        setUploadStatus("Error uploading files to MySQL: " + error.message);
-
+  
+    try {
+      const response = await axios.post("https://homema-api.onrender.com/upload-to-mysql", formData);
+      console.log(response.data);
+  
+      window.Swal.fire({
+        icon: "success",
+        title: "Add job Success",
       });
+    } catch (error) {
+      console.error("Error:", error);
+      
+      window.Swal.fire({
+        icon: "error",
+        title: "Please upload image before submit",
+      });
+    }
   };
+  
 
   return (
     <>
