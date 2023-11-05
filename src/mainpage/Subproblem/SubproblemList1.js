@@ -127,7 +127,7 @@ const SubproblemList1 = () => {
       .catch((error) => {
         // Handle error here
         console.error("Error:", error);
-        console.log(formData);
+        console.log(JSON.stringify(formData));
         
         window.Swal.fire({
           icon: "error",
