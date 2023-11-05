@@ -26,24 +26,14 @@ app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
 // middleware
-
-
 // app.use(cors());
 
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://homema.onrender.com'); 
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+const corsOptions = {
+  origin: 'https://homema.onrender.com',
+  credentials: true,
+};
 
-// Enable CORS for specific origin
-// app.use(
-//   cors({
-//     origin: 'https://homema.onrender.com', // Replace with your frontend URL
-//   })
-// );
+app.use(cors(corsOptions));
 
 
 app.use(express.static('build')); 
