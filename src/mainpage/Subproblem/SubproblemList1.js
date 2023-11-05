@@ -56,7 +56,7 @@ const SubproblemList1 = () => {
       }
   
       formData.append("sampleFiles", file);
-      
+
       // console.log(file.name);
 
       setfilename(file.name);
@@ -129,6 +129,7 @@ const SubproblemList1 = () => {
       .catch((error) => {
         // Handle error here
         console.error("Error:", error);
+        
        
         window.Swal.fire({
           icon: "error",

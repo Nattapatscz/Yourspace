@@ -27,11 +27,16 @@ app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
 // middleware
 
+app.use(cors());
+
+// Enable CORS for specific origin
 app.use(
   cors({
-    origin: 'https://homema.onrender.com',
+    origin: 'https://homema.onrender.com', // Replace with your frontend URL
   })
 );
+
+
 
 
 app.use(express.static('build')); 
