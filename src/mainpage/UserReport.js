@@ -12,7 +12,7 @@ const UserReport = () => {
 
   const [currentPage, setCurrentPage] = useState(0); // หน้าปัจจุบัน
   const itemsPerPage = 10; // จำนวนงานต่อหน้า
-  const pageCount = Math.ceil(users.length / itemsPerPage); // จำนวนหน้า
+  const pageCount = Math.ceil(jobs.length / itemsPerPage); // จำนวนหน้า
 
   const handleShowStatusTypeModal = () => {
     setShowStatusTypeModal(true);
