@@ -160,7 +160,9 @@ const UserReport = () => {
               </table>
             </div>
           )}
-          <JobTypeModal
+          
+      </div>
+         <JobTypeModal
             show={showJobTypeModal}
             handleClose={handleCloseJobTypeModal}
           />
@@ -168,8 +170,6 @@ const UserReport = () => {
             show={showStatusTypeModal}
             handleClose={handleCloseStatusTypeModal}
           />
-      </div>
-         
       
      
     </div>

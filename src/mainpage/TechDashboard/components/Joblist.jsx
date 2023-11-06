@@ -188,7 +188,9 @@ const Joblist = () => {
               </table>
             </div>
            
-            <ul className="pagination">
+           
+      </div>
+     <ul className="pagination">
                 <li className="page-item">
                   <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
                 </li> 
@@ -210,8 +212,6 @@ const Joblist = () => {
               show={showStatusTypeModal}
               handleClose={handleCloseStatusTypeModal}
             />
-      </div>
-    
     </div>
   );
 };
