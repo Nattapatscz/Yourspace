@@ -11,7 +11,7 @@ export  const Dashboard1 = () => {
   const [x, setX] = useState(0);
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
   const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle);
+    setOpenSidebarToggle(openSidebarToggle);
   };
 
   function addcase(newx){
