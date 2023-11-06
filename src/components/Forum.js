@@ -8,7 +8,7 @@ function Forum() {
     const newDiv = document.createElement("div");
     
     // กำหนดข้อความในอิลิเมนต์
-    newDiv.textContent = "Tel = 006-123-12593 <br> Homema@gmail.com ";
+    newDiv.innerHTML = "Tel = 006-123-12593 <br> Homema@gmail.com ";
     
     // เพิ่มอิลิเมนต์ใหม่ลงใน DOM
     document.getElementById("containerforum").appendChild(newDiv);
@@ -34,6 +34,7 @@ function Forum() {
                     onClick={addElement}>
                         <strong>Show Contact</strong>
                 </button>
+                <br></br>
 
                 <div id="containerforum" className='fw-bold'>
 

@@ -222,6 +222,8 @@ const SubproblemList1 = () => {
                   className="form-control"
                   value={job_tel}
                   onChange={(e) => setJobTel(e.target.value)}
+                  pattern="\d{3}-\d{3}-\d{4}"
+                  title="กรุณาใส่เบอร์ติดต่อในรูปแบบ 000-000-0000"
                   required
                 />
                 <br />
@@ -233,6 +235,8 @@ const SubproblemList1 = () => {
                   className="form-control"
                   value={job_backup_tel}
                   onChange={(e) => setJobBackupTel(e.target.value)}
+                  pattern="\d{3}-\d{3}-\d{4}"
+                  title="กรุณาใส่เบอร์ติดต่อในรูปแบบ 000-000-0000"
                   required
                 />
                 <br />
