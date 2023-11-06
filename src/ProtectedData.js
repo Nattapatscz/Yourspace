@@ -34,7 +34,6 @@ function ProtectedData(x) {
   }, []);
 
   if (error) {
-   
     return (
             <div>
               <Login />

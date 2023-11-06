@@ -19,6 +19,7 @@ import { Dashboard1 } from "./mainpage/TechDashboard/Dashboard1"; //
 // import Yourjob from "./mainpage/TechDashboard/Yourjob";
 import UserReport from "./mainpage/UserReport";
 import PrivateRoute from "./PrivateRoute";
+import Forum from "./components/Forum";
 // import PrivateRoute from "./PrivateRoute";
 
 export default function App() {
@@ -55,6 +56,9 @@ export default function App() {
             <Route path="/list" element={<Search />} />
 
             <Route path="/report" element={<UserReport />} />
+
+            <Route path="/forum" element={<Forum />} />
+
             
           </Routes>
         </div>
