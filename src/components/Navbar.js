@@ -16,61 +16,57 @@ export default function Navbar() {
   }
 
   function ProtectedData() {
-    const [error, setError] = useState(null);
+        const [error, setError] = useState(null);
 
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setError("No token found");
-        return;
-      }
-      // เรียก setTimeout ที่ตั้งค่าการลบ Token เมื่อหมดอายุ
-      const tokenExpirationTimeout = setTimeout(() => {
-        delete_token(); // เรียกฟังก์ชันลบ Token หรือทำการล็อกเอาท์
-      }, tokenExpirationTime);
+        useEffect(() => {
+          
+          const token = localStorage.getItem("token");
 
-      fetch("https://homema-api.onrender.com/protected", {
-        headers: {
-          Authorization: token,
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Error retrieving protected data");
+          if (!token) {
+            setError("No token found");
+            return;
           }
-          return response.json();
-        })
-        .then((response) => {
-          // ในกรณีที่คำขอเสร็จสมบูรณ์
-          clearTimeout(tokenExpirationTimeout); 
-          // ยกเลิกการลบ Token ถ้าข้อมูลถูกดึงเรื่อง
-          return response.json();
-        })
-        .catch((error) => {
-          setError(error.message);
-        });
-    }, []);
+          // เรียก setTimeout ที่ตั้งค่าการลบ Token เมื่อหมดอายุ
+          setTimeout(() => {
+            delete_token(); // เรียกฟังก์ชันลบ Token หรือทำการล็อกเอาท์
+          }, tokenExpirationTime);
 
-    return (
-      <>
-        <div>
-          {error ? (
-            <a className=" btn btn-warning" href="/login">
-              เข้าสู่ระบบ / สมัครสมาชิก
-            </a>
-          ) : (
-            <a
-              className=" btn btn-warning"
-              href="#"
-              onClick={delete_token}
-            >
-              Logout
-            </a>
-          )}
-        </div>
-      </>
-    );
-  }
+          fetch("https://homema-api.onrender.com/protected", {
+            headers: {
+              Authorization: token,
+            },
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Error retrieving protected data");
+              }
+              return response.json();
+            })
+            .catch((error) => {
+              setError(error.message);
+            });
+        }, []);
+
+        return (
+          <>
+            <div>
+              {error ? (
+                <a className="btn btn-warning" href="/login">
+                  เข้าสู่ระบบ / สมัครสมาชิก
+                </a>
+              ) : (
+                <a
+                  className=" btn btn-warning"
+                  href="#"
+                  onClick={delete_token}
+                >
+                  Logout
+                </a>
+              )}
+            </div>
+          </>
+        );
+      }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary  text-content shadow-sm rounded">
