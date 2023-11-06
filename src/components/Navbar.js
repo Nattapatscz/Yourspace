@@ -8,7 +8,7 @@ export default function Navbar() {
   
   function delete_token() {
     localStorage.removeItem("token");
-    
+
     window.Swal.fire({
       icon: "error",
       title: "Session time out",
@@ -61,7 +61,7 @@ export default function Navbar() {
           ) : (
             <a
               className=" btn btn-warning"
-              href="/login"
+              href="#"
               onClick={delete_token}
             >
               Logout
