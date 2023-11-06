@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 function Forum() {
   const [elements, setElements] = useState([]);
@@ -8,7 +9,7 @@ function Forum() {
     const newDiv = document.createElement("div");
     
     // กำหนดข้อความในอิลิเมนต์
-    newDiv.innerHTML = "Tel = 006-123-12593 <br> Homema@gmail.com ";
+    newDiv.innerHTML = "<br> Tel = 006-123-12593 <br> Homema@gmail.com ";
     
     // เพิ่มอิลิเมนต์ใหม่ลงใน DOM
     document.getElementById("containerforum").appendChild(newDiv);
@@ -18,11 +19,14 @@ function Forum() {
 
     //เปลี่ยนสี
     document.getElementById('id1').style.color = 'orange' ;
+    
 
   }
   
   return (
-    <div className='container-fluid'>
+    <>
+    <Navbar />
+    <div  className='container-fluid'>
         <div className='position-absolute top-50 start-50 translate-middle'>
 
             <center>
@@ -34,7 +38,7 @@ function Forum() {
                     onClick={addElement}>
                         <strong>Show Contact</strong>
                 </button>
-                <br></br>
+                
 
                 <div id="containerforum" className='fw-bold'>
 
@@ -45,6 +49,8 @@ function Forum() {
 
         </div>
     </div>
+    </>
+    
   );
 }
 
