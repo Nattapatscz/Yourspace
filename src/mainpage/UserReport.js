@@ -10,6 +10,10 @@ const UserReport = () => {
   const [showJobTypeModal, setShowJobTypeModal] = useState(false);
   const [showStatusTypeModal, setShowStatusTypeModal] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(0); // หน้าปัจจุบัน
+  const itemsPerPage = 10; // จำนวนงานต่อหน้า
+  const pageCount = Math.ceil(users.length / itemsPerPage); // จำนวนหน้า
+
   const handleShowStatusTypeModal = () => {
     setShowStatusTypeModal(true);
   };
@@ -95,18 +99,18 @@ const UserReport = () => {
             <div class="table-responsive">
               <table
                 className="table table-bordered"
-                style={{ width: "83.5vw", textAlign: "center" }}
+                style={{ width: "100%", textAlign: "center" }}
               >
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>ชื่อลูกค้า</th>
+                    {/* <th>ID</th> */}
+                    <th>ผู้แจ้ง</th>
                     <th>เบอร์โทรศัพท์</th>
-                    <th>เบอร์โทรศัพท์สำรอง</th>
-                    <th>สถานที่นัดหมาย</th>
-                    <th>รายละเอียดงาน</th>
-                    <th>วันที่นัดหมาย</th>
-                    <th>เวลาที่นัดหมาย</th>
+                    {/* <th>เบอร์โทรศัพท์สำรอง</th> */}
+                    <th>สถานที่</th>
+                    <th>รายละเอียด</th>
+                    <th>วันที่</th>
+                    <th>เวลา</th>
                     <th>
                       สถานะงาน
                       <i
@@ -131,10 +135,10 @@ const UserReport = () => {
                 <tbody>
                   {jobs.map((job) => (
                     <tr key={job.job_id}>
-                      <td>{job.job_id}</td>
+                      {/* <td>{job.job_id}</td> */}
                       <td>{job.member_username}</td>
                       <td>{job.job_tel}</td>
-                      <td>{job.job_backup_tel}</td>
+                      {/* <td>{job.job_backup_tel}</td> */}
                       <td>{job.job_location}</td>
                       <td>{job.job_details}</td>
                       <td>
@@ -161,8 +165,22 @@ const UserReport = () => {
               </table>
             </div>
           )}
-          
+
         </div> 
+
+        <ul className="pagination float-end">
+            <li className="page-item">
+              <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
+            </li> 
+            {Array.from({ length: pageCount }, (_, i) => (
+              <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
+                <button className="page-link" onClick={() => setCurrentPage(i)}>{i + 1}</button>
+              </li>
+            ))}
+            <li className="page-item">
+            <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
+          </li>
+        </ul>
       
          <JobTypeModal
             show={showJobTypeModal}
