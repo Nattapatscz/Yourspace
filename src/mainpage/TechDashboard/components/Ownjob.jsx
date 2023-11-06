@@ -125,8 +125,8 @@ const Ownjob = () => {
 
   return (
     <div className="useredit-con container-fluid">
-      
-        <br/>
+      <div className="container">
+          <br/>
         <h2>รายการงานของคุณ</h2>
         {loading ? (
           <p>Loading...</p>
@@ -235,6 +235,8 @@ const Ownjob = () => {
           show={showStatusTypeModal}
           handleClose={handleCloseStatusTypeModal}
         />
+      </div>
+      
       
       
     </div>

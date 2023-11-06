@@ -103,7 +103,7 @@ const Joblist = () => {
 
   return (
     <div className="useredit-con container-fluid">
-      <div >
+      <div className="container">
         <br/>
             <h2>รายการงานที่ยังไม่ถูกดำเนินการ</h2>
 

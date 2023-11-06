@@ -10,7 +10,7 @@ import Userlist from "./components/Userlist";
 
 export const Dashboard = () => { 
   const [x, setX] = useState(0);
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(true);
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle);
   };

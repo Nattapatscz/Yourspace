@@ -106,7 +106,7 @@ const Userlist = () => {
 
   return (
     <div className="useredit-con container-fluid">
-      
+      <div className="container">
          <br />
             <form>
               <h2>แก้ไขข้อมูลผู้ใช้</h2>
@@ -224,6 +224,8 @@ const Userlist = () => {
             <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
           </li>
         </ul>
+      </div>
+        
 
     
      

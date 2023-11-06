@@ -168,9 +168,8 @@ const Joblist = () => {
   
   return (
     <div className="useredit-con container-fluid">
-
-      
-        <br />
+      <div className="container">
+         <br />
         <form>
           <h2>แก้ไขงาน</h2>
           {fields.map((field) => (
@@ -312,6 +311,9 @@ const Joblist = () => {
         show={showStatusTypeModal}
         handleClose={handleCloseStatusTypeModal}
       />
+      </div>
+      
+       
       
 
     </div>
