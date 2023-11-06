@@ -1,6 +1,7 @@
 import React from "react";
 import jwt_decode from "jwt-decode";
 import AccessDenied from "./AccessDenied";
+import Login from "./components/Loginpage"
 
 const PrivateRoute = (props, c ) => {
   const token = localStorage.getItem("token");
@@ -22,7 +23,7 @@ const PrivateRoute = (props, c ) => {
       return <AccessDenied />;
     }
   } else {
-    return  <AccessDenied />;
+    return  <Login />;
   }
 };
 
