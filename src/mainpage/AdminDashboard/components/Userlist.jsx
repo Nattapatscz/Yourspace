@@ -106,7 +106,7 @@ const Userlist = () => {
 
   return (
     <div className="useredit-con container-fluid">
-      <div className="container">
+      
          <br />
             <form>
               <h2>แก้ไขข้อมูลผู้ใช้</h2>
@@ -225,7 +225,7 @@ const Userlist = () => {
           </li>
         </ul>
 
-      </div>
+    
      
     </div>
   );

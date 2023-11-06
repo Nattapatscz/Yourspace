@@ -169,7 +169,7 @@ const Joblist = () => {
   return (
     <div className="useredit-con container-fluid">
 
-      <div className="container">
+      
         <br />
         <form>
           <h2>แก้ไขงาน</h2>
@@ -312,7 +312,7 @@ const Joblist = () => {
         show={showStatusTypeModal}
         handleClose={handleCloseStatusTypeModal}
       />
-      </div>
+      
 
     </div>
   );

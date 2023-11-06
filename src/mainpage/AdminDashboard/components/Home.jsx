@@ -96,7 +96,7 @@ function Home() {
         <div className="dashboard card">
           <div className="card-inner">
             <h3>TECHNICIANS</h3>
-            <BsFillBellFill className="card_icon" />
+            <BsPeopleFill className="card_icon" />
           </div>
           <h1>{technicianCount}</h1>
         </div>

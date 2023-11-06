@@ -125,7 +125,7 @@ const Ownjob = () => {
 
   return (
     <div className="useredit-con container-fluid">
-      <div className="container">
+      
         <br/>
         <h2>รายการงานของคุณ</h2>
         {loading ? (
@@ -226,7 +226,7 @@ const Ownjob = () => {
             <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
           </li>
         </ul>
-        
+
         <JobTypeModal
           show={showJobTypeModal}
           handleClose={handleCloseJobTypeModal}
@@ -235,7 +235,7 @@ const Ownjob = () => {
           show={showStatusTypeModal}
           handleClose={handleCloseStatusTypeModal}
         />
-      </div>
+      
       
     </div>
   );

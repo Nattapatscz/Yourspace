@@ -86,7 +86,7 @@ const UserReport = () => {
     <Navbar />
     <br/>
     <div className="useredit-con container-fluid">
-      <div className="container">
+     
          <h2>รายการงานของคุณ</h2>
           {loading ? (
             <p>Loading...</p>
@@ -168,7 +168,7 @@ const UserReport = () => {
             show={showStatusTypeModal}
             handleClose={handleCloseStatusTypeModal}
           />
-      </div>
+      
      
     </div>
     </>
