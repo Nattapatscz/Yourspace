@@ -156,13 +156,13 @@ export default function Mainpages() {
                   <section className="container">
                     <article className="p-4 mb-4 bg-div-tertiary rounded-3">
                           <div className="container-fluid py-5">
-                            <h1 className="display-5 fw-bold" style={{color:"orange"}} >About us</h1>
+                            <h1 className="display-5 fw-bold">About us</h1>
                               <p className="col-md-8 fs-4">
                               บริษัทนี้มีคณะงานช่างที่มีความชำนาญในการซ่อมแซมและบำรุงรักษาทรัพย์สินของลูกค้า 
                               เช่น งานประปา, งานไฟฟ้า, งานบ้านและสวน, การซ่อมแซมอุปกรณ์หรือเครื่องมือ, 
                               งานสี, งานไม้, และงานหลายอย่างอื่น ๆ ที่เกี่ยวข้องกับการบำรุงรักษาและซ่อมแซม.
                               </p>
-                            <button className="btn btn-warning btn-lg" type="button">
+                            <button className="btn btn-warning btn-lg fw-bold" type="button">
                               Contact us
                             </button>
                             </div>
@@ -171,7 +171,6 @@ export default function Mainpages() {
                   </section>
             </section>
             <br />
-          
           </main>
           
             <footer className="pt-3 mt-4 text-div-secondary border-top">
