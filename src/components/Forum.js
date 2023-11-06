@@ -8,7 +8,7 @@ function Forum() {
     const newDiv = document.createElement("div");
     
     // กำหนดข้อความในอิลิเมนต์
-    newDiv.textContent = "Tel = 006-123-12593";
+    newDiv.textContent = "Tel = 006-123-12593 <br> Homema@gmail.com ";
     
     // เพิ่มอิลิเมนต์ใหม่ลงใน DOM
     document.getElementById("containerforum").appendChild(newDiv);
@@ -25,18 +25,22 @@ function Forum() {
     <div className='container-fluid'>
         <div className='position-absolute top-50 start-50 translate-middle'>
 
-            <h1 id='id1' className="fw-bold">
-                <strong>Homema.company</strong>
-            </h1>
+            <center>
+                <h1 id='id1' className="fw-bold">
+                    <strong>Homema.company</strong>
+                </h1>
 
-            <button className='btn bt-warning fw-bold' 
-                onClick={addElement}>
-                    <strong>Show Contact</strong>
-            </button>
+                <button className='btn btn-warning fw-bold' 
+                    onClick={addElement}>
+                        <strong>Show Contact</strong>
+                </button>
 
-            <div id="containerforum" className='fw-bold'>
+                <div id="containerforum" className='fw-bold'>
 
-            </div>
+                </div>
+            </center>
+
+            
 
         </div>
     </div>
