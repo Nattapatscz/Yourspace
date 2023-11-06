@@ -3,7 +3,7 @@ import "../styles/Navbars.css";
 
 export default function Navbar() {
 
-  const tokenExpirationTime = 2 * 60 * 1000; // 1 ชั่วโมงในมิลลิวินาที
+  const tokenExpirationTime = 1 * 60 * 1000; // 1 ชั่วโมงในมิลลิวินาที
 
   
   function delete_token() {
@@ -13,6 +13,7 @@ export default function Navbar() {
       icon: "error",
       title: "Session time out",
     });
+    window.location.href="/login"
   }
 
   function ProtectedData() {
