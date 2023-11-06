@@ -18,6 +18,11 @@ export  const Dashboard1 = () => {
     setX(newx);
   }
 
+  function delete_token() {
+    localStorage.removeItem("token");
+    window.location.href="/login"
+  }
+
   function Sidebar({ openSidebarToggle, OpenSidebar }) {
     return (
       <aside
@@ -43,6 +48,13 @@ export  const Dashboard1 = () => {
               <BsFillArchiveFill className="icon" /> Your Jobs
             </p>
           </li>
+
+          <li className="sidebar-list-item" onClick={() => delete_token()}>
+                <p style={{color:"whitesmoke"}}>
+                  <BsPeopleFill className="icon" /> Logout
+                </p>
+          </li>
+
         </ul>
       </aside>
     );
