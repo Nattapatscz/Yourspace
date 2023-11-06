@@ -130,7 +130,7 @@ export default function Mainpages() {
                                   <h3>3. ปรึกษาและนัดหมาย</h3>
                                     <p>พูดคุยรายละเอียดงาน ค่าบริการ และนัดหมายกับช่างได้โดยตรง</p>
                                     
-                                  <h3>4. ชำระเงินผ่าน HOMEMA</h3>
+                                  <h3>4. รับประกันจาก HOMEMA</h3>
                                     <p>ปลอดภัยและวางใจได้ว่างานเสร็จ 100% หากพบปัญหา เราพร้อมช่วยเหลือคุณเสมอ</p>
                                 </div>
                               </div>
@@ -171,11 +171,14 @@ export default function Mainpages() {
                   </section>
             </section>
             <br />
-          </main>
-          
-            <footer className="pt-3 mt-4 text-div-secondary border-top">
+             <footer className="pt-3 mt-4 text-div-secondary border-top">
               Homma.company © 2023
             </footer>
+            <br/>
+
+          </main>
+          
+           
         
        
     </>
