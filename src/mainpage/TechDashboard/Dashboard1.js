@@ -51,7 +51,7 @@ export  const Dashboard1 = () => {
 
           <li className="sidebar-list-item" onClick={() => delete_token()}>
                 <p style={{color:"whitesmoke"}}>
-                  <BsPeopleFill className="icon" /> Logout
+                  <BsFillArchiveFill className="icon" /> Logout
                 </p>
           </li>
 
