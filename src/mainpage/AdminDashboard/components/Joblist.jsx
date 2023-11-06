@@ -313,8 +313,6 @@ const Joblist = () => {
       />
       </div>
       
-       
-      
 
     </div>
   );

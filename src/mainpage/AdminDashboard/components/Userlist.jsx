@@ -225,10 +225,7 @@ const Userlist = () => {
           </li>
         </ul>
       </div>
-        
-
-    
-     
+      
     </div>
   );
 };
