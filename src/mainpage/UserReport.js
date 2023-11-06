@@ -133,7 +133,9 @@ const UserReport = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {jobs.map((job) => (
+                  {jobs
+                    .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+                    .map((job) => (
                     <tr key={job.job_id}>
                       {/* <td>{job.job_id}</td> */}
                       <td>{job.member_username}</td>
@@ -164,11 +166,9 @@ const UserReport = () => {
                 </tbody>
               </table>
             </div>
-          )}
-
-        </div> 
-
-        <ul className="pagination">
+          )} 
+          <br/>
+          <ul className="pagination">
             <li className="page-item">
               <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
             </li> 
@@ -181,6 +181,10 @@ const UserReport = () => {
             <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
           </li>
         </ul>
+
+        </div> 
+
+       
       
          <JobTypeModal
             show={showJobTypeModal}

@@ -107,13 +107,13 @@ const Joblist = () => {
 
         <br/>
             <h2>รายการงานที่ยังไม่ถูกดำเนินการ</h2>
-      </div>
+      
         
 
             <div className="table-responsive">
                <table
               className="table table-bordered"
-              style={{ width: "83.3vw", textAlign: "center" }}
+              style={{ width: "100%", textAlign: "center" }}
             >
               <thead>
                 <tr>
@@ -189,22 +189,22 @@ const Joblist = () => {
                 ))}
               </tbody>
               </table>
-            </div>
+            </div><br/>
            
       
-     <ul className="pagination">
-                <li className="page-item">
-                  <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
-                </li> 
-                {Array.from({ length: pageCount }, (_, i) => (
-                  <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
-                    <button className="page-link" onClick={() => setCurrentPage(i)}>{i + 1}</button>
-                  </li>
-                ))}
-                <li className="page-item">
-                <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
-              </li>
-            </ul>
+            <ul className="pagination float-end">
+                        <li className="page-item">
+                          <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
+                        </li> 
+                        {Array.from({ length: pageCount }, (_, i) => (
+                          <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
+                            <button className="page-link" onClick={() => setCurrentPage(i)}>{i + 1}</button>
+                          </li>
+                        ))}
+                        <li className="page-item">
+                        <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
+                      </li>
+                    </ul>
 
             <JobTypeModal
               show={showJobTypeModal}
@@ -214,6 +214,8 @@ const Joblist = () => {
               show={showStatusTypeModal}
               handleClose={handleCloseStatusTypeModal}
             />
+            
+      </div>
     </div>
   );
 };

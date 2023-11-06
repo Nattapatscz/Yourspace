@@ -128,7 +128,7 @@ const Ownjob = () => {
       <div className="container">
           <br/>
         <h2>รายการงานของคุณ</h2>
-      </div>
+      
         
         {loading ? (
           <p>Loading...</p>
@@ -136,7 +136,7 @@ const Ownjob = () => {
           <div class="table-responsive">
             <table
               className="table table-bordered"
-              style={{ width: "83.3vw", textAlign: "center" }}
+              style={{ width: "100%", textAlign: "center" }}
             >
               <thead>
                 <tr>
@@ -214,9 +214,11 @@ const Ownjob = () => {
             </table>
           </div>
         )}
+      
+         <br/>
 
       
-       <ul className="pagination">
+       <ul className="pagination float-end">
             <li className="page-item">
               <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
             </li> 
@@ -229,7 +231,7 @@ const Ownjob = () => {
             <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
           </li>
         </ul>
-
+      </div>
         <JobTypeModal
           show={showJobTypeModal}
           handleClose={handleCloseJobTypeModal}

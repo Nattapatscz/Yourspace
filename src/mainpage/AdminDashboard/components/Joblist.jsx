@@ -194,8 +194,7 @@ const Joblist = () => {
           </button>
 
         </form>
-      </div>
-         
+      
 
       <br />
 
@@ -204,7 +203,7 @@ const Joblist = () => {
       <div class="table-responsive">
         <table
           className="table table-bordered "
-          style={{ width: "83.5vw", textAlign: "center" }}
+          style={{ width: "100%", textAlign: "center" }}
         >
           <thead>
             <tr>
@@ -288,11 +287,10 @@ const Joblist = () => {
           </tbody>
         </table>
       </div>
-        
 
-       
-     
-       <ul className="pagination">
+      <br /> 
+
+      <ul className="pagination float-end">
           <li className="page-item">
             <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
           </li> 
@@ -306,6 +304,12 @@ const Joblist = () => {
         </li>
       
         </ul>
+
+      </div>
+
+       
+     
+      
 
       <JobTypeModal
         show={showJobTypeModal}
