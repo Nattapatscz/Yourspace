@@ -128,6 +128,8 @@ const Ownjob = () => {
       <div className="container">
           <br/>
         <h2>รายการงานของคุณ</h2>
+      </div>
+        
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -213,8 +215,7 @@ const Ownjob = () => {
           </div>
         )}
 
-       
-      </div>
+      
        <ul className="pagination">
             <li className="page-item">
               <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>

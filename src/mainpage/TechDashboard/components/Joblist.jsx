@@ -104,8 +104,11 @@ const Joblist = () => {
   return (
     <div className="useredit-con container-fluid">
       <div className="container">
+
         <br/>
             <h2>รายการงานที่ยังไม่ถูกดำเนินการ</h2>
+      </div>
+        
 
             <div className="table-responsive">
                <table
@@ -188,8 +191,7 @@ const Joblist = () => {
               </table>
             </div>
            
-           
-      </div>
+      
      <ul className="pagination">
                 <li className="page-item">
                   <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>

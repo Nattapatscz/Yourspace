@@ -124,6 +124,9 @@ const SubproblemList5 = () => {
           icon: "success",
           title: "Add job Success",
         });
+
+        window.location.href="/report";
+
       } catch (error) {
         console.error("Error:", error);
       
@@ -273,9 +276,7 @@ const SubproblemList5 = () => {
             <button className="btn btn-warning" type="submit">
               Submit
             </button>
-            <button className="btn btn-secondary" type="button">
-              reset
-            </button>
+            
           </div>
           <br />
         </form>

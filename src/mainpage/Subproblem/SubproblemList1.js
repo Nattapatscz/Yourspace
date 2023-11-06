@@ -88,7 +88,7 @@ const SubproblemList1 = () => {
       return;
     }
   
-    console.log(member_username);
+    // console.log(member_username);
   
     const formData = new FormData();
   
@@ -122,7 +122,11 @@ const SubproblemList1 = () => {
           icon: "success",
           title: "Add job Success",
         });
+
+        window.location.href="/report";
+
       } catch (error) {
+
         console.error("Error:", error);
       
         window.Swal.fire({
@@ -273,9 +277,7 @@ const SubproblemList1 = () => {
                 <button className="btn btn-warning" type="submit" >
                   Submit
                 </button>
-                <button className="btn btn-secondary" type="button">
-                  reset
-                </button>
+               
               </div>
               <br />
             </form>

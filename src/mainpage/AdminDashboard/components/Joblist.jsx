@@ -169,7 +169,7 @@ const Joblist = () => {
   return (
     <div className="useredit-con container-fluid">
       <div className="container">
-         <br />
+        <br />
         <form>
           <h2>แก้ไขงาน</h2>
           {fields.map((field) => (
@@ -194,6 +194,8 @@ const Joblist = () => {
           </button>
 
         </form>
+      </div>
+         
 
       <br />
 
@@ -289,7 +291,7 @@ const Joblist = () => {
         
 
        
-      </div>
+     
        <ul className="pagination">
           <li className="page-item">
             <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>

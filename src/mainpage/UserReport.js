@@ -88,6 +88,7 @@ const UserReport = () => {
     <div className="useredit-con container-fluid">
       <div className="container">
         <h2>รายการงานของคุณ</h2>
+      </div>
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -161,7 +162,7 @@ const UserReport = () => {
             </div>
           )}
           
-      </div>
+      
          <JobTypeModal
             show={showJobTypeModal}
             handleClose={handleCloseJobTypeModal}

@@ -162,8 +162,8 @@ const Userlist = () => {
             </form>
           <br />
 
-        <h2>รายการสมาชิก</h2>
-
+          <h2>รายการสมาชิก</h2>
+        </div>
         <div class="table-responsive">
           <table
               className="table table-bordered"
@@ -209,7 +209,7 @@ const Userlist = () => {
                   ))}
               </tbody>
             </table>
-        </div>
+        
       
        
       </div>

@@ -118,10 +118,14 @@ const SubproblemList6 = () => {
       
         console.log(response.data);
       
-        window.Swal.fire({
-          icon: "success",
-          title: "Add job Success",
-        });
+          window.Swal.fire({
+            icon: "success",
+            title: "Add job Success",
+          });
+
+        window.location.href="/report";
+
+
       } catch (error) {
         console.error("Error:", error);
       
@@ -129,6 +133,7 @@ const SubproblemList6 = () => {
           icon: "error",
           title: "Please upload image before submit",
         });
+        
       }
       
 }
@@ -277,9 +282,7 @@ const SubproblemList6 = () => {
             <button className="btn btn-warning" type="submit">
               Submit
             </button>
-            <button className="btn btn-secondary" type="button">
-              reset
-            </button>
+           
           </div>
           <br />
         </form>
