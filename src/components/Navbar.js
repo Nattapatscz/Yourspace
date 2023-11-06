@@ -3,7 +3,7 @@ import "../styles/Navbars.css";
 
 export default function Navbar() {
 
-  const tokenExpirationTime = 1 * 60 * 1000; // 1 ชั่วโมงในมิลลิวินาที
+  const tokenExpirationTime = 2* 3600 * 1000; // 1 ชั่วโมงในมิลลิวินาที
 
   
   function delete_token() {
