@@ -105,119 +105,128 @@ const Userlist = () => {
   };
 
   return (
-    <div className="useredit-con container">
-      <br />
-      <form>
-        <h2>แก้ไขข้อมูลผู้ใช้</h2>
-        <div className="form-group">
-          <label>ID:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="member_id"
-            value={editedUser.member_id}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="email"
-            value={editedUser.email}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Role:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="roles"
-            value={editedUser.roles}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="username"
-            value={editedUser.username}
-            onChange={handleInputChange}
-          />
-        </div>
-        <br />
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleUpdateClick}
-        >
-          Update
-        </button>
+    <div className="useredit-con container-fluid">
+      <div className="container">
+         <br />
+            <form>
+              <h2>แก้ไขข้อมูลผู้ใช้</h2>
+              <div className="form-group">
+                <label>ID:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="member_id"
+                  value={editedUser.member_id}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Email:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="email"
+                  value={editedUser.email}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Role:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="roles"
+                  value={editedUser.roles}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Username:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="username"
+                  value={editedUser.username}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <br />
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleUpdateClick}
+              >
+                Update
+              </button>
 
-      </form>
-      <br />
-      <h2>รายการสมาชิก</h2>
-      <table
-        className="table table-bordered"
-        style={{ width: "83.5vw", textAlign: "center" }}
-      >
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Username</th>
-            <th scope="col" colSpan={"2"}>
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-        {users
-            .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
-            .map((user) => (
-              <tr key={user.member_id}>
-                <td>{user.member_id}</td>
-                <td>{user.email}</td>
-                <td>{user.roles}</td>
-                <td>{user.username}</td>
-                <td>
-                  <button
-                    className="btn btn-success"
-                    onClick={() => handleEditClick(user)}
-                  >
-                    Edit
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDeleteClick(user)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+            </form>
+          <br />
+
+        <h2>รายการสมาชิก</h2>
+
+        <div class="table-responsive">
+          <table
+              className="table table-bordered"
+              style={{ width: "83.5vw", textAlign: "center" }}
+            >
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Username</th>
+                  <th scope="col" colSpan={"2"}>
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+              {users
+                  .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+                  .map((user) => (
+                    <tr key={user.member_id}>
+                      <td>{user.member_id}</td>
+                      <td>{user.email}</td>
+                      <td>{user.roles}</td>
+                      <td>{user.username}</td>
+                      <td>
+                        <button
+                          className="btn btn-success"
+                          onClick={() => handleEditClick(user)}
+                        >
+                          Edit
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDeleteClick(user)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+        </div>
+      
+        <ul className="pagination">
+            <li className="page-item">
+              <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
+            </li> 
+            {Array.from({ length: pageCount }, (_, i) => (
+              <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
+                <button className="page-link" onClick={() => setCurrentPage(i)}>{i + 1}</button>
+              </li>
             ))}
-        </tbody>
-      </table>
-      <ul className="pagination">
-          <li className="page-item">
-            <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
-          </li> 
-          {Array.from({ length: pageCount }, (_, i) => (
-            <li key={i} className={`page-item ${currentPage === i ? 'active' : ''}`}>
-              <button className="page-link" onClick={() => setCurrentPage(i)}>{i + 1}</button>
-            </li>
-          ))}
-           <li className="page-item">
-          <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
-        </li>
-      </ul>
+            <li className="page-item">
+            <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
+          </li>
+        </ul>
+
+      </div>
+     
     </div>
   );
 };

@@ -167,119 +167,127 @@ const Joblist = () => {
   
   
   return (
-    <div className="useredit-con container">
-      <br />
-      <form>
-        <h2>แก้ไขงาน</h2>
-        {fields.map((field) => (
-        <div className="form-group" key={field.name}>
-          <label>{field.label}:</label>
-          <input
-            type="text"
-            className="form-control"
-            name={field.name}
-            value={editedJob[field.name]}
-            onChange={handleInputChange}
-          />
-        </div>
-      ))}
-        <br/>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleUpdateClick}
-        >
-          Update
-        </button>
+    <div className="useredit-con container-fluid">
 
-      </form>
+      <div className="container">
+        <br />
+        <form>
+          <h2>แก้ไขงาน</h2>
+          {fields.map((field) => (
+          <div className="form-group" key={field.name}>
+            <label>{field.label}:</label>
+            <input
+              type="text"
+              className="form-control"
+              name={field.name}
+              value={editedJob[field.name]}
+              onChange={handleInputChange}
+            />
+          </div>
+        ))}
+          <br/>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleUpdateClick}
+          >
+            Update
+          </button>
+
+        </form>
+
       <br />
+
       <h2>รายการงาน</h2>
-      <table
-        className="table table-bordered "
-        style={{ width: "83.5vw", textAlign: "center" }}
-      >
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>ชื่อลูกค้า</th>
-            <th>เบอร์โทรศัพท์</th>
-            <th>เบอร์โทรศัพท์สำรอง</th>
-            <th>สถานที่นัดหมาย</th>
-            <th>รายละเอียดงาน</th>
-            <th>วันที่นัดหมาย</th>
-            <th>เวลาที่นัดหมาย</th>
-            <th>
-              สถานะงาน
-              <i
-                class="fa-solid fa-circle-info"
-                onClick={handleShowStatusTypeModal}
-                style={{ marginLeft: "5px" }}
-              ></i>
-            </th>
-            <th>
-              ประเภทงาน
-              <i
-                class="fa-solid fa-circle-info"
-                onClick={handleShowJobTypeModal}
-                style={{ marginLeft: "5px" }}
-              ></i>
-            </th>
-            <th>ชื่อช่างผู้รับงาน</th>
-            <th>image</th>
-            <th colSpan={"2"}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mergedData.map((job ,index) => (
-            <tr key={job.job_id}>
-              <td>{job.job_id}</td>
-              <td>{job.member_username}</td>
-              <td>{job.job_tel}</td>
-              <td>{job.job_backup_tel}</td>
-              <td>{job.job_location}</td>
-              <td>{job.job_details}</td>
-              <td>
-                {new Intl.DateTimeFormat("th-TH", thaiTimeOptions).format(
-                  new Date(job.job_assign_date)
-                )}
-              </td>
-              <td>{job.job_assign_time}</td>
-              <td>{job.status_id}</td>
-              <td>{job.job_type_id}</td>
-              <td>{job.technicial_username}</td>
-              <td>
-                {job.imageData.file_data ? (
-                    <img
-                      src={`data:image/jpeg;base64,${job.imageData.file_data}`}
-                      alt={` ${job.job_id}`}
-                      width="100"
-                      height="100"
-                    />
-                  ) : (
-                    "No image data available"
-                  )}
-              </td>
-              <td>
-                <button
-                  className="btn btn-success"
-                  onClick={() => handleEditClick(job)}
-                >
-                  Edit
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDeleteClick(job.job_id)}
-                >
-                  Cancel
-                </button>
-              </td>
+      
+      <div class="table-responsive">
+        <table
+          className="table table-bordered "
+          style={{ width: "83.5vw", textAlign: "center" }}
+        >
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>ชื่อลูกค้า</th>
+              <th>เบอร์โทรศัพท์</th>
+              <th>เบอร์โทรศัพท์สำรอง</th>
+              <th>สถานที่นัดหมาย</th>
+              <th>รายละเอียดงาน</th>
+              <th>วันที่นัดหมาย</th>
+              <th>เวลาที่นัดหมาย</th>
+              <th>
+                สถานะงาน
+                <i
+                  class="fa-solid fa-circle-info"
+                  onClick={handleShowStatusTypeModal}
+                  style={{ marginLeft: "5px" }}
+                ></i>
+              </th>
+              <th>
+                ประเภทงาน
+                <i
+                  class="fa-solid fa-circle-info"
+                  onClick={handleShowJobTypeModal}
+                  style={{ marginLeft: "5px" }}
+                ></i>
+              </th>
+              <th>ชื่อช่างผู้รับงาน</th>
+              <th>image</th>
+              <th colSpan={"2"}>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {mergedData.map((job ,index) => (
+              <tr key={job.job_id}>
+                <td>{job.job_id}</td>
+                <td>{job.member_username}</td>
+                <td>{job.job_tel}</td>
+                <td>{job.job_backup_tel}</td>
+                <td>{job.job_location}</td>
+                <td>{job.job_details}</td>
+                <td>
+                  {new Intl.DateTimeFormat("th-TH", thaiTimeOptions).format(
+                    new Date(job.job_assign_date)
+                  )}
+                </td>
+                <td>{job.job_assign_time}</td>
+                <td>{job.status_id}</td>
+                <td>{job.job_type_id}</td>
+                <td>{job.technicial_username}</td>
+                <td>
+                  {job.imageData.file_data ? (
+                      <img
+                        src={`data:image/jpeg;base64,${job.imageData.file_data}`}
+                        alt={` ${job.job_id}`}
+                        width="100"
+                        height="100"
+                      />
+                    ) : (
+                      "No image data available"
+                    )}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => handleEditClick(job)}
+                  >
+                    Edit
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDeleteClick(job.job_id)}
+                  >
+                    Cancel
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+        
 
         <ul className="pagination">
           <li className="page-item">
@@ -304,6 +312,8 @@ const Joblist = () => {
         show={showStatusTypeModal}
         handleClose={handleCloseStatusTypeModal}
       />
+      </div>
+
     </div>
   );
 };

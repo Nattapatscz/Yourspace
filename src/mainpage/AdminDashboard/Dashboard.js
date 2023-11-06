@@ -22,35 +22,35 @@ export const Dashboard = () => {
   function Sidebar({ openSidebarToggle, OpenSidebar }) {
     return (
          <aside
-        id="sidebar"
-        className={openSidebarToggle ? "sidebar-responsive" : ""}
-      >
-        <div className="sidebar-title">
-          <div className="sidebar-brand">REPAIR SYSTEM</div>
-          <span className="icon close_icon" onClick={OpenSidebar}>
-            X
-          </span>
-        </div>
-  
-        <ul className="sidebar-list">
-          <li className="sidebar-list-item " onClick={() => addcase(0)}> 
-            <p style={{color:"whitesmoke"}}>
-              <BsGrid1X2Fill className="icon" /> Dashboard
-            </p>
-          </li>
-  
-          <li className="sidebar-list-item" onClick={() => addcase(2)}>
-            <p style={{color:"whitesmoke"}}>
-              <BsFillArchiveFill className="icon" /> Jobs
-            </p>
-          </li>
-  
-          <li className="sidebar-list-item" onClick={() => addcase(3)}>
-            <p style={{color:"whitesmoke"}}>
-              <BsPeopleFill className="icon" /> Users
-            </p>
-          </li>
-        </ul>
+            id="sidebar"
+            className={openSidebarToggle ? "sidebar-responsive" : ""}
+          >
+            <div className="sidebar-title">
+              <div className="sidebar-brand">REPAIR SYSTEM</div>
+              <span className="icon close_icon" onClick={OpenSidebar}>
+                X
+              </span>
+            </div>
+      
+            <ul className="sidebar-list">
+              <li className="sidebar-list-item " onClick={() => addcase(0)}> 
+                <p style={{color:"whitesmoke"}}>
+                  <BsGrid1X2Fill className="icon" /> Dashboard
+                </p>
+              </li>
+      
+              <li className="sidebar-list-item" onClick={() => addcase(2)}>
+                <p style={{color:"whitesmoke"}}>
+                  <BsFillArchiveFill className="icon" /> Jobs
+                </p>
+              </li>
+      
+              <li className="sidebar-list-item" onClick={() => addcase(3)}>
+                <p style={{color:"whitesmoke"}}>
+                  <BsPeopleFill className="icon" /> Users
+                </p>
+              </li>
+            </ul>
         </aside>
     );
   }

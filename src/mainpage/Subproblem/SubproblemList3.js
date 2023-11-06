@@ -34,7 +34,7 @@ const SubproblemList3 = () => {
     }
   };
 
-  const uploadToFolder = (event) => {
+  const uploadToFolder = async (event) => {
     event.preventDefault();
     if (selectedFiles.length === 0) {
       alert("Please select at least one file before uploading.");
@@ -44,83 +44,94 @@ const SubproblemList3 = () => {
     const formData = new FormData();
 
     for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append("sampleFiles", selectedFiles[i]);
-      console.log(selectedFiles[i].name);
-      setfilename(selectedFiles[i].name);
+      const file = selectedFiles[i];
+      if (file.size > 1024 * 1024) {
+        // ตรวจสอบขนาดของไฟล์ (1MB = 1024 * 1024 ไบต์)
+        window.Swal.fire({
+          icon: "error",
+          title: "Maximum file size is 1MB.",
+        });
+        return;
+      }
+
+      formData.append("sampleFiles", file);
+      setfilename(file.name);
     }
 
-    setUploadedFiles(formData.sampleFiles);
-    console.log(uploadedFiles);
+    setUploadedFiles(formData.getAll("sampleFiles")); // ใช้ .getAll() เพื่อดึงไฟล์ทั้งหมด
 
-    axios
-      .post("https://homema-api.onrender.com/upload-to-folder", formData)
-      .then((response) => {
-        // Handle success response here
-        console.log(response.data);
-        setUploadStatus("Files uploaded to folder successfully.");
+    try {
+      const response = await axios.post("https://homema-api.onrender.com/upload-to-folder", formData);
+      // Handle success response here
+      console.log(response.data);
+      setUploadStatus("Files uploaded to folder successfully.");
 
-        // ตั้งค่า URL ของไฟล์ที่เลือก
-        if (selectedFiles.length > 0) {
-          const imageUrl = URL.createObjectURL(selectedFiles[0]);
-          setSelectedImageURL(imageUrl);
-        }
-
-        // เพิ่มไฟล์ที่อัปโหลดลงใน uploadedFiles
-        // setUploadedFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-      })
-      .catch((error) => {
-        // Handle error here
-        console.error("Error:", error);
-        setUploadStatus("Error uploading files to folder: " + error.message);
-      });
+      // ตั้งค่า URL ของไฟล์ที่เลือก
+      if (selectedFiles.length > 0) {
+        const imageUrl = URL.createObjectURL(selectedFiles[0]);
+        setSelectedImageURL(imageUrl);
+      }
+    } catch (error) {
+      // Handle error here
+      console.error("Error:", error);
+      setUploadStatus("Error uploading files to folder: " + error.message);
+    }
   };
 
-  const handleSubmit = (event) => {
-    console.log(member_username);
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("jobtype = " + job_type_id);
+  
     if (selectedFiles.length === 0) {
       alert("Please select at least one file before uploading to MySQL.");
       return;
     }
+  
     console.log(member_username);
-
+  
     const formData = new FormData();
-
-    formData.append("sampleFiles", uploadedFiles);
-    formData.append("fileName", filename);
-
-    // Add other form fields to the formData object
-    formData.append("job_location", job_location);
-    formData.append("job_tel", job_tel);
-    formData.append("job_backup_tel", job_backup_tel);
-    formData.append("job_assign_date", job_assign_date);
-    formData.append("job_assign_time", job_assign_time);
-    formData.append("job_details", job_details);
-    formData.append("job_type_id", job_type_id);
-    formData.append("member_username", member_username);
-
-    axios
-      .post("https://homema-api.onrender.com/upload-to-mysql", formData)
-      .then((response) => {
-        // Handle success response here
+  
+      formData.append("sampleFiles", uploadedFiles);
+      formData.append("fileName", filename);
+      // Add other form fields to the formData object
+      formData.append("job_location", job_location);
+      formData.append("job_tel", job_tel);
+      formData.append("job_backup_tel", job_backup_tel);
+      formData.append("job_assign_date", job_assign_date);
+      formData.append("job_assign_time", job_assign_time);
+      formData.append("job_details", job_details);
+      formData.append("job_type_id", job_type_id);
+      formData.append("status_id", status_id);
+      formData.append("member_username", member_username);
+  
+      try {
+        const response = await axios.post(
+          "https://homema-api.onrender.com/upload-to-mysql",
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }
+        );
+      
         console.log(response.data);
+      
         window.Swal.fire({
           icon: "success",
           title: "Add job Success",
         });
-        setUploadStatus("Files uploaded to MySQL successfully.");
-      })
-      .catch((error) => {
-        // Handle error here
+      } catch (error) {
         console.error("Error:", error);
+      
         window.Swal.fire({
           icon: "error",
           title: "Please upload image before submit",
         });
-        setUploadStatus("Error uploading files to MySQL: " + error.message);
-      });
-  };
+      }
+      
+}
+
 
   return (
     <>
