@@ -171,12 +171,12 @@ export default function Mainpages() {
                   </section>
             </section>
             <br />
-             <footer className="pt-3 mt-4 text-div-secondary border-top">
+             <footer className="pt-3 mt-4 text-div-secondary border-top container">
               Homma.company © 2023
             </footer>
             <br/>
 
-          </main>
+        </main>
           
            
         
