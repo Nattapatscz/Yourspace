@@ -163,56 +163,57 @@ const Userlist = () => {
           <br />
 
           <h2>รายการสมาชิก</h2>
-        </div>
-        <div class="table-responsive">
-          <table
-              className="table table-bordered"
-              style={{ width: "83.5vw", textAlign: "center" }}
-            >
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Username</th>
-                  <th scope="col" colSpan={"2"}>
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-              {users
-                  .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
-                  .map((user) => (
-                    <tr key={user.member_id}>
-                      <td>{user.member_id}</td>
-                      <td>{user.email}</td>
-                      <td>{user.roles}</td>
-                      <td>{user.username}</td>
-                      <td>
-                        <button
-                          className="btn btn-success"
-                          onClick={() => handleEditClick(user)}
-                        >
-                          Edit
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          className="btn btn-danger"
-                          onClick={() => handleDeleteClick(user)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
         
-      
-       
-      </div>
+          <div class="table-responsive">
+            <table
+                className="table table-bordered"
+                style={{ width: "83.5vw", textAlign: "center" }}
+              >
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Username</th>
+                    <th scope="col" colSpan={"2"}>
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                {users
+                    .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+                    .map((user) => (
+                      <tr key={user.member_id}>
+                        <td>{user.member_id}</td>
+                        <td>{user.email}</td>
+                        <td>{user.roles}</td>
+                        <td>{user.username}</td>
+                        <td>
+                          <button
+                            className="btn btn-success"
+                            onClick={() => handleEditClick(user)}
+                          >
+                            Edit
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => handleDeleteClick(user)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+          
+        
+        
+          </div>
+        </div>
        <ul className="pagination">
             <li className="page-item">
               <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>

@@ -168,7 +168,7 @@ const UserReport = () => {
 
         </div> 
 
-        <ul className="pagination float-end">
+        <ul className="pagination">
             <li className="page-item">
               <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>ก่อนหน้า</button>
             </li> 
