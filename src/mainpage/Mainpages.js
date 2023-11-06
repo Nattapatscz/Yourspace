@@ -13,18 +13,13 @@ export default function Mainpages() {
 
         </header>
       {/* ################## */}
-
         <header className="jumbotron bgs text-content">
             {/* display in desktop and tablet */}
             <section className="container pts">
-
                 <section className=" card-pages">
-
                               <article className="col " >
-
                                 <h3 className="card-title">บริการช่างมืออาชีพจาก HOMEMA<br/>
                                  ผลงานดี สะดวก ไร้ปัญหาการทิ้งงาน</h3>
-
                                 <div className=" text-p " >
                                   <i className="fa-solid fa-check text-success" ></i> ช่างมืออาชีพ
                                   <br/>
@@ -33,9 +28,7 @@ export default function Mainpages() {
                                   <i className="fa-solid fa-check text-success" ></i> ยืนยันด้วยรีวิวจากลูกค้าจริง
                                   <br/>
                                 </div>
-
                               </article>
-
                           <article className="col " >
                                   <br />
                                   <center>
@@ -48,10 +41,8 @@ export default function Mainpages() {
                                       </Link>
                                   </center>
                                 </article>
-                              
                             <br />
                 </section>    
-
             </section>
         </header>
 
@@ -60,18 +51,15 @@ export default function Mainpages() {
         <main className="container  text-content">
           {/* content in main page by.NTP  */}
           <br />
-
            <section>
               <header style={{textAlign:"center"}}> 
                 <h3>บริการแนะนำ</h3> 
               </header>
 
               <br />
-
               <center>
                 {/* block2 : บริการแนะนำ  */}
                 <section className="container cardpage2">
-
                     <section className="card "
                     style={{ width: "100%", height: "220px" ,overflowX:"auto",overflowY:"hidden" ,border:"none"}}>
 
@@ -80,47 +68,37 @@ export default function Mainpages() {
                         
                         <div className="d-flex flex-nowrap justify-content-center">
                           <p>
-                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
-                             <br />ssad
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/s2.jpg")} alt="..." /> 
+                             <br />ทำความสะอาด
                           </p>
                           <p>
-                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
-                             <br />ssad
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/s3.jpg")} alt="..." /> 
+                             <br />ล้างแอร์
                           </p>
                           <p>
-                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
-                             <br />ssad
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/s4.jpg")} alt="..." /> 
+                             <br />ซ่อมเครื่องใช้ไฟฟ้า
                           </p>
                           <p>
-                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
-                             <br />ssad
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/s5.jpg")} alt="..." /> 
+                             <br />ดูดฝุ่น
                           </p>
                           <p>
-                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
-                             <br />ssad
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/s6.jpg")} alt="..." /> 
+                             <br />ฆ่าเชื้อ
                           </p>
                           <p>
-                             <img className="rounded-circle bgs-r1" src={require("../Photo/img2.jpg")} alt="..." /> 
-                             <br />ssad
+                             <img className="rounded-circle bgs-r1" src={require("../Photo/s7.jpg")} alt="..." /> 
+                             <br />ไอที
                           </p>
-                          
-                        
-                        
                         </div>
-                      
                       </section>
                       </center>
-
-                     
-
                     </section>
-
                 </section>
                 
-
               </center>
            </section>
-
             <br />
 
         </main>
@@ -171,45 +149,33 @@ export default function Mainpages() {
                       {/* ############################# */}
                       <br/>
                     </section>
-                     
             </section>
-
             <br />
             {/* block4 :  */}
             <section className="container-fluid"  >
                   <section className="container">
-
                     <article className="p-4 mb-4 bg-div-tertiary rounded-3">
                           <div className="container-fluid py-5">
-                            <h1 className="display-5 fw-bold">Custom jumbotron</h1>
-                            <p className="col-md-8 fs-4">
-                              Using a series of utilities, you can create this jumbotron,
-                              just like the one in previous versions of Bootstrap. Check out
-                              the examples below for how you can remix and restyle it to
-                              your liking.
-                            </p>
-                            <button className="btn btn-secondary btn-lg" type="button">
-                              Example button
+                            <h1 className="display-5 fw-bold" style={{color:"orange"}} >About us</h1>
+                              <p className="col-md-8 fs-4">
+                              บริษัทนี้มีคณะงานช่างที่มีความชำนาญในการซ่อมแซมและบำรุงรักษาทรัพย์สินของลูกค้า 
+                              เช่น งานประปา, งานไฟฟ้า, งานบ้านและสวน, การซ่อมแซมอุปกรณ์หรือเครื่องมือ, 
+                              งานสี, งานไม้, และงานหลายอย่างอื่น ๆ ที่เกี่ยวข้องกับการบำรุงรักษาและซ่อมแซม.
+                              </p>
+                            <button className="btn btn-warning btn-lg" type="button">
+                              Contact us
                             </button>
                             </div>
                     </article>
-
-                    
-
                     <br/>
-
                   </section>
             </section>
-
             <br />
-            {/* block5 :  */}
-            
-
+          
           </main>
           
-
             <footer className="pt-3 mt-4 text-div-secondary border-top">
-              © 2023
+              Homma.company © 2023
             </footer>
         
        
