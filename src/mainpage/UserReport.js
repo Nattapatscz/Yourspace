@@ -88,86 +88,86 @@ const UserReport = () => {
     <div className="useredit-con container-fluid">
       <div className="container">
          <h2>รายการงานของคุณ</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div class="table-responsive">
-          <table
-            className="table table-bordered"
-            style={{ width: "100%", textAlign: "center" }}
-          >
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>ชื่อลูกค้า</th>
-                <th>เบอร์โทรศัพท์</th>
-                <th>เบอร์โทรศัพท์สำรอง</th>
-                <th>สถานที่นัดหมาย</th>
-                <th>รายละเอียดงาน</th>
-                <th>วันที่นัดหมาย</th>
-                <th>เวลาที่นัดหมาย</th>
-                <th>
-                  สถานะงาน
-                  <i
-                    class="fa-solid fa-circle-info"
-                    onClick={handleShowStatusTypeModal}
-                    style={{ marginLeft: "5px" }}
-                  ></i>
-                </th>
-                <th>
-                  ประเภทงาน
-                  <i
-                    class="fa-solid fa-circle-info"
-                    onClick={handleShowJobTypeModal}
-                    style={{ marginLeft: "5px" }}
-                  ></i>
-                </th>
-                <th>ชื่อช่างผู้รับงาน</th>
-                <th>image</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {jobs.map((job) => (
-                <tr key={job.job_id}>
-                  <td>{job.job_id}</td>
-                  <td>{job.member_username}</td>
-                  <td>{job.job_tel}</td>
-                  <td>{job.job_backup_tel}</td>
-                  <td>{job.job_location}</td>
-                  <td>{job.job_details}</td>
-                  <td>
-                    {new Intl.DateTimeFormat("th-TH", thaiTimeOptions).format(
-                      new Date(job.job_assign_date)
-                    )}
-                  </td>
-                  <td>{job.job_assign_time}</td>
-                  <td>{job.status_id}</td>
-                  <td>{job.job_type_id}</td>
-                  <td>{job.technicial_username}</td>
-                  <td>{job.img_url}</td>
-                  <td>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDeleteClick(job.job_id)}
-                    >
-                      Cancel
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      <JobTypeModal
-        show={showJobTypeModal}
-        handleClose={handleCloseJobTypeModal}
-      />
-      <StatusTypeModal
-        show={showStatusTypeModal}
-        handleClose={handleCloseStatusTypeModal}
-      />
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div class="table-responsive">
+              <table
+                className="table table-bordered"
+                style={{ width: "100%", textAlign: "center" }}
+              >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>ชื่อลูกค้า</th>
+                    <th>เบอร์โทรศัพท์</th>
+                    <th>เบอร์โทรศัพท์สำรอง</th>
+                    <th>สถานที่นัดหมาย</th>
+                    <th>รายละเอียดงาน</th>
+                    <th>วันที่นัดหมาย</th>
+                    <th>เวลาที่นัดหมาย</th>
+                    <th>
+                      สถานะงาน
+                      <i
+                        class="fa-solid fa-circle-info"
+                        onClick={handleShowStatusTypeModal}
+                        style={{ marginLeft: "5px" }}
+                      ></i>
+                    </th>
+                    <th>
+                      ประเภทงาน
+                      <i
+                        class="fa-solid fa-circle-info"
+                        onClick={handleShowJobTypeModal}
+                        style={{ marginLeft: "5px" }}
+                      ></i>
+                    </th>
+                    <th>ชื่อช่างผู้รับงาน</th>
+                    <th>image</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {jobs.map((job) => (
+                    <tr key={job.job_id}>
+                      <td>{job.job_id}</td>
+                      <td>{job.member_username}</td>
+                      <td>{job.job_tel}</td>
+                      <td>{job.job_backup_tel}</td>
+                      <td>{job.job_location}</td>
+                      <td>{job.job_details}</td>
+                      <td>
+                        {new Intl.DateTimeFormat("th-TH", thaiTimeOptions).format(
+                          new Date(job.job_assign_date)
+                        )}
+                      </td>
+                      <td>{job.job_assign_time}</td>
+                      <td>{job.status_id}</td>
+                      <td>{job.job_type_id}</td>
+                      <td>{job.technicial_username}</td>
+                      <td>{job.img_url}</td>
+                      <td>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDeleteClick(job.job_id)}
+                        >
+                          Cancel
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          <JobTypeModal
+            show={showJobTypeModal}
+            handleClose={handleCloseJobTypeModal}
+          />
+          <StatusTypeModal
+            show={showStatusTypeModal}
+            handleClose={handleCloseStatusTypeModal}
+          />
       </div>
      
     </div>

@@ -103,11 +103,11 @@ const Joblist = () => {
 
   return (
     <div className="useredit-con container-fluid">
-      <div className="container">
+      <div >
         <br/>
             <h2>รายการงานที่ยังไม่ถูกดำเนินการ</h2>
-            
-            <div class="table-responsive">
+
+            <div className="table-responsive">
                <table
               className="table table-bordered"
               style={{ width: "83.3vw", textAlign: "center" }}
@@ -201,6 +201,7 @@ const Joblist = () => {
                 <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>ถัดไป</button>
               </li>
             </ul>
+
             <JobTypeModal
               show={showJobTypeModal}
               handleClose={handleCloseJobTypeModal}
