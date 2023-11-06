@@ -17,6 +17,7 @@ const SubproblemList2 = () => {
   const [job_details, setJobDetails] = useState("");
   const [filename, setfilename] = useState("");
   const [job_type_id, setJobTypeID] = useState("200");
+  const [status_id]= useState("1");
   // Decode Token เพื่อรับข้อมูล username
   const token = localStorage.getItem("token");
   const decodedToken = jwtDecode(token);
