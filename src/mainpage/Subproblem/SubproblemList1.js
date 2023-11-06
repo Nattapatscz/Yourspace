@@ -23,6 +23,29 @@ const SubproblemList1 = () => {
   const decodedToken = jwtDecode(token);
   let member_username = decodedToken.username;
 
+  const formatPhoneNumber = (value) => {
+    // ลบทุกอักขระที่ไม่ใช่เลข
+    const phoneNumber = value.replace(/\D/g, '');
+    
+    // นำเลขหมายโทรศัพท์มาตามรูปแบบ 000-000-0000
+    if (phoneNumber.length > 0) {
+      const formattedPhoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+      return formattedPhoneNumber;
+    }
+
+    return phoneNumber;
+  };
+
+  const handleTelChange = (e) => {
+    const formattedTel = formatPhoneNumber(e.target.value);
+    setJobTel(formattedTel);
+  };
+
+  const handleBackupTelChange = (e) => {
+    const formattedBackupTel = formatPhoneNumber(e.target.value);
+    setJobBackupTel(formattedBackupTel);
+  };
+
   const handleFileChange = (event) => {
     const files = event.target.files;
     setSelectedFiles(files);
@@ -221,9 +244,7 @@ const SubproblemList1 = () => {
                   name="job_tel"
                   className="form-control"
                   value={job_tel}
-                  onChange={(e) => setJobTel(e.target.value)}
-                  pattern="\d{3}-\d{3}-\d{4}"
-                  title="กรุณาใส่เบอร์ติดต่อในรูปแบบ 000-000-0000"
+                  onChange={handleTelChange}
                   required
                 />
                 <br />
@@ -234,9 +255,7 @@ const SubproblemList1 = () => {
                   name="job_backup_tel"
                   className="form-control"
                   value={job_backup_tel}
-                  onChange={(e) => setJobBackupTel(e.target.value)}
-                  pattern="\d{3}-\d{3}-\d{4}"
-                  title="กรุณาใส่เบอร์ติดต่อในรูปแบบ 000-000-0000"
+                  onChange={handleBackupTelChange}
                   required
                 />
                 <br />
