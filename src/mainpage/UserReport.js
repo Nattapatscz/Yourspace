@@ -88,14 +88,14 @@ const UserReport = () => {
     <div className="useredit-con container-fluid">
       <div className="container">
         <h2>รายการงานของคุณ</h2>
-      </div>
+      
           {loading ? (
             <p>Loading...</p>
           ) : (
             <div class="table-responsive">
               <table
                 className="table table-bordered"
-                style={{ width: "100%", textAlign: "center" }}
+                style={{ width: "83.5vw", textAlign: "center" }}
               >
                 <thead>
                   <tr>
@@ -115,16 +115,16 @@ const UserReport = () => {
                         style={{ marginLeft: "5px" }}
                       ></i>
                     </th>
-                    <th>
+                    {/* <th>
                       ประเภทงาน
                       <i
                         class="fa-solid fa-circle-info"
                         onClick={handleShowJobTypeModal}
                         style={{ marginLeft: "5px" }}
                       ></i>
-                    </th>
-                    <th>ชื่อช่างผู้รับงาน</th>
-                    <th>image</th>
+                    </th> */}
+                    {/* <th>ชื่อช่างผู้รับงาน</th>
+                    <th>image</th> */}
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -144,9 +144,9 @@ const UserReport = () => {
                       </td>
                       <td>{job.job_assign_time}</td>
                       <td>{job.status_id}</td>
-                      <td>{job.job_type_id}</td>
-                      <td>{job.technicial_username}</td>
-                      <td>{job.img_url}</td>
+                      {/* <td>{job.job_type_id}</td> */}
+                      {/* <td>{job.technicial_username}</td> */}
+                      {/* <td>{job.img_url}</td> */}
                       <td>
                         <button
                           className="btn btn-danger"
@@ -162,6 +162,7 @@ const UserReport = () => {
             </div>
           )}
           
+        </div> 
       
          <JobTypeModal
             show={showJobTypeModal}
