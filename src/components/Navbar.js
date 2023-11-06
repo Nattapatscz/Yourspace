@@ -2,8 +2,17 @@ import React, { useState, useEffect } from "react";
 import "../styles/Navbars.css";
 
 export default function Navbar() {
+
+  const tokenExpirationTime = 2 * 60 * 1000; // 1 ชั่วโมงในมิลลิวินาที
+
+  
   function delete_token() {
     localStorage.removeItem("token");
+    
+    window.Swal.fire({
+      icon: "error",
+      title: "Session time out",
+    });
   }
 
   function ProtectedData() {
@@ -15,6 +24,10 @@ export default function Navbar() {
         setError("No token found");
         return;
       }
+      // เรียก setTimeout ที่ตั้งค่าการลบ Token เมื่อหมดอายุ
+      const tokenExpirationTimeout = setTimeout(() => {
+        delete_token(); // เรียกฟังก์ชันลบ Token หรือทำการล็อกเอาท์
+      }, tokenExpirationTime);
 
       fetch("https://homema-api.onrender.com/protected", {
         headers: {
@@ -25,6 +38,12 @@ export default function Navbar() {
           if (!response.ok) {
             throw new Error("Error retrieving protected data");
           }
+          return response.json();
+        })
+        .then((response) => {
+          // ในกรณีที่คำขอเสร็จสมบูรณ์
+          clearTimeout(tokenExpirationTimeout); 
+          // ยกเลิกการลบ Token ถ้าข้อมูลถูกดึงเรื่อง
           return response.json();
         })
         .catch((error) => {
